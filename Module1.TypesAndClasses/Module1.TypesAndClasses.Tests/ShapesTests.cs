@@ -28,10 +28,10 @@ namespace Module1.TypesAndClasses.Tests
 
             // todo: remove after the methods are implemented
             _circle.Setup(c => c.Perimeter()).Returns(10);
-            _circle.Setup(c => c.Square()).Returns(100);
+            _circle.Setup(c => c.Square()).Returns(200);
 
             _regularPolygon.Setup(c => c.Perimeter()).Returns(86);
-            _regularPolygon.Setup(c => c.Square()).Returns(15);
+            _regularPolygon.Setup(c => c.Square()).Returns(100);
 
             _equilateralTriangle.Setup(c => c.Perimeter()).Returns(10);
             _equilateralTriangle.Setup(c => c.Square()).Returns(100);
@@ -53,7 +53,7 @@ namespace Module1.TypesAndClasses.Tests
                 // todo: add all other shapes
             };
 
-            foreach(var shape in shapes)
+            foreach (var shape in shapes)
             {
                 Assert.Equal($"Shape: '{shape.GetType().Name}'. Square = {shape.Square()}, perimeter = {shape.Perimeter()}", shape.ToString());
             }
@@ -61,10 +61,16 @@ namespace Module1.TypesAndClasses.Tests
 
         [Fact]
         public void TestShapesEquals()
-        {            
-            Assert.NotEqual(_equilateralTriangle.Object, _regularPolygon.Object);
-            Assert.NotEqual(_circle.Object, _regularPolygon.Object);
-            Assert.Equal(_equilateralTriangle.Object, _circle.Object);
+        {
+            // Equals - by perimeter
+            Assert.True(_circle.Object.Equals(_equilateralTriangle.Object));
+            Assert.False(_circle.Object.Equals(_regularPolygon.Object));
+            Assert.False(_regularPolygon.Object.Equals(_equilateralTriangle.Object));
+
+            // == - by square            
+            Assert.True(_regularPolygon.Object == _equilateralTriangle.Object);
+            Assert.False(_circle.Object == _equilateralTriangle.Object);
+            Assert.False(_circle.Object == _regularPolygon.Object);
         }
     }
 }
