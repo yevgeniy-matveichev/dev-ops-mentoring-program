@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Module1.TypesAndClasses.Tests
 {
-    public class TestClasses : IDisposable
+    public class ShapesTests : IDisposable
     {
         #region private fields
 
@@ -20,7 +20,7 @@ namespace Module1.TypesAndClasses.Tests
 
         #region constructor, disposing
 
-        public TestClasses()
+        public ShapesTests()
         {
             _circle = new Mock<IShape>();
             _regularPolygon = new Mock<IShape>();
