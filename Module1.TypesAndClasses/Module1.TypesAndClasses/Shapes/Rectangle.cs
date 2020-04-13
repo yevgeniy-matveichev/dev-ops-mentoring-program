@@ -5,19 +5,19 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Rectangle : IShape
     {
-        public int SideA { set; get; }
+        private int SideA { set; get; }
         public int SideB { set; get; }
 
 
         public int Perimeter()
         {
-            return (SideA * SideB);
+            return (SideA + SideB) * 2;
         }
 
         public long Square()
         {
-            return (SideA + SideB) * 2;
-        }
+            return (SideA * SideB);
+                    }
 
         public Rectangle(int A, int B)
         {
