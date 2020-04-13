@@ -5,25 +5,50 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Circle : IShape
     {
+        #region private
         private int radius { get; }
 
-        Circle(int radius) 
+        #endregion
+
+        #region constructor
+        public Circle(int radius) 
         {
-            this.radius = checked(radius);
+            if (radius < 0) 
+            {
+                throw new ArgumentException($"Radius cannot be less than 0! Actual value was '{radius}'");
+            }
+            else 
+            { 
+                this.radius = checked(radius);
+            }
         }
 
-        //add overflow filters  
+        #endregion
+
         public int Perimeter()
         {
-            var result = 2 * Convert.ToInt32(Math.PI) * radius;
-            return result;
+            try
+            {
+                var result = 2 * Convert.ToInt32(Math.PI) * radius;
+                return result;
+            }
+            catch
+            {
+                throw new ArgumentException($"Cannot perform an operation: 'Perimeter' with radius = '{radius}'");
+            }
         }
 
-        //add overflow filters  
         public long Square()
         {
-            var result = Math.Pow(Convert.ToDouble(2 * Math.PI * radius), Convert.ToDouble(2));
-            return Convert.ToInt64(result);
+            try
+            {
+                double result = Math.PI * Math.Pow(Convert.ToDouble(radius), Convert.ToDouble(2));
+                return Convert.ToInt64(result);
+            }
+            catch
+            {
+                throw new ArgumentException($"Cannot perform an operation: 'Square' with radius = '{radius}'");
+            }
         }
 
         public override string ToString()

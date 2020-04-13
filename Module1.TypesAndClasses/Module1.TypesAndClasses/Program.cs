@@ -13,7 +13,7 @@ namespace Module1.TypesAndClasses
 
             var shapes = new List<IShape>
             {
-                new Circle(),
+                new Circle(1),
                 new Ellipse(),
                 new EquilateralTriangle(),
                 new Rectangle(),
