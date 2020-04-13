@@ -33,8 +33,8 @@ namespace Module1.TypesAndClasses.Tests
             _regularPolygon.Setup(c => c.Perimeter()).Returns(86);
             _regularPolygon.Setup(c => c.Square()).Returns(100);
 
-            _equilateralTriangle.Setup(c => c.Perimeter()).Returns(10);
-            _equilateralTriangle.Setup(c => c.Square()).Returns(100);
+            _equilateralTriangle.Setup(c => c.Perimeter()).Returns(18);
+            _equilateralTriangle.Setup(c => c.Square()).Returns(24);
         }
 
         public void Dispose()
@@ -49,7 +49,8 @@ namespace Module1.TypesAndClasses.Tests
         {
             var shapes = new List<IShape>
             {
-                _circle.Object,
+                //_circle.Object,
+                _equilateralTriangle.Object
                 // todo: add all other shapes
             };
 
