@@ -50,6 +50,7 @@ namespace Module1.TypesAndClasses.Tests
             var shapes = new List<IShape>
             {
                 _circle.Object,
+                _equilateralTriangle.Object
                 // todo: add all other shapes
             };
 
@@ -66,6 +67,16 @@ namespace Module1.TypesAndClasses.Tests
             Assert.True(_circle.Object.Equals(_equilateralTriangle.Object));
             Assert.False(_circle.Object.Equals(_regularPolygon.Object));
             Assert.False(_regularPolygon.Object.Equals(_equilateralTriangle.Object));
+
+            // *** KATE'S TESTS :) don't understand how to call my overrided methods :(
+            Assert.True(_equilateralTriangle.Object.Equals(_circle.Object.Perimeter()));
+            Assert.True(_equilateralTriangle.Object.Perimeter().Equals(_equilateralTriangle.Object.Perimeter()));
+            Assert.False(_equilateralTriangle.Object.Perimeter().Equals(_regularPolygon.Object.Perimeter()));
+
+            Assert.True(_regularPolygon.Object.Square() == _equilateralTriangle.Object.Square());
+            Assert.False(_circle.Object.Square() == _equilateralTriangle.Object.Square());
+            Assert.False(_circle.Object.Square() == _regularPolygon.Object.Square());
+            // *** END OF KATE'S TEST :)
 
             // == - by square            
             Assert.True(_regularPolygon.Object == _equilateralTriangle.Object);
