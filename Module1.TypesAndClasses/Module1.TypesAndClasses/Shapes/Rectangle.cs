@@ -5,30 +5,49 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Rectangle : IShape
     {
-        private int SideA { set; get; }
-        public int SideB { set; get; }
+        #region  private fields
 
+        private readonly int _sideA;
+        private readonly int _sideB;
 
+        #endregion 
+
+        public Rectangle(int a, int b)
+        {
+            if (a >= 0 && b >= 0)
+            {
+                _sideA = a;
+                _sideB = b;
+            }
+            else 
+            { 
+                throw new ArgumentException($"Cannot perform an operation: Argument values should be positive "); 
+            }
+        }
+
+        #region Functions
+        // For ToString() Test Method. ShapeName Function should be also added ti IShape interface
+        public string ShapeName()
+        {
+            return nameof(Rectangle);
+        }
+        
         public int Perimeter()
         {
-            return (SideA + SideB) * 2;
+            return (_sideA + _sideB) * 2;
         }
 
         public long Square()
         {
-            return (SideA * SideB);
-                    }
-
-        public Rectangle(int A, int B)
-        {
-            SideA = A;
-            SideB = B;
+            return (_sideA * _sideB);
         }
-       
+        #endregion
+
+        #region Methods
         public override string ToString()
-                 {
-                        return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
-                               }
+        {
+            return $"Shape: '{ShapeName()}'. Square = {Square()}, perimeter = {Perimeter()}";
+        }
 
         public override bool Equals(object obj)
         {
@@ -40,17 +59,14 @@ namespace Module1.TypesAndClasses.Shapes
         
         public static bool operator ==(Rectangle obj1, Rectangle obj2)
         {
-            if (obj1.Square() == obj2.Square())
-                return true;
-            else return false;
+            return obj1.Square() == obj2.Square();
         }
+       
         public static bool operator !=(Rectangle obj1, Rectangle obj2)
         {
-            if (obj1.Square() == obj2.Square())
-                return false;
-            else return true;
+            return obj1.Square() != obj2.Square();
         }
 
-
+        #endregion
     }
 }
