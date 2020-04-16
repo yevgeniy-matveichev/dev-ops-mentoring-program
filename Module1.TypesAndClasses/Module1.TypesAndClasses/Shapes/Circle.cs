@@ -6,7 +6,7 @@ namespace Module1.TypesAndClasses.Shapes
     public class Circle : IShape
     {
         #region private
-        private int radius { get; }
+        private readonly int _radius;
 
         #endregion
 
@@ -17,38 +17,23 @@ namespace Module1.TypesAndClasses.Shapes
             {
                 throw new ArgumentException($"Radius cannot be less than 0! Actual value was '{radius}'");
             }
-            else 
-            { 
-                this.radius = checked(radius);
-            }
+
+            _radius = radius;
         }
 
         #endregion
 
         public int Perimeter()
         {
-            try
-            {
-                var result = 2 * Convert.ToInt32(Math.PI) * radius;
-                return result;
-            }
-            catch
-            {
-                throw new ArgumentException($"Cannot perform an operation: 'Perimeter' with radius = '{radius}'");
-            }
+            var result = checked(2 * Math.PI * _radius);
+            int perimeter = Convert.ToInt32(result);
+            return perimeter;
         }
 
         public long Square()
         {
-            try
-            {
-                double result = Math.PI * Math.Pow(Convert.ToDouble(radius), Convert.ToDouble(2));
-                return Convert.ToInt64(result);
-            }
-            catch
-            {
-                throw new ArgumentException($"Cannot perform an operation: 'Square' with radius = '{radius}'");
-            }
+            double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
+            return Convert.ToInt64(result);
         }
 
         public override string ToString()
@@ -62,15 +47,9 @@ namespace Module1.TypesAndClasses.Shapes
             {
                 return false;
             }
-            if (ReferenceEquals(this, obj))
-            {
-                Circle circle = (Circle)obj;
-                return this.Perimeter() == circle.Perimeter();
-            }
-            else
-            {
-                return false;
-            }
+            
+            Circle circle = (Circle)obj;
+            return this.Perimeter() == circle.Perimeter();
         }
 
         public static bool operator ==(Circle circle1, Circle circle2)

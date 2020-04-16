@@ -26,16 +26,24 @@ namespace Module1.TypesAndClasses.Tests
             _circle = new Mock<IShape>();
             _regularPolygon = new Mock<IShape>();
             _equilateralTriangle = new Mock<IShape>();
+            _ellipse = new Mock<IShape>();
+            _rectangle = new Mock<IShape>();
 
             // todo: remove after the methods are implemented
             _circle.Setup(c => c.Perimeter()).Returns(11);
             _circle.Setup(c => c.Square()).Returns(251);
 
             _regularPolygon.Setup(c => c.Perimeter()).Returns(86);
-            _regularPolygon.Setup(c => c.Square()).Returns(100);
+            _regularPolygon.Setup(c => c.Square()).Returns(10);
 
             _equilateralTriangle.Setup(c => c.Perimeter()).Returns(10);
             _equilateralTriangle.Setup(c => c.Square()).Returns(100);
+
+            _ellipse.Setup(c => c.Perimeter()).Returns(15);
+            _ellipse.Setup(c => c.Square()).Returns(578);
+
+            _rectangle.Setup(c => c.Perimeter()).Returns(342);
+            _rectangle.Setup(c => c.Perimeter()).Returns(432);
         }
 
         public void Dispose()
@@ -51,11 +59,11 @@ namespace Module1.TypesAndClasses.Tests
             var shapes = new List<IShape>
             {
 
-                _circle.Object,
-                _equilateralTriangle.Object
+                //_circle.Object,
+                //_equilateralTriangle.Object
+                new EquilateralTriangle()
 
-                // _circle.Object,
-                new Ellipse(2,2),
+                //new Ellipse(2,2)
 
                 // todo: add all other shapes
             };
@@ -80,15 +88,9 @@ namespace Module1.TypesAndClasses.Tests
             var elipse2 = new Ellipse(8, 10);
             Assert.True(elipse2 == _circle.Object);
 
-            // *** KATE'S TESTS :) don't understand how to call my overrided methods :(
-            Assert.True(_equilateralTriangle.Object.Equals(_circle.Object.Perimeter()));
-            Assert.True(_equilateralTriangle.Object.Perimeter().Equals(_equilateralTriangle.Object.Perimeter()));
-            Assert.False(_equilateralTriangle.Object.Perimeter().Equals(_regularPolygon.Object.Perimeter()));
-
-            Assert.True(_regularPolygon.Object.Square() == _equilateralTriangle.Object.Square());
-            Assert.False(_circle.Object.Square() == _equilateralTriangle.Object.Square());
-            Assert.False(_circle.Object.Square() == _regularPolygon.Object.Square());
-            // *** END OF KATE'S TEST :)
+            var triangle = new EquilateralTriangle();
+            Assert.True(triangle.Equals(_ellipse.Object));
+            Assert.True(triangle == _regularPolygon.Object);
 
             // == - by square            
            // Assert.True(_regularPolygon.Object == _equilateralTriangle.Object);
