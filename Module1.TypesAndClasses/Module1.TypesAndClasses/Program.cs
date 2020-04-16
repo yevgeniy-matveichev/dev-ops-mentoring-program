@@ -15,8 +15,8 @@ namespace Module1.TypesAndClasses
             {
                 new Ellipse(2,3),
                 new Circle(1),
-                new EquilateralTriangle(),
                 new Rectangle(1,1),
+                new EquilateralTriangle(6),
                 new RegularPolygon()
             };
 

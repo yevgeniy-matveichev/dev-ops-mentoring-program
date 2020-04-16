@@ -21,17 +21,12 @@ namespace Module1.TypesAndClasses.Shapes
             }
             else 
             { 
-                throw new ArgumentException($"Cannot perform an operation: Argument values should be positive "); 
+                throw new ArgumentException($"Cannot perform an operation: Argument values must be positive "); 
             }
         }
 
-        #region Functions
-        // For ToString() Test Method. ShapeName Function should be also added ti IShape interface
-        public string ShapeName()
-        {
-            return nameof(Rectangle);
-        }
-        
+        #region Public Functions
+              
         public int Perimeter()
         {
             return (_sideA + _sideB) * 2;
@@ -43,10 +38,10 @@ namespace Module1.TypesAndClasses.Shapes
         }
         #endregion
 
-        #region Methods
+        #region Public Methods
         public override string ToString()
         {
-            return $"Shape: '{ShapeName()}'. Square = {Square()}, perimeter = {Perimeter()}";
+            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()}, perimeter = {Perimeter()}";
         }
 
         public override bool Equals(object obj)
