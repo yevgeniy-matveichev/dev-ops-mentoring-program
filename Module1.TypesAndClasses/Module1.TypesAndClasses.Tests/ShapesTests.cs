@@ -60,9 +60,9 @@ namespace Module1.TypesAndClasses.Tests
             {
 
                 //_circle.Object,
-                _equilateralTriangle.Object
+                //_equilateralTriangle.Object
+                new EquilateralTriangle()
 
-                // _circle.Object,
                 //new Ellipse(2,2)
 
                 // todo: add all other shapes

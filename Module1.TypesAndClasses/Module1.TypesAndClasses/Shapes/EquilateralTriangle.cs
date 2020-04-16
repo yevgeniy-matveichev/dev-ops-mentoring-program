@@ -84,8 +84,6 @@ namespace Module1.TypesAndClasses.Shapes
             IShape objectShape = obj as IShape;
 
             if (objectShape == null) return false;
-            //if (!(obj is IShape shapeObject)) return false;
-
             return objectShape.Perimeter() == Perimeter();
         }
 
