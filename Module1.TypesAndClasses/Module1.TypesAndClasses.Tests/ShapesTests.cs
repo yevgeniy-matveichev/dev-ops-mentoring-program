@@ -61,8 +61,8 @@ namespace Module1.TypesAndClasses.Tests
 
                 //_circle.Object,
                 //_equilateralTriangle.Object
-                new EquilateralTriangle()
-
+                new EquilateralTriangle(),
+                new Rectangle(4,4),
                 //new Ellipse(2,2)
 
                 // todo: add all other shapes
@@ -91,11 +91,15 @@ namespace Module1.TypesAndClasses.Tests
             var triangle = new EquilateralTriangle();
             Assert.True(triangle.Equals(_ellipse.Object));
             Assert.True(triangle == _regularPolygon.Object);
+            
+            //Rectangle
 
+            Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
+            Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
             // == - by square            
-           // Assert.True(_regularPolygon.Object == _equilateralTriangle.Object);
-           // Assert.False(_circle.Object == _equilateralTriangle.Object);
-           // Assert.False(_circle.Object == _regularPolygon.Object);
+            // Assert.True(_regularPolygon.Object == _equilateralTriangle.Object);
+            // Assert.False(_circle.Object == _equilateralTriangle.Object);
+            // Assert.False(_circle.Object == _regularPolygon.Object);
         }
     }
 }
