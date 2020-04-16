@@ -12,8 +12,7 @@ namespace Module1.TypesAndClasses.Tests
     {
         #region private fields
 
-        //private readonly Circle _circle = new Circle(1);
-        private readonly Mock<IShape> _circle;
+        private readonly Circle _circle = new Circle(1);
         private readonly Mock<IShape> _ellipse;
         private readonly Mock<IShape> _equilateralTriangle;
         private readonly Mock<IShape> _rectangle;
@@ -72,24 +71,23 @@ namespace Module1.TypesAndClasses.Tests
         [Fact]
         public void TestShapesEquals()
         {
-            Circle _circleObject = new Circle(1);
-            Circle circleDuplicate1 = _circleObject;
+            Circle circleDuplicate1 = _circle;
             Circle circleDuplicate2 = new Circle(2);
             var elipse1 = new Ellipse(3, 4);
             var elipse2 = new Ellipse(8, 10);
             var triangle = new EquilateralTriangle();
 
             // Equals - by perimeter
-            Assert.True(_circleObject.Equals(circleDuplicate1));
-            Assert.False(_circleObject.Equals(circleDuplicate2));
-            Assert.Throws<System.InvalidCastException>(() => _circleObject.Equals(elipse2));
+            Assert.True(_circle.Equals(circleDuplicate1));
+            Assert.False(_circle.Equals(circleDuplicate2));
+            Assert.Throws<System.InvalidCastException>(() => _circle.Equals(elipse2));
             Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
             Assert.True(triangle.Equals(_ellipse.Object));
          
             // == - by square            
-            Assert.False(elipse2 == _circleObject);
-            Assert.True(_circleObject == circleDuplicate1);
-            Assert.False(_circleObject == circleDuplicate2);                   
+            Assert.False(elipse2 == _circle);
+            Assert.True(_circle == circleDuplicate1);
+            Assert.False(_circle == circleDuplicate2);                   
             Assert.True(triangle == _regularPolygon.Object);
             Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
             
