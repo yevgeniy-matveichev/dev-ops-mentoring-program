@@ -81,10 +81,12 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
+            IShape objectShape = obj as IShape;
 
-            var triangle = obj as EquilateralTriangle;
-            return triangle.Perimeter() == this.Perimeter();
+            if (objectShape == null) return false;
+            //if (!(obj is IShape shapeObject)) return false;
+
+            return objectShape.Perimeter() == Perimeter();
         }
 
         //public static bool operator ==(EquilateralTriangle triangle, object obj)
