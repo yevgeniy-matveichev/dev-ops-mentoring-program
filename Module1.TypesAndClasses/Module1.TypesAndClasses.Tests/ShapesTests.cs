@@ -1,3 +1,4 @@
+using Castle.DynamicProxy.Generators;
 using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
 using Moq;
@@ -11,7 +12,7 @@ namespace Module1.TypesAndClasses.Tests
     {
         #region private fields
 
-        private readonly Mock<IShape> _circle;
+        private readonly Circle _circle = new Circle(1);
         private readonly Mock<IShape> _ellipse;
         private readonly Mock<IShape> _equilateralTriangle;
         private readonly Mock<IShape> _rectangle;
@@ -23,14 +24,10 @@ namespace Module1.TypesAndClasses.Tests
 
         public ShapesTests()
         {
-            _circle = new Mock<IShape>();
             _regularPolygon = new Mock<IShape>();
             _equilateralTriangle = new Mock<IShape>();
 
             // todo: remove after the methods are implemented
-            _circle.Setup(c => c.Perimeter()).Returns(11);
-            _circle.Setup(c => c.Square()).Returns(251);
-
             _regularPolygon.Setup(c => c.Perimeter()).Returns(86);
             _regularPolygon.Setup(c => c.Square()).Returns(100);
 
@@ -40,7 +37,7 @@ namespace Module1.TypesAndClasses.Tests
 
         public void Dispose()
         {
-            _circle.Reset();
+
         }
 
         #endregion
@@ -51,11 +48,9 @@ namespace Module1.TypesAndClasses.Tests
             var shapes = new List<IShape>
             {
 
-                _circle.Object,
-                _equilateralTriangle.Object
 
-                // _circle.Object,
-                new Ellipse(2,2),
+                new Circle(1),
+                new Ellipse(2,2)
 
                 // todo: add all other shapes
             };
@@ -70,30 +65,35 @@ namespace Module1.TypesAndClasses.Tests
         [Fact]
         public void TestShapesEquals()
         {
-            // Equals - by perimeter
-            // Assert.True(_circle.Object.Equals(_equilateralTriangle.Object));
-            // Assert.False(_circle.Object.Equals(_regularPolygon.Object));
-            // Assert.False(_regularPolygon.Object.Equals(_equilateralTriangle.Object));
-            var elipse1 = new Ellipse(3, 4);
-            Assert.True(elipse1.Equals(_circle.Object));
+            
+            Circle circleDuplicate1 = _circle;
+            Circle circleDuplicate2 = new Circle(2);
 
+            var elipse1 = new Ellipse(3, 4);
             var elipse2 = new Ellipse(8, 10);
-            Assert.True(elipse2 == _circle.Object);
+
+            // Equals - by perimeter
+            Assert.True(_circle.Equals(circleDuplicate1));
+            Assert.False(_circle.Equals(circleDuplicate2));
+            Assert.Throws<System.InvalidCastException>(() => _circle.Equals(elipse2));
+
+            //  Assert.True(elipse1.Equals(_circle));
 
             // *** KATE'S TESTS :) don't understand how to call my overrided methods :(
-            Assert.True(_equilateralTriangle.Object.Equals(_circle.Object.Perimeter()));
-            Assert.True(_equilateralTriangle.Object.Perimeter().Equals(_equilateralTriangle.Object.Perimeter()));
-            Assert.False(_equilateralTriangle.Object.Perimeter().Equals(_regularPolygon.Object.Perimeter()));
+            //Assert.True(_equilateralTriangle.Object.Equals(_circle.Object.Perimeter()));
+            //Assert.True(_equilateralTriangle.Object.Perimeter().Equals(_equilateralTriangle.Object.Perimeter()));
+            //Assert.False(_equilateralTriangle.Object.Perimeter().Equals(_regularPolygon.Object.Perimeter()));
 
-            Assert.True(_regularPolygon.Object.Square() == _equilateralTriangle.Object.Square());
-            Assert.False(_circle.Object.Square() == _equilateralTriangle.Object.Square());
-            Assert.False(_circle.Object.Square() == _regularPolygon.Object.Square());
+            //Assert.True(_regularPolygon.Object.Square() == _equilateralTriangle.Object.Square());
+            //Assert.False(_circle.Object.Square() == _equilateralTriangle.Object.Square());
+            //Assert.False(_circle.Object.Square() == _regularPolygon.Object.Square());
             // *** END OF KATE'S TEST :)
 
             // == - by square            
-           // Assert.True(_regularPolygon.Object == _equilateralTriangle.Object);
-           // Assert.False(_circle.Object == _equilateralTriangle.Object);
-           // Assert.False(_circle.Object == _regularPolygon.Object);
+            Assert.False(elipse2 == _circle);
+
+            Assert.True(_circle == circleDuplicate1);
+            Assert.False(_circle == circleDuplicate2);
         }
     }
 }

@@ -13,15 +13,10 @@ namespace Module1.TypesAndClasses
 
             var shapes = new List<IShape>
             {
-
-                new Circle(),
                 new Ellipse(2,3),
-
                 new Circle(1),
-                new Ellipse(),
-
                 new EquilateralTriangle(),
-                new Rectangle(),
+                new Rectangle(1,1),
                 new RegularPolygon()
             };
 
