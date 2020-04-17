@@ -82,6 +82,7 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(_circle.Equals(circleDuplicate2));
             Assert.Throws<System.InvalidCastException>(() => _circle.Equals(elipse2));
             Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
+            Assert.False(new Rectangle(5, 5).Equals(new Rectangle(2, 6)));
             Assert.True(triangle.Equals(_ellipse.Object));
             Assert.False(triangle.Equals(_regularPolygon.Object));
          
@@ -92,13 +93,15 @@ namespace Module1.TypesAndClasses.Tests
             Assert.True(triangle == _regularPolygon.Object);
             Assert.False(triangle == _rectangle.Object);
             Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
+            Assert.False(new Rectangle(5, 5) == new Rectangle(2, 8));
 
             //!= - by square
             Assert.False(_circle != circleDuplicate1);
             Assert.True(_circle != circleDuplicate2);
             Assert.True(triangle != _rectangle.Object);
             Assert.False(triangle != _regularPolygon.Object);
-            Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
+            Assert.False(new Rectangle(4, 4) != new Rectangle(2, 8));
+            Assert.True(new Rectangle(5, 5) != new Rectangle(2, 8));
         }
     }
 }
