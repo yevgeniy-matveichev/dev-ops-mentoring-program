@@ -85,7 +85,10 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(new Rectangle(5, 5).Equals(new Rectangle(2, 6)));
             Assert.True(triangle.Equals(_ellipse.Object));
             Assert.False(triangle.Equals(_regularPolygon.Object));
-         
+            Assert.True(new Ellipse(5, 6).Equals(new Ellipse(6, 5)));
+            Assert.False(new Ellipse(5, 1).Equals(new Ellipse(6, 5)));
+
+
             // == - by square            
             Assert.False(elipse2 == _circle);
             Assert.True(_circle == circleDuplicate1);
@@ -94,6 +97,8 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(triangle == _rectangle.Object);
             Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
             Assert.False(new Rectangle(5, 5) == new Rectangle(2, 8));
+            Assert.True(new Ellipse(5, 6) == new Ellipse(6, 5));
+            Assert.False(new Ellipse(5, 1) == new Ellipse(6, 5));
 
             //!= - by square
             Assert.False(_circle != circleDuplicate1);
@@ -102,6 +107,8 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(triangle != _regularPolygon.Object);
             Assert.False(new Rectangle(4, 4) != new Rectangle(2, 8));
             Assert.True(new Rectangle(5, 5) != new Rectangle(2, 8));
+            Assert.False(new Ellipse(5, 6) != new Ellipse(6, 5));
+            Assert.True(new Ellipse(5, 1) != new Ellipse(6, 5));
         }
     }
 }
