@@ -91,6 +91,7 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(_circle == circleDuplicate2);                   
             Assert.True(triangle == _regularPolygon.Object);
             Assert.False(triangle == _rectangle.Object);
+            Assert.True(triangle != _rectangle.Object);
             Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
             
         }
