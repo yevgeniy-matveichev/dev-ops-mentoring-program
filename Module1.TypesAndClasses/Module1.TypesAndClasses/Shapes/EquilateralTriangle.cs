@@ -8,8 +8,6 @@ namespace Module1.TypesAndClasses.Shapes
     {
         private readonly int _a;
 
-        #region constructors
-
         public EquilateralTriangle(int side)
         {
             if (side <= 0)
@@ -19,8 +17,6 @@ namespace Module1.TypesAndClasses.Shapes
 
             _a = side;
         }
-
-        #endregion
 
         public int Perimeter()
         {
