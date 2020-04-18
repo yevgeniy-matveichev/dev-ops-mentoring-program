@@ -57,7 +57,7 @@ namespace Module1.TypesAndClasses.Tests
             {
                 new Circle(1),
                 new Ellipse(2,2),
-                new EquilateralTriangle(),
+                new EquilateralTriangle(5),
                 new Rectangle(4,4)
             };
 
@@ -75,7 +75,7 @@ namespace Module1.TypesAndClasses.Tests
             Circle circleDuplicate2 = new Circle(2);
             var elipse1 = new Ellipse(3, 4);
             var elipse2 = new Ellipse(8, 10);
-            var triangle = new EquilateralTriangle();
+            var triangle = new EquilateralTriangle(5);
 
             // Equals - by perimeter
             Assert.True(_circle.Equals(circleDuplicate1));

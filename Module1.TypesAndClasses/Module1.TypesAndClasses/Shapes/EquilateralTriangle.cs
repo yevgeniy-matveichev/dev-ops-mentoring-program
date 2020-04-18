@@ -6,9 +6,7 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class EquilateralTriangle : IShape
     {
-        protected readonly int _a = 5;
-
-        public int A => _a;
+        private readonly int _a;
 
         #region constructors
 
@@ -22,23 +20,21 @@ namespace Module1.TypesAndClasses.Shapes
             _a = side;
         }
 
-        public EquilateralTriangle() { }
-
         #endregion
 
         public int Perimeter()
         {
-            return 3 * A;
+            return 3 * _a;
         }
 
         public long Square()
         {
-            var res = (Math.Sqrt(3) / 4) * Math.Pow(A, 2);
+            var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
             return (long)res;
         }
 
         public override string ToString() {
-            var eTriangle = new EquilateralTriangle();
+            var eTriangle = new EquilateralTriangle(5);
 
             var sb = new StringBuilder();
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
