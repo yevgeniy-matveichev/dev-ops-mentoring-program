@@ -48,37 +48,6 @@ namespace Module1.TypesAndClasses.Shapes
             return sb.ToString();
         }
 
-        //public override bool Equals(object obj)
-        //{
-        //    var triangle_ = new EquilateralTriangle();
-
-        //    var circle = obj as Circle;
-        //    var ellipse = obj as Ellipse;
-        //    var rectangle = obj as Rectangle;
-        //    var triangle = obj as EquilateralTriangle;
-
-        //    if (triangle_.Perimeter() == circle.Perimeter())
-        //    {
-        //        return true;
-
-        //    } else if (triangle_.Perimeter() == ellipse.Perimeter())
-        //    {
-        //        return true;
-
-        //    } else if (triangle_.Perimeter() == rectangle.Perimeter())
-        //    {
-        //        return true;
-
-        //    } else if (triangle_.Perimeter() == triangle.Perimeter())
-        //    {
-        //        return true;
-
-        //    } else
-        //    {
-        //        return false;
-        //    }
-        //}
-
         public override bool Equals(object obj)
         {
             IShape objectShape = obj as IShape;
@@ -86,37 +55,6 @@ namespace Module1.TypesAndClasses.Shapes
             if (objectShape == null) return false;
             return objectShape.Perimeter() == Perimeter();
         }
-
-        //public static bool operator ==(EquilateralTriangle triangle, object obj)
-        //{
-        //    var circle = obj as Circle;
-        //    var ellipse = obj as Ellipse;
-        //    var rectangle = obj as Rectangle;
-        //    var regularPolygon = obj as RegularPolygon;
-
-        //    if (triangle.Square() == circle.Square()) return true;
-        //    else if (triangle.Square() == ellipse.Square()) return true;
-        //    else if (triangle.Square() == rectangle.Square()) return true;
-        //    else if (triangle.Square() == regularPolygon.Square()) return true;
-        //    return false;
-        //}
-
-        //public static bool operator !=(EquilateralTriangle triangle, object obj)
-        //{
-        //    var circle = obj as Circle;
-        //    var ellipse = obj as Ellipse;
-        //    var rectangle = obj as Rectangle;
-        //    var regularPolygon = obj as RegularPolygon;
-
-        //    if (triangle.Square() == circle.Square()) return false;
-        //    else if (triangle.Square() == ellipse.Square()) return false;
-        //    else if (triangle.Square() == rectangle.Square()) return false;
-        //    else if (triangle.Square() == regularPolygon.Square()) return false;
-        //    return true;
-
-        //    //if (triangle.Square() == circle.Square()) return false;
-        //    //return true;
-        //}
 
         public static bool operator ==(EquilateralTriangle obj1, IShape obj2)
         {
