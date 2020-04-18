@@ -14,11 +14,11 @@ namespace Module1.TypesAndClasses.Shapes
 
         public EquilateralTriangle(int side)
         {
-            if(side <= 0)
+            if (side <= 0)
             {
                 throw new ArgumentException("The side cannot be less or equal to 0.");
             }
-            
+
             _a = side;
         }
 
@@ -58,10 +58,38 @@ namespace Module1.TypesAndClasses.Shapes
 
         public static bool operator ==(EquilateralTriangle obj1, IShape obj2)
         {
+            if (ReferenceEquals(obj1, null))
+            {
+                if (ReferenceEquals(obj2, null))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            if (ReferenceEquals(obj2, null))
+            {
+                return false;
+            }
+
             return obj1.Square() == obj2.Square();
         }
         public static bool operator !=(EquilateralTriangle obj1, IShape obj2)
         {
+            if (ReferenceEquals(obj1, null))
+            {
+                if (ReferenceEquals(obj2, null))
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            if (ReferenceEquals(obj2, null))
+            {
+                return true;
+            }
+
             return obj1.Square() != obj2.Square();
         }
     }
