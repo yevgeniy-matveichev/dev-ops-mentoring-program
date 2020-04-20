@@ -1,4 +1,5 @@
 using Castle.DynamicProxy.Generators;
+using Microsoft.VisualStudio.TestPlatform.TestExecutor;
 using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
 using Moq;
@@ -11,8 +12,7 @@ namespace Module1.TypesAndClasses.Tests
     public class ShapesTests : IDisposable
     {
         #region private fields
-
-        private readonly Circle _circle = new Circle(1);
+        BaseShape.units u = BaseShape.units.cm;
         private readonly Mock<IShape> _ellipse;
         private readonly Mock<IShape> _equilateralTriangle;
         private readonly Mock<IShape> _rectangle;
@@ -55,7 +55,7 @@ namespace Module1.TypesAndClasses.Tests
         {
             var shapes = new List<IShape>
             {
-                new Circle(1),
+                new Circle(1, u),
                 new Ellipse(2,2),
                 new EquilateralTriangle(5),
                 new Rectangle(4,4)
@@ -71,8 +71,9 @@ namespace Module1.TypesAndClasses.Tests
         [Fact]
         public void TestShapesEquals()
         {
+            Circle _circle = new Circle(1, u);
             Circle circleDuplicate1 = _circle;
-            Circle circleDuplicate2 = new Circle(2);
+            Circle circleDuplicate2 = new Circle(2, u);
             var elipse1 = new Ellipse(3, 4);
             var elipse2 = new Ellipse(8, 10);
             var triangle = new EquilateralTriangle(5);
