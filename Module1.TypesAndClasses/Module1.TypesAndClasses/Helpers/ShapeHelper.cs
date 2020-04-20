@@ -6,23 +6,26 @@ using Module1.TypesAndClasses.Shapes;
 
 namespace Module1.TypesAndClasses.Helpers
 {
-    static class ShapeHelper
+    public static class ShapeHelper
     {
-        public static bool PerimeterEquals(BaseShape shape, BaseShape value)
+        public static bool PerimeterEquals(BaseShape shape1, BaseShape shape2)
         {
-            if (shape != null && value != null) { return (shape.Perimeter() == value.Perimeter()); }
-            else 
-            { 
-                throw new ArgumentNullException($"ArgumentException must be not null for {nameof(shape)}"); 
-            }
+             return shape1.Equals(shape2); 
         }
-        public static bool SquareEquals(BaseShape shape,BaseShape value)
+                   
+        public static bool SquareEquals(BaseShape shape1, BaseShape shape2)
         {
-            if (shape != null && value != null) { return (shape.Square() == value.Square()); }
-            else
+            if (shape1 is null)
             {
-                throw new ArgumentNullException($"ArgumentException must be not null for {nameof(shape)}");
+                throw new ArgumentNullException(nameof(shape1));
             }
-        }
+
+            if (shape2 is null)
+            {
+                throw new ArgumentNullException(nameof(shape2));
+            }
+
+            { return (shape1 == shape2); }
+                    }
     }
 }

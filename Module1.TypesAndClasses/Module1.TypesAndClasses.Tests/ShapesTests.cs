@@ -1,10 +1,13 @@
 using Castle.DynamicProxy.Generators;
+using Module1.TypesAndClasses.Helpers;
 using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
 using Moq;
 using System;
 using System.Collections.Generic;
 using Xunit;
+using static Module1.TypesAndClasses.Shapes.BaseShape.MetricName;
+
 
 namespace Module1.TypesAndClasses.Tests
 {
@@ -15,7 +18,6 @@ namespace Module1.TypesAndClasses.Tests
         private readonly Circle _circle = new Circle(1);
         private readonly Mock<IShape> _ellipse;
         private readonly Mock<IShape> _equilateralTriangle;
-        private readonly Mock<IShape> _rectangle;
         private readonly Mock<IShape> _regularPolygon;
 
         #endregion
@@ -58,13 +60,13 @@ namespace Module1.TypesAndClasses.Tests
              //   new Circle(1),
               //  new Ellipse(2,2),
                // new EquilateralTriangle(),
-                new Rectangle(4,4)
+                new Rectangle(4,4,m)
             };
 
 
             foreach (var shape in shapes)
             {
-                Assert.Equal($"Shape: '{shape.ShapeName()}'. Square = {shape.Square()}, perimeter = {shape.Perimeter()}", shape.ToString());
+                Assert.Equal($"Shape: '{shape.ShapeName()}'. Square = {shape.Square()} {shape.Metric()}2, perimeter = {shape.Perimeter()} {shape.Metric()}", shape.ToString());
             }
         }
 
@@ -81,8 +83,8 @@ namespace Module1.TypesAndClasses.Tests
             Assert.True(_circle.Equals(circleDuplicate1));
             Assert.False(_circle.Equals(circleDuplicate2));
             Assert.Throws<System.InvalidCastException>(() => _circle.Equals(elipse2));
-            Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
-            Assert.False(new Rectangle(3, 4).Equals(new Rectangle(2, 6)));
+            Assert.True(new Rectangle(4, 4,m).Equals(new Rectangle(2, 6,m)));
+            Assert.False(new Rectangle(3, 4,m).Equals(new Rectangle(2, 6,m)));
             Assert.True(triangle.Equals(_ellipse.Object));
          
             // == - by square            
@@ -90,8 +92,11 @@ namespace Module1.TypesAndClasses.Tests
             Assert.True(_circle == circleDuplicate1);
             Assert.False(_circle == circleDuplicate2);                   
             Assert.True(triangle == _regularPolygon.Object);
-            Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
-            Assert.False(new Rectangle(4, 4) != new Rectangle(2, 8));
+            Assert.True(new Rectangle(4, 4, m) == new Rectangle(2, 8, m));
+            Assert.False(new Rectangle(4, 4, m) != new Rectangle(2, 8, m));
+          //      # Helpers 
+            Assert.True(ShapeHelper.PerimeterEquals(new Rectangle(4, 4, m), new Rectangle(2, 6, m)));
+            Assert.False(ShapeHelper.SquareEquals(new Rectangle(4, 4, m), new Rectangle(2, 8, m)));
         }
     }
 }

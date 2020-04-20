@@ -74,9 +74,14 @@ namespace Module1.TypesAndClasses.Shapes
 
         public static bool operator ==(BaseShape obj1, BaseShape obj2)
         {
-            if (obj1 == null || obj2 == null)
+            if (obj1 is null)
             {
-                throw new ArgumentNullException(" One of objects is null");
+                throw new ArgumentNullException(nameof(obj1));
+            }
+
+            if (obj2 is null)
+            {
+                throw new ArgumentNullException(nameof(obj2));
             }
             else
             {
@@ -85,7 +90,7 @@ namespace Module1.TypesAndClasses.Shapes
                 {
                     case "m":
                         {
-                            Square1 *= 10000;
+                            Square1 *= 1000000;
                             break;
                         }
                     case "sm":
@@ -99,7 +104,7 @@ namespace Module1.TypesAndClasses.Shapes
                 {
                     case "m":
                         {
-                            Square2 *= 10000;
+                            Square2 *= 1000000;
                             break;
                         }
                     case "sm":
@@ -126,7 +131,7 @@ namespace Module1.TypesAndClasses.Shapes
                 {
                     case "m":
                         {
-                            Square1 *= 10000;
+                            Square1 *= 100000;
                             break;
                         }
                     case "sm":
@@ -140,7 +145,7 @@ namespace Module1.TypesAndClasses.Shapes
                 {
                     case "m":
                         {
-                            Square2 *= 10000;
+                            Square2 *= 1000000;
                             break;
                         }
                     case "sm":
