@@ -3,64 +3,58 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Rectangle : IShape
+    public class Rectangle : BaseShape
     {
         #region  private fields
 
         private readonly int _sideA;
         private readonly int _sideB;
+        private readonly string _metricName;
 
-        #endregion 
+        #endregion
 
-        public Rectangle(int a, int b)
+        public override string ShapeName() 
         {
-            if (a >= 0 && b >= 0)
+            return nameof(Rectangle);
+        }
+        
+        public Rectangle(int a, int b, MetricName metric)
+        {
+            if (a >= 0 && b >= 0 && _metricName != null)
             {
                 _sideA = a;
                 _sideB = b;
+                _metricName = metric.ToString();
             }
             else 
             { 
                 throw new ArgumentException($"Cannot perform an operation: Argument values must be positive "); 
             }
         }
-
+        
         #region Public Functions
               
-        public int Perimeter()
+        public override int Perimeter()
         {
             return (_sideA + _sideB) * 2;
         }
 
-        public long Square()
+        public override long Square()
         {
             return (_sideA * _sideB);
         }
         #endregion
-
+        public override string metricName()
+        {
+            return (_metricName);
+        }
         #region Public Methods
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()}, perimeter = {Perimeter()}";
+            return $"Shape: '{ShapeName()}'. Square = {Square()} {_metricName}2, perimeter = {Perimeter()} {_metricName}";
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            Rectangle m = obj as Rectangle;
-            return m.Perimeter() == this.Perimeter();
-        }
         
-        public static bool operator ==(Rectangle obj1, Rectangle obj2)
-        {
-            return obj1.Square() == obj2.Square();
-        }
-       
-        public static bool operator !=(Rectangle obj1, Rectangle obj2)
-        {
-            return obj1.Square() != obj2.Square();
-        }
 
         #endregion
     }

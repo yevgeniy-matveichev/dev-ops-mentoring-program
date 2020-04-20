@@ -53,18 +53,18 @@ namespace Module1.TypesAndClasses.Tests
         [Fact]
         public void TestShapesToString()
         {
-            var shapes = new List<IShape>
+            var shapes = new List<BaseShape>
             {
-                new Circle(1),
-                new Ellipse(2,2),
-                new EquilateralTriangle(),
+             //   new Circle(1),
+              //  new Ellipse(2,2),
+               // new EquilateralTriangle(),
                 new Rectangle(4,4)
             };
 
 
             foreach (var shape in shapes)
             {
-                Assert.Equal($"Shape: '{shape.GetType().Name}'. Square = {shape.Square()}, perimeter = {shape.Perimeter()}", shape.ToString());
+                Assert.Equal($"Shape: '{shape.ShapeName()}'. Square = {shape.Square()}, perimeter = {shape.Perimeter()}", shape.ToString());
             }
         }
 
@@ -82,6 +82,7 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(_circle.Equals(circleDuplicate2));
             Assert.Throws<System.InvalidCastException>(() => _circle.Equals(elipse2));
             Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
+            Assert.False(new Rectangle(3, 4).Equals(new Rectangle(2, 6)));
             Assert.True(triangle.Equals(_ellipse.Object));
          
             // == - by square            
@@ -90,7 +91,7 @@ namespace Module1.TypesAndClasses.Tests
             Assert.False(_circle == circleDuplicate2);                   
             Assert.True(triangle == _regularPolygon.Object);
             Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
-            
+            Assert.False(new Rectangle(4, 4) != new Rectangle(2, 8));
         }
     }
 }
