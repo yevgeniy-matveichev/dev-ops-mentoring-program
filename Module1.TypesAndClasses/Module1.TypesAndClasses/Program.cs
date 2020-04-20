@@ -15,17 +15,18 @@ namespace Module1.TypesAndClasses
 
             var shapes = new List<IShape>
             {
-                new Ellipse(2,3),
-                new Circle(1),
-                new Rectangle(1,1,m),
-                new EquilateralTriangle(6),
-                new RegularPolygon()
+              //  new Ellipse(2,3),
+               // new Circle(1),
+                new Rectangle(1,1,mm),
+               // new EquilateralTriangle(6),
+               // new RegularPolygon()
             };
             var shapes2 = new List<BaseShape>
             {
              //   new Ellipse(2,3),
-               new Circle(1),
-                new Rectangle(1,2,sm),
+           //    new Circle(1),
+                new Rectangle(1000,2000,mm),
+                    new Rectangle(1,2,m),
              //   new EquilateralTriangle(6),
             //    new RegularPolygon()
             };
@@ -35,6 +36,7 @@ namespace Module1.TypesAndClasses
                 Console.WriteLine(shape.ToString());
             }
             Console.WriteLine(shapes2[1].Equals(shapes2[0]));
+            Console.WriteLine(shapes2[0].Equals(shapes2[1]));
             Console.WriteLine(ShapeHelper.PerimeterEquals(shapes2[0], 4));
             Console.WriteLine("Shape Name = " + shapes2[0].ShapeName());
             Console.WriteLine(ShapeHelper.SquareEquals(shapes[0], 1));

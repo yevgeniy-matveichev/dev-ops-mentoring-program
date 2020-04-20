@@ -17,10 +17,10 @@ namespace Module1.TypesAndClasses.Shapes
         {
             return nameof(Rectangle);
         }
-        
+      
         public Rectangle(int a, int b, MetricName metric)
         {
-            if (a >= 0 && b >= 0 && _metricName != null)
+            if (a >= 0 && b >= 0)
             {
                 _sideA = a;
                 _sideB = b;
@@ -32,6 +32,10 @@ namespace Module1.TypesAndClasses.Shapes
             }
         }
         
+          public override string Metric()
+        {
+            return _metricName;
+        }
         #region Public Functions
               
         public override int Perimeter()
@@ -44,11 +48,7 @@ namespace Module1.TypesAndClasses.Shapes
             return (_sideA * _sideB);
         }
         #endregion
-        public override string metricName()
-        {
-            return (_metricName);
-        }
-        #region Public Methods
+         #region Public Methods
         public override string ToString()
         {
             return $"Shape: '{ShapeName()}'. Square = {Square()} {_metricName}2, perimeter = {Perimeter()} {_metricName}";
