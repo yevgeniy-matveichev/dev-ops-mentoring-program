@@ -13,14 +13,14 @@ namespace Module1.TypesAndClasses
 
             var shapes = new List<IShape>
             {
-                new Circle(),
-                new Ellipse(),
-                new EquilateralTriangle(),
-                new Rectangle(),
+                new Ellipse(2,3),
+                new Circle(1),
+                new Rectangle(1,1),
+                new EquilateralTriangle(5),
                 new RegularPolygon()
             };
 
-            foreach(var shape in shapes)
+            foreach (var shape in shapes)
             {
                 Console.WriteLine(shape.ToString());
             }
