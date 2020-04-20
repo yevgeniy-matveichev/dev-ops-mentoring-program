@@ -37,7 +37,7 @@ namespace Module1.TypesAndClasses
             }
             Console.WriteLine(shapes2[1].Equals(shapes2[0]));
             Console.WriteLine(shapes2[0].Equals(shapes2[1]));
-            Console.WriteLine(ShapeHelper.PerimeterEquals(shapes2[0], 4));
+            Console.WriteLine(ShapeHelper.PerimeterEquals(shapes2[0], 1));
             Console.WriteLine("Shape Name = " + shapes2[0].ShapeName());
             Console.WriteLine(ShapeHelper.SquareEquals(shapes[0], 1));
         }

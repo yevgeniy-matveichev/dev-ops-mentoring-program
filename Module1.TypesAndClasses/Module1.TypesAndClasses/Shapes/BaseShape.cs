@@ -7,8 +7,7 @@ namespace Module1.TypesAndClasses.Shapes
 {
    public abstract class BaseShape: IShape
     {
-        public enum MetricName:byte
-        {sm=2, mm=3, m=1}
+        public enum MetricName : byte  {sm=2, mm=3, m=1}
 
         #region Public Methods
         public virtual long Square()
@@ -122,7 +121,36 @@ namespace Module1.TypesAndClasses.Shapes
             }
             else
             {
-                return obj1.Square() != obj2.Square();
+                long Square1 = obj1.Square();
+                switch (obj1.Metric().ToString())
+                {
+                    case "m":
+                        {
+                            Square1 *= 10000;
+                            break;
+                        }
+                    case "sm":
+                        {
+                            Square1 *= 100;
+                            break;
+                        }
+                }
+                long Square2 = obj2.Square();
+                switch (obj2.Metric().ToString())
+                {
+                    case "m":
+                        {
+                            Square2 *= 10000;
+                            break;
+                        }
+                    case "sm":
+                        {
+                            Square2 *= 100;
+                            break;
+                        }
+                }
+
+                return Square1 != Square2;
             }
         }
                #endregion
