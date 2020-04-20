@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Module1.TypesAndClasses.Helpers
+namespace Module1.TypesAndClasses.Shapes
 {
-    static class ShapeHelper
+    public abstract class BaseShape : IShape
     {
-        public static bool PerimeterEquals(IShape shape1, IShape shape2)
-        {
-            //IShape objectShape = obj as IShape;
+        public abstract int Perimeter();
 
-            //if (shape1 == null || shape2 == null) return false;
-            //if (shape1 == null && shape2 == null) return false;
+        public abstract long Square();
+
+        public bool PerimeterEquals(IShape shape1, IShape shape2)
+        {
             if (shape1 == null)
             {
                 if (shape2 == null)
@@ -31,7 +31,7 @@ namespace Module1.TypesAndClasses.Helpers
             return shape1.Perimeter() == shape2.Perimeter();
         }
 
-        public static bool SquareEquals(IShape shape1, IShape shape2)
+        public bool SquareEquals(IShape shape1, IShape shape2) 
         {
             if (shape1 == null)
             {

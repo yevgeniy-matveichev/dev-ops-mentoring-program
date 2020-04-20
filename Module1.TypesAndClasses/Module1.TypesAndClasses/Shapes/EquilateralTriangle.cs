@@ -4,9 +4,31 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class EquilateralTriangle : IShape
+    public class EquilateralTriangle : BaseShape
     {
         private readonly int _a;
+        // private readonly int _unit;
+        //protected Unit unit;
+
+        //public virtual Unit Unit
+        //{
+        //    get { return unit; }
+        //    set { SetUnit(value); }
+        //}
+
+        //protected virtual void SetUnit(Unit value)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public int Unit => _unit;
+
+        //public enum Units
+        //{
+        //    m,
+        //    cm,
+        //    mm
+        //}
 
         public EquilateralTriangle(int side)
         {
@@ -16,14 +38,31 @@ namespace Module1.TypesAndClasses.Shapes
             }
 
             _a = side;
+
+            //Units unit = Units.cm;
+            //switch(unit)
+            //{
+            //    case Units.m:
+            //        unit = units;
+            //        break;
+            //    case Units.cm:
+            //        unit = units;
+            //        break;
+            //    case Units.mm:
+            //        unit = units;
+            //        break;
+            //    default:
+            //        Console.WriteLine("The unit did not match any of the allowed units.");
+            //        break;
+            //}
         }
 
-        public int Perimeter()
+        public override int Perimeter()
         {
             return 3 * _a;
         }
 
-        public long Square()
+        public override long Square()
         {
             var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
             return (long)res;
@@ -35,54 +74,10 @@ namespace Module1.TypesAndClasses.Shapes
             var sb = new StringBuilder();
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
             sb.Append($"Square = {eTriangle.Square()}, ");
-            sb.Append($"perimeter = {eTriangle.Perimeter()}");
+            sb.Append($"perimeter = {eTriangle.Perimeter()}. ");
+            sb.Append($"Side = {_a}");
 
             return sb.ToString();
-        }
-
-        public override bool Equals(object obj)
-        {
-            IShape objectShape = obj as IShape;
-
-            if (objectShape == null) return false;
-            return objectShape.Perimeter() == Perimeter();
-        }
-
-        public static bool operator ==(EquilateralTriangle obj1, IShape obj2)
-        {
-            if (ReferenceEquals(obj1, null))
-            {
-                if (ReferenceEquals(obj2, null))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            if (ReferenceEquals(obj2, null))
-            {
-                return false;
-            }
-
-            return obj1.Square() == obj2.Square();
-        }
-        public static bool operator !=(EquilateralTriangle obj1, IShape obj2)
-        {
-            if (ReferenceEquals(obj1, null))
-            {
-                if (ReferenceEquals(obj2, null))
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            if (ReferenceEquals(obj2, null))
-            {
-                return true;
-            }
-
-            return obj1.Square() != obj2.Square();
         }
     }
 }

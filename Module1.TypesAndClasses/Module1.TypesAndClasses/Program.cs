@@ -1,4 +1,7 @@
-﻿using Module1.TypesAndClasses.Interfaces;
+﻿using Module1.TypesAndClasses.Extensions;
+using Module1.TypesAndClasses.Generics;
+using Module1.TypesAndClasses.Helpers;
+using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
 using System;
 using System.Collections.Generic;
@@ -24,6 +27,18 @@ namespace Module1.TypesAndClasses
             {
                 Console.WriteLine(shape.ToString());
             }
+
+            //Console.WriteLine("Testing ShapeHelper");
+            //Console.WriteLine(ShapeHelper.PerimeterEquals(new EquilateralTriangle(5), new Circle(2)));
+            //Console.WriteLine(ShapeHelper.SquareEquals(new EquilateralTriangle(5), new Circle(2)));
+
+            //Console.WriteLine("Testing ShapeExtensions");
+            //var triangle = new EquilateralTriangle(7);
+            //Console.WriteLine(triangle.PerimeterEquals(new Circle(4)));
+            //Console.WriteLine(triangle.SquareEquals(new Rectangle(2, 3)));
+
+            //Console.WriteLine("Test Generics");
+            //var b = ShapePrinter.Print();
         }
     }
 }
