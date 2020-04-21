@@ -5,15 +5,11 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Circle : BaseShape
     {
-        #region private
-        private readonly int _radius;
-
-        #endregion
-
-        public readonly units _measureUnit;
+        public readonly int _radius; //for tests becomes protected
+        public readonly units _unit;
 
         #region constructor
-        public Circle(int radius, units u) 
+        public Circle(int radius, units u) : base(u)
         {
             if (radius < 0) 
             {
@@ -21,7 +17,7 @@ namespace Module1.TypesAndClasses.Shapes
             }
 
             _radius = radius;
-            _measureUnit = u;
+            _unit = u;
         }
 
         #endregion
@@ -41,7 +37,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{this.GetType().Name}'. Square = {this.Square()}, perimeter = {this.Perimeter()}";
+            return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}, radius = {this._radius}";
         }
 
         public override bool Equals(object obj)
@@ -52,7 +48,7 @@ namespace Module1.TypesAndClasses.Shapes
             }
             
             Circle circle = (Circle)obj;
-            return this.Perimeter() == circle.Perimeter();
+            return this.Perimeter() * Convert.ToInt32(this._unit)  == circle.Perimeter() * Convert.ToInt32(circle._unit);
         }
     }
 }
