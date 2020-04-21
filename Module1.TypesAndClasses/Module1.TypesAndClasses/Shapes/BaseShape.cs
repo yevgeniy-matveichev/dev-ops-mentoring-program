@@ -38,6 +38,17 @@ namespace Module1.TypesAndClasses.Shapes
             return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
         }
 
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            BaseShape circle = (BaseShape)obj;
+            return this.Perimeter() * Convert.ToInt32(this._unit) == circle.Perimeter() * Convert.ToInt32(circle._unit);
+        }
+
         public static bool operator ==(BaseShape obj1, BaseShape obj2)
         {
             return obj1.Square() * Convert.ToInt64(obj1._unit) * Convert.ToInt64(obj1._unit) == obj2.Square() * Convert.ToInt64(obj1._unit) * Convert.ToInt64(obj1._unit);

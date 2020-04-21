@@ -39,16 +39,5 @@ namespace Module1.TypesAndClasses.Shapes
         {
             return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}, radius = {this._radius}";
         }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            
-            Circle circle = (Circle)obj;
-            return this.Perimeter() * Convert.ToInt32(this._unit)  == circle.Perimeter() * Convert.ToInt32(circle._unit);
-        }
     }
 }
