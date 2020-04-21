@@ -4,12 +4,12 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class RegularPolygon : IShape
     {
-        public int Perimeter()
+        public double Perimeter()
         {
             throw new System.NotImplementedException();
         }
 
-        public long Square()
+        public double Square()
         {
             throw new System.NotImplementedException();
         }

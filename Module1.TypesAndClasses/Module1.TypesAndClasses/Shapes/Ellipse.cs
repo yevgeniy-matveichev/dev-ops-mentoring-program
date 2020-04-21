@@ -5,31 +5,30 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Ellipse : IShape
     {
-        private int radius1;
-        private int radius2;
+        private double radius1;
+        private double radius2;
 
-        public Ellipse(int radius1, int radius2)
+        public Ellipse(double radius1, double radius2)
         {
             this.radius1 = radius1;
             this.radius2 = radius2;
         }
 
-
-
-
-        public int Perimeter()
+        public double Perimeter()
         {
             return Convert.ToInt32(2 * Math.PI * Math.Sqrt((Math.Pow(radius1, 2) + Math.Pow(radius2, 2)) / 8));
         }
 
-        public long Square()
+        public double Square()
         {
-            return Convert.ToInt64(Math.Round(radius1 * radius2 * Math.PI));
+            return radius1 * radius2 * Math.PI;
         }
+
         public override string ToString()
         {
             return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
         }
+
         public override bool Equals(object obj)
         {
             var shape = obj as IShape;

@@ -18,12 +18,12 @@ namespace Module1.TypesAndClasses.Shapes
             _a = side;
         }
 
-        public int Perimeter()
+        public double Perimeter()
         {
             return 3 * _a;
         }
 
-        public long Square()
+        public double Square()
         {
             var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
             return (long)res;

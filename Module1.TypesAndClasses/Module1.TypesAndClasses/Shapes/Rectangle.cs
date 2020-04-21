@@ -7,12 +7,12 @@ namespace Module1.TypesAndClasses.Shapes
     {
         #region  private fields
 
-        private readonly int _sideA;
-        private readonly int _sideB;
+        private readonly double _sideA;
+        private readonly double _sideB;
 
         #endregion 
 
-        public Rectangle(int a, int b)
+        public Rectangle(double a, double b)
         {
             if (a >= 0 && b >= 0)
             {
@@ -27,12 +27,12 @@ namespace Module1.TypesAndClasses.Shapes
 
         #region Public Functions
               
-        public int Perimeter()
+        public double Perimeter()
         {
             return (_sideA + _sideB) * 2;
         }
 
-        public long Square()
+        public double Square()
         {
             return (_sideA * _sideB);
         }

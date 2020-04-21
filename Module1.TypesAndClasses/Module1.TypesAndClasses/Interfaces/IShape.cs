@@ -2,8 +2,8 @@
 {
     public interface IShape
     {
-        long Square();
+        double Square();
 
-        int Perimeter();
+        double Perimeter();
     }
 }
