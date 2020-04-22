@@ -26,11 +26,6 @@ namespace Module1.TypesAndClasses.Extensions
         {
             if (shape == null)
             {
-                if (other == null)
-                {
-                    throw new ArgumentNullException("Objects shape1 and shape2 were null.");
-                }
-
                 throw new ArgumentNullException(nameof(shape));
             }
 
