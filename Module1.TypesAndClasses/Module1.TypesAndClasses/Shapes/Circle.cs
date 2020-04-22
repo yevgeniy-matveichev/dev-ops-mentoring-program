@@ -3,15 +3,13 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Circle : IShape
+    public class Circle : BaseShape
     {
-        #region private
-        private readonly int _radius;
-
-        #endregion
+        public readonly int _radius; //for tests becomes protected
+        public readonly units _unit;
 
         #region constructor
-        public Circle(int radius) 
+        public Circle(int radius, units u) : base(u)
         {
             if (radius < 0) 
             {
@@ -19,18 +17,19 @@ namespace Module1.TypesAndClasses.Shapes
             }
 
             _radius = radius;
+            _unit = u;
         }
 
         #endregion
 
-        public int Perimeter()
+        override public int Perimeter()
         {
             var result = checked(2 * Math.PI * _radius);
             int perimeter = Convert.ToInt32(result);
             return perimeter;
         }
 
-        public long Square()
+        override public long Square()
         {
             double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
             return Convert.ToInt64(result);
@@ -38,28 +37,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{this.GetType().Name}'. Square = {this.Square()}, perimeter = {this.Perimeter()}";
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            
-            Circle circle = (Circle)obj;
-            return this.Perimeter() == circle.Perimeter();
-        }
-
-        public static bool operator ==(Circle circle1, Circle circle2)
-        {
-            return circle1.Square() == circle2.Square();
-        }
-
-        public static bool operator !=(Circle circle1, Circle circle2)
-        {
-            return !(circle1.Square() == circle2.Square());
+            return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}, radius = {this._radius}";
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Module1.TypesAndClasses
             var shapes = new List<IShape>
             {
                 new Ellipse(2,3),
-                new Circle(1),
+                new Circle(1, BaseShape.units.cm),
                 new Rectangle(1,1),
                 new EquilateralTriangle(5),
                 new RegularPolygon()
