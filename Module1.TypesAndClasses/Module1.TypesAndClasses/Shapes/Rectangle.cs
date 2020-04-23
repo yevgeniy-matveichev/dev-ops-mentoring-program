@@ -12,14 +12,9 @@ namespace Module1.TypesAndClasses.Shapes
         private readonly int _sideB;
         private readonly Units _metricName;
 
-        
-
         #endregion
 
-       new string shapeName = nameof(Rectangle);
-              
-
-        public Rectangle(int a, int b, Units units) : base(units)
+       public Rectangle(int a, int b, Units units) : base(units)
         {
             if (a >= 0 && b >= 0)
             {
