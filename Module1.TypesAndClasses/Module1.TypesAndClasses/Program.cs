@@ -16,11 +16,11 @@ namespace Module1.TypesAndClasses
 
             var shapes = new List<IShape>
             {
-                new Ellipse(2,3),
-                new Circle(1, BaseShape.units.cm),
-                new Rectangle(1,1),
-                new EquilateralTriangle(5),
-                new RegularPolygon()
+                //new Ellipse(2,3),
+                //new Circle(1, BaseShape.units.cm),
+                //new Rectangle(1,1),
+                new EquilateralTriangle(5, Units.meter),
+                //new RegularPolygon()
             };
 
             foreach (var shape in shapes)
@@ -34,11 +34,20 @@ namespace Module1.TypesAndClasses
 
             //Console.WriteLine("Testing ShapeExtensions");
             //var triangle = new EquilateralTriangle(7);
-            //Console.WriteLine(triangle.PerimeterEquals(new Circle(4)));
+            //Console.WriteLine(triangle.PerimeterEquals(new EquilateralTriangle(7)));
             //Console.WriteLine(triangle.SquareEquals(new Rectangle(2, 3)));
 
             //Console.WriteLine("Test Generics");
             //var b = ShapePrinter.Print();
+
+            var triangle = new EquilateralTriangle(5, Units.centimeter);
+            var triangle2 = new EquilateralTriangle(0.05, Units.meter);
+            Console.WriteLine($"Perimeter 1 = {triangle.Perimeter()} cm");
+            Console.WriteLine($"Perimeter 2 = {triangle2.Perimeter()} m");
+            Console.WriteLine($"Square 1 = {triangle.Square()} cm");
+            Console.WriteLine($"Square 2 = {triangle2.Square()} m");
+            Console.WriteLine($"Perimeters equal? {triangle.PerimeterEquals(triangle, triangle2)}");
+            Console.WriteLine($"Squares equal? {triangle.SquareEquals(triangle, triangle2)}");
         }
     }
 }

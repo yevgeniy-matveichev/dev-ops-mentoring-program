@@ -1,7 +1,5 @@
 ﻿using Module1.TypesAndClasses.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Extensions
 {
@@ -16,7 +14,7 @@ namespace Module1.TypesAndClasses.Extensions
 
             if (other == null)
             {
-                return false;
+                throw new ArgumentNullException(nameof(other));
             }
 
             return shape.Perimeter() == other.Perimeter();
