@@ -1,26 +1,25 @@
-<<<<<<< HEAD
-﻿using Module1.TypesAndClasses.Interfaces;
+using Module1.TypesAndClasses.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Shapes
 {
     public abstract class BaseShape : IShape
     {
-        public abstract int Perimeter();
+        public abstract double Perimeter();
 
-        public abstract long Square();
+        public abstract double Square();
+
+        public Units Units { get; }
+
+        protected BaseShape(Units unit)
+        {
+            this.Units = unit;
+        }
 
         public bool PerimeterEquals(IShape shape1, IShape shape2)
         {
             if (shape1 == null)
             {
-                if (shape2 == null)
-                {
-                    throw new ArgumentNullException("Objects shape1 and shape2 were null.");
-                }
-
                 throw new ArgumentNullException(nameof(shape1));
             }
 
@@ -29,18 +28,13 @@ namespace Module1.TypesAndClasses.Shapes
                 throw new ArgumentNullException(nameof(shape2));
             }
 
-            return shape1.Perimeter() == shape2.Perimeter();
+            return ToMeters(shape1.Units, shape1.Perimeter()) == ToMeters(shape2.Units, shape2.Perimeter());
         }
 
         public bool SquareEquals(IShape shape1, IShape shape2) 
         {
             if (shape1 == null)
             {
-                if (shape2 == null)
-                {
-                    throw new ArgumentNullException("Objects shape1 and shape2 were null.");
-                }
-
                 throw new ArgumentNullException(nameof(shape1));
             }
 
@@ -49,71 +43,23 @@ namespace Module1.TypesAndClasses.Shapes
                 throw new ArgumentNullException(nameof(shape2));
             }
 
-            return shape1.Square() == shape2.Square();
-        }
-    }
-}
-=======
-﻿using Module1.TypesAndClasses.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Module1.TypesAndClasses.Shapes
-{
-    public class BaseShape : IShape
-    {
-        public enum units
-        {
-            mm = 1,
-            dm = 10,
-            cm = 100,
-            m = 1000,
-            km = 1000000
+            return ToMeters(shape1.Units, shape1.Square()) == ToMeters(shape2.Units, shape2.Square());
         }
 
-        public readonly units _unit;
-
-        protected BaseShape(units u)
+        protected static double ToMeters(Units unit, double value)
         {
-            _unit = u;
-        }
-
-        virtual public int Perimeter()
-        {
-            return 0;
-        }
-
-        virtual public long Square()
-        {
-            return 0;
-        }
-
-        public override string ToString()
-        {
-            return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
+            switch (unit)
             {
-                return false;
+                case Units.meter:
+                    return Math.Round(value, 2);
+                case Units.centimeter:
+                    return Math.Round(value / 100, 2);
+                case Units.millimeter:
+                    return Math.Round(value / 1000, 2);
+
+                default:
+                    throw new NotSupportedException($"The unit of measurement {unit} is not supported.");
             }
-
-            BaseShape circle = (BaseShape)obj;
-            return this.Perimeter() * Convert.ToInt32(this._unit) == circle.Perimeter() * Convert.ToInt32(circle._unit);
-        }
-
-        public static bool operator ==(BaseShape obj1, BaseShape obj2)
-        {
-            return obj1.Square() * Convert.ToInt64(obj1._unit) * Convert.ToInt64(obj1._unit) == obj2.Square() * Convert.ToInt64(obj1._unit) * Convert.ToInt64(obj1._unit);
-        }
-
-        public static bool operator !=(BaseShape obj1, BaseShape obj2)
-        {
-            return !(obj1.Square() * Convert.ToInt64(obj1._unit) * Convert.ToInt64(obj1._unit) == obj2.Square() * Convert.ToInt64(obj1._unit) * Convert.ToInt64(obj1._unit));
         }
     }
 }
->>>>>>> 7fed097f2e565bdfe7026f7c6ac3c2b560ac60ad

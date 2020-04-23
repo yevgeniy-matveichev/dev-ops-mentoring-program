@@ -1,9 +1,18 @@
 ﻿namespace Module1.TypesAndClasses.Interfaces
 {
+    public enum Units
+    {
+        meter,
+        centimeter,
+        millimeter
+    }
+
     public interface IShape
     {
-        long Square();
+        double Square();
 
-        int Perimeter();
+        double Perimeter();
+
+        Units Units { get; }
     }
 }

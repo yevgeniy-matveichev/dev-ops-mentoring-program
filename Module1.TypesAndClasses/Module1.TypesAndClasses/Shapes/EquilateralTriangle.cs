@@ -6,31 +6,9 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class EquilateralTriangle : BaseShape
     {
-        private readonly int _a;
-        // private readonly int _unit;
-        //protected Unit unit;
+        private readonly double _a;
 
-        //public virtual Unit Unit
-        //{
-        //    get { return unit; }
-        //    set { SetUnit(value); }
-        //}
-
-        //protected virtual void SetUnit(Unit value)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public int Unit => _unit;
-
-        //public enum Units
-        //{
-        //    m,
-        //    cm,
-        //    mm
-        //}
-
-        public EquilateralTriangle(int side)
+        public EquilateralTriangle(double side, Units units = Units.meter) : base(units)
         {
             if (side <= 0)
             {
@@ -38,34 +16,17 @@ namespace Module1.TypesAndClasses.Shapes
             }
 
             _a = side;
-
-            //Units unit = Units.cm;
-            //switch(unit)
-            //{
-            //    case Units.m:
-            //        unit = units;
-            //        break;
-            //    case Units.cm:
-            //        unit = units;
-            //        break;
-            //    case Units.mm:
-            //        unit = units;
-            //        break;
-            //    default:
-            //        Console.WriteLine("The unit did not match any of the allowed units.");
-            //        break;
-            //}
         }
 
-        public override int Perimeter()
+        public override double Perimeter()
         {
             return 3 * _a;
         }
 
-        public override long Square()
+        public override double Square()
         {
             var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
-            return (long)res;
+            return res;
         }
 
         public override string ToString() {
