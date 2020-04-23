@@ -48,9 +48,9 @@ namespace Module1.TypesAndClasses.Shapes
         {
             return ishape1.Square() == ishape2.Square();
         }
-        public static bool operator !=(Ellipse shape1, IShape ishape2)
+        public static bool operator !=(Ellipse ishape1, IShape ishape2)
         {
-            return ishape2.Square() != ishape2.Square();
+            return ishape2.Square() != ishape1.Square();
         }
     }
 }
