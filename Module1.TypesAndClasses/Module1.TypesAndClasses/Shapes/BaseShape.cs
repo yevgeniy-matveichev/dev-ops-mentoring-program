@@ -5,6 +5,8 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public abstract class BaseShape : IShape
     {
+        private const double Delta = 0.001;
+
         public abstract double Perimeter();
 
         public abstract double Square();
@@ -28,7 +30,9 @@ namespace Module1.TypesAndClasses.Shapes
                 throw new ArgumentNullException(nameof(shape2));
             }
 
-            return ToMeters(shape1.Units, shape1.Perimeter()) == ToMeters(shape2.Units, shape2.Perimeter());
+            double delta = shape1.Perimeter() - shape2.Perimeter();
+
+            return Math.Abs(delta) < Delta;
         }
 
         public bool SquareEquals(IShape shape1, IShape shape2) 
@@ -42,8 +46,10 @@ namespace Module1.TypesAndClasses.Shapes
             {
                 throw new ArgumentNullException(nameof(shape2));
             }
+            
+            double delta = shape1.Square() - shape2.Square();
 
-            return ToMeters(shape1.Units, shape1.Square()) == ToMeters(shape2.Units, shape2.Square());
+            return Math.Abs(delta) < Delta;
         }
 
         protected static double ToMeters(Units unit, double value)
@@ -51,12 +57,11 @@ namespace Module1.TypesAndClasses.Shapes
             switch (unit)
             {
                 case Units.meter:
-                    return Math.Round(value, 2);
+                    return value;
                 case Units.centimeter:
-                    return Math.Round(value / 100, 2);
+                    return value / 100;
                 case Units.millimeter:
-                    return Math.Round(value / 1000, 2);
-
+                    return value / 1000;
                 default:
                     throw new NotSupportedException($"The unit of measurement {unit} is not supported.");
             }
