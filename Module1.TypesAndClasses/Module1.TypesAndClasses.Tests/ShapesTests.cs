@@ -2,6 +2,7 @@ using Castle.DynamicProxy.Generators;
 using Microsoft.VisualStudio.TestPlatform.TestExecutor;
 using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
+using Module1.TypesAndClasses.Extensions;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,7 @@ namespace Module1.TypesAndClasses.Tests
            // Circle circleDuplicate2 = new Circle(2, _unitCm);
             var elipse1 = new Ellipse(3, 4);
             var elipse2 = new Ellipse(8, 10);
+            
             var triangle = new EquilateralTriangle(5);
 
             // Equals - by perimeter
