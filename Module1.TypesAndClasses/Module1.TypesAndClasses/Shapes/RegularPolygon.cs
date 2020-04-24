@@ -2,16 +2,21 @@
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class RegularPolygon : IShape
+    public class RegularPolygon : BaseShape
     {
-        public double Perimeter()
+        public RegularPolygon(): base(Metric.Metr)
         {
-            throw new System.NotImplementedException();
+
         }
 
-        public double Square()
+        public override double Perimeter()
         {
-            throw new System.NotImplementedException();
+            return 15;
+        }
+
+        public override double Square()
+        {
+            return 28;
         }
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Rectangle : IShape
+    public class Rectangle : BaseShape
     {
         #region  private fields
 
@@ -12,7 +12,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         #endregion 
 
-        public Rectangle(double a, double b)
+        public Rectangle(double a, double b, Metric metric = Metric.Metr) : base(metric)
         {
             if (a >= 0 && b >= 0)
             {
@@ -27,21 +27,24 @@ namespace Module1.TypesAndClasses.Shapes
 
         #region Public Functions
               
-        public double Perimeter()
+        public override double Perimeter()
         {
             return (_sideA + _sideB) * 2;
         }
 
-        public double Square()
+        public override double Square()
         {
             return (_sideA * _sideB);
         }
+
         #endregion
 
         #region Public Methods
+
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()}, perimeter = {Perimeter()}";
+            return "";
+            //return $"Shape: '{nameof(Rectangle)}'. Square = {this.Square()}, perimeter = {Perimeter()}";
         }
 
         public override bool Equals(object obj)
@@ -49,9 +52,9 @@ namespace Module1.TypesAndClasses.Shapes
             if (obj == null)
                 return false;
             Rectangle m = obj as Rectangle;
-            return m.Perimeter() == this.Perimeter();
+            return ToMeters(this.Metric, m.Perimeter()) == ToMeters(this.Metric, this.Perimeter());
         }
-        
+
         public static bool operator ==(Rectangle obj1, Rectangle obj2)
         {
             return obj1.Square() == obj2.Square();

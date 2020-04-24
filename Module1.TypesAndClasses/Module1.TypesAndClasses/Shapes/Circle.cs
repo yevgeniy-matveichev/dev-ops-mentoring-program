@@ -1,30 +1,22 @@
 ﻿using Module1.TypesAndClasses.Interfaces;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Module1.TypesAndClasses.Shapes
-{
-    public enum Metric
-    {
-        Milimetr,
-        Decimetr,
-        Santimetr,
-        Metr,
-        Kilometr
-    }
-
-    public class Circle : IShape
+{    
+    public class Circle : BaseShape
     {
         #region private
 
         private readonly int _radius;
 
-        #endregion
-
         public Metric Metric { get; }
+
+        #endregion
 
         #region constructor
 
-        public Circle(int radius, Metric metric = Metric.Metr) 
+        public Circle(int radius, Metric metric = Metric.Metr) : base(metric)
         {
             if (radius < 0) 
             {
@@ -32,19 +24,18 @@ namespace Module1.TypesAndClasses.Shapes
             }
 
             _radius = radius;
-            Metric = metric;
         }
 
         #endregion
 
-        public double Perimeter()
+        public override double Perimeter()
         {
             var result = checked(2 * Math.PI * _radius);
             int perimeter = Convert.ToInt32(result);
             return perimeter;
         }
 
-        public double Square()
+        public override double Square()
         {
             double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
             return Convert.ToInt64(result);
@@ -64,17 +55,17 @@ namespace Module1.TypesAndClasses.Shapes
             
             Circle circle = (Circle)obj;
 
-            return this.Perimeter() == circle.Perimeter();
+            return ToMeters(this.Metric, this.Perimeter()) == ToMeters(circle.Metric, circle.Perimeter());
         }
-
+       
         public static bool operator ==(Circle circle1, Circle circle2)
         {
-            return circle1.Square() == circle2.Square();
+            return ToMeters(circle1.Metric, circle1.Square()) == ToMeters(circle2.Metric, circle2.Square());
         }
 
         public static bool operator !=(Circle circle1, Circle circle2)
         {
-            return !(circle1.Square() == circle2.Square());
+            return !(ToMeters(circle1.Metric, circle1.Square()) == ToMeters(circle2.Metric, circle2.Square()));
         }
     }
 }

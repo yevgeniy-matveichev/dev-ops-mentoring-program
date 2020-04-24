@@ -2,6 +2,8 @@
 using Module1.TypesAndClasses.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 namespace Module1.TypesAndClasses
 {
@@ -22,8 +24,24 @@ namespace Module1.TypesAndClasses
 
             foreach (var shape in shapes)
             {
+                Console.WriteLine(shape.Metric);
                 Console.WriteLine(shape.ToString());
             }
+
+            IEnumerable<IShape> filteredShapes = shapes.Where(s => s.Metric == Metric.Metr);
+            IEnumerable<IShape> filteredShapesP = shapes.Where(s => s.Perimeter() > 5);
+            List<List<IShape>> shapesList = new List<List<IShape>>
+            {
+                filteredShapes.ToList(),
+                filteredShapesP.ToList()
+            };
+
+            var selectedShapes = shapesList.Select(s => s).ToList();
+            var selectMany = shapesList.SelectMany(s => s).ToList();
+
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            var numsInPlace = numbers.Select((num, index) => new { Num = num, InPlace = (num == index) });
+
         }
     }
 }

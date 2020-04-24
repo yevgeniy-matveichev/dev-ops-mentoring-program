@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class EquilateralTriangle : IShape
+    public class EquilateralTriangle : BaseShape
     {
         private readonly int _a;
 
-        public EquilateralTriangle(int side)
+        public EquilateralTriangle(int side, Metric metric = Metric.Metr): base(metric)
         {
             if (side <= 0)
             {
@@ -18,12 +18,12 @@ namespace Module1.TypesAndClasses.Shapes
             _a = side;
         }
 
-        public double Perimeter()
+        public override double Perimeter()
         {
             return 3 * _a;
         }
 
-        public double Square()
+        public override double Square()
         {
             var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
             return (long)res;
@@ -66,6 +66,7 @@ namespace Module1.TypesAndClasses.Shapes
 
             return obj1.Square() == obj2.Square();
         }
+
         public static bool operator !=(EquilateralTriangle obj1, IShape obj2)
         {
             if (ReferenceEquals(obj1, null))
