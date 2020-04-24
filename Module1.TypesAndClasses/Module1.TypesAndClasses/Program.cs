@@ -49,12 +49,14 @@ namespace Module1.TypesAndClasses
             Console.WriteLine($"Perimeters equal? {triangle.PerimeterEquals(triangle, triangle2)}");
             Console.WriteLine($"Squares equal? {triangle.SquareEquals(triangle, triangle2)}");
 
-            var circle1 = new EquilateralTriangle(5, Units.centimeters);
-            var circle2 = new EquilateralTriangle(0.05, Units.meters);
+            var circle1 = new Circle(5, Units.centimeters);
+            var circle2 = new Circle(0.05, Units.meters);
             Console.WriteLine($"Perimeter 1 = {circle1.Perimeter()} cm");
             Console.WriteLine($"Perimeter 2 = {circle2.Perimeter()} m");
             Console.WriteLine($"Square 1 = {circle1.Square()} cm");
             Console.WriteLine($"Square 2 = {circle2.Square()} m");
+            Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
+            Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
             Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
             Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
         }

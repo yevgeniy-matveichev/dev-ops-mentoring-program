@@ -5,11 +5,11 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Circle : BaseShape
     {
-        public readonly int _radius;
+        public readonly double _radius;
         public readonly Units _unit;
 
         #region constructor
-        public Circle(int radius, Units u) : base(u)
+        public Circle(double radius, Units u) : base(u)
         {
             if (radius < 0) 
             {
@@ -30,7 +30,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         override public double Square()
         {
-            double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
+            double result = checked(Math.PI * Math.Pow(_radius, 2));
             return result;
         }
 
