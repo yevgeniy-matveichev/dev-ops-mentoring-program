@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Shapes
     {
         private readonly double _sideInMeters;
 
-        public EquilateralTriangle(double side, Units units = Units.meter) : base(units)
+        public EquilateralTriangle(double side, Units units = Units.meters) : base(units)
         {
             if (side <= 0)
             {
@@ -30,13 +30,13 @@ namespace Module1.TypesAndClasses.Shapes
         }
 
         public override string ToString() {
-            var eTriangle = new EquilateralTriangle(5);
-
             var sb = new StringBuilder();
+
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
-            sb.Append($"Square = {eTriangle.Square()}, ");
-            sb.Append($"perimeter = {eTriangle.Perimeter()}. ");
-            sb.Append($"Side = {_sideInMeters}");
+            sb.Append($"Square = {this.Square()}, ");
+            sb.Append($"perimeter = {this.Perimeter()}. ");
+            sb.Append($"Side = {_sideInMeters} ");
+            sb.Append($"{Units}.");
 
             return sb.ToString();
         }

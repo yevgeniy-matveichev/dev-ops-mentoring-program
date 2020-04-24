@@ -13,7 +13,7 @@ namespace Module1.TypesAndClasses.Shapes
      
         public Units Units => throw new NotImplementedException();
 
-        public Ellipse(int radius1, int radius2, Units units = Units.meter)
+        public Ellipse(int radius1, int radius2, Units units = Units.meters)
         {
             this.radius1 = radius1;
             this.radius2 = radius2;

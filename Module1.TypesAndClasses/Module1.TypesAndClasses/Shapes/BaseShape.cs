@@ -56,11 +56,11 @@ namespace Module1.TypesAndClasses.Shapes
         {
             switch (unit)
             {
-                case Units.meter:
+                case Units.meters:
                     return value;
-                case Units.centimeter:
+                case Units.centimeters:
                     return value / 100;
-                case Units.millimeter:
+                case Units.millimeters:
                     return value / 1000;
                 default:
                     throw new NotSupportedException($"The unit of measurement {unit} is not supported.");

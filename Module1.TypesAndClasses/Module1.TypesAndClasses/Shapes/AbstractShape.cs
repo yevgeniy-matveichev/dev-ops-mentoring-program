@@ -10,9 +10,9 @@ namespace Module1.TypesAndClasses.Shapes
         protected double Convert(Units target, double targetValue) {
             switch (target)
             {
-                case Units.centimeter:
+                case Units.centimeters:
                     return targetValue / 100;
-                case Units.millimeter:
+                case Units.millimeters:
                     return targetValue / 1000;
                 default:
                     return targetValue;

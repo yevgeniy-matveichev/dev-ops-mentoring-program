@@ -2,9 +2,9 @@
 {
     public enum Units
     {
-        meter,
-        centimeter,
-        millimeter
+        meters,
+        centimeters,
+        millimeters
     }
 
     public interface IShape
