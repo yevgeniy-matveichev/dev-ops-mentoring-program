@@ -3,14 +3,14 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Ellipse : AbstractShape, IShape
+    public class Ellipse :  AbstractShape, IShape
     {
         private int radius1;
         private int radius2;
 
         public Units unit { get; }
 
-
+     
         public Units Units => throw new NotImplementedException();
 
         public Ellipse(int radius1, int radius2, Units units = Units.meter)
@@ -53,7 +53,7 @@ namespace Module1.TypesAndClasses.Shapes
         }
         public void Print()
         {
-            Console.WriteLine($"Ellipse. Square: {Square()}, perimeter:{Perimeter()}. Radius 1: {radius1}, Radius 2 : {radius2}");
+            Console.WriteLine($"Ellipse. Square: {Square()}, perimeter:{Perimeter()}. Radius 1: {radius1}, Radius 2 : {radius2}" );
         }
     }
 }
