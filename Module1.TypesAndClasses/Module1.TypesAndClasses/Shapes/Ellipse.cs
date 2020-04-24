@@ -3,40 +3,43 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Ellipse : IShape
+    public class Ellipse : AbstractShape, IShape
     {
         private int radius1;
         private int radius2;
 
-        public Ellipse(int radius1, int radius2)
+        public Units unit { get; }
+
+
+        public Units Units => throw new NotImplementedException();
+
+        public Ellipse(int radius1, int radius2, Units units = Units.meter)
         {
             this.radius1 = radius1;
             this.radius2 = radius2;
+            this.unit = units;
         }
 
 
 
 
-        public int Perimeter()
+        public double Perimeter()
         {
-            return Convert.ToInt32(2 * Math.PI * Math.Sqrt((Math.Pow(radius1, 2) + Math.Pow(radius2, 2)) / 8));
+            return 2 * Math.PI * Math.Sqrt((Math.Pow(radius1, 2) + Math.Pow(radius2, 2)) / 8);
         }
 
-        public long Square()
+        public double Square()
         {
-            return Convert.ToInt64(Math.Round(radius1 * radius2 * Math.PI));
+            return Math.Round(radius1 * radius2 * Math.PI);
         }
-        public override string ToString()
-        {
-            return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
-        }
+        public override string ToString() => $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
         public override bool Equals(object obj)
         {
             var shape = obj as IShape;
 
             if (shape != null)
             {
-                return this.Perimeter() == shape.Perimeter();
+                return Convert(unit, this.Perimeter()) == Convert(shape.Units, shape.Perimeter());
             }
             else
             {
@@ -44,13 +47,13 @@ namespace Module1.TypesAndClasses.Shapes
             }
 
         }
-        public static bool operator ==(Ellipse ishape1, IShape ishape2)
+        public override int GetHashCode()
         {
-            return ishape1.Square() == ishape2.Square();
+            return base.GetHashCode();
         }
-        public static bool operator !=(Ellipse shape1, IShape ishape2)
+        public void Print()
         {
-            return ishape2.Square() != ishape2.Square();
+            Console.WriteLine($"Ellipse. Square: {Square()}, perimeter:{Perimeter()}. Radius 1: {radius1}, Radius 2 : {radius2}");
         }
     }
 }
