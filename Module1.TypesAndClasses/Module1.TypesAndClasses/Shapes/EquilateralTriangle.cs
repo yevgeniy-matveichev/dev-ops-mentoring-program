@@ -6,7 +6,7 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class EquilateralTriangle : BaseShape
     {
-        private readonly double _a;
+        private readonly double _sideInMeters;
 
         public EquilateralTriangle(double side, Units units = Units.meter) : base(units)
         {
@@ -15,17 +15,17 @@ namespace Module1.TypesAndClasses.Shapes
                 throw new ArgumentException("The side cannot be less or equal to 0.");
             }
 
-            _a = side;
+            _sideInMeters = ToMeters(units, side);
         }
 
         public override double Perimeter()
         {
-            return 3 * _a;
+            return 3 * _sideInMeters;
         }
 
         public override double Square()
         {
-            var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
+            var res = (Math.Sqrt(3) / 4) * Math.Pow(_sideInMeters, 2);
             return res;
         }
 
@@ -36,7 +36,7 @@ namespace Module1.TypesAndClasses.Shapes
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
             sb.Append($"Square = {eTriangle.Square()}, ");
             sb.Append($"perimeter = {eTriangle.Perimeter()}. ");
-            sb.Append($"Side = {_a}");
+            sb.Append($"Side = {_sideInMeters}");
 
             return sb.ToString();
         }
