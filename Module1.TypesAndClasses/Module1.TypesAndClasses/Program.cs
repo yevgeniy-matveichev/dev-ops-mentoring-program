@@ -17,9 +17,9 @@ namespace Module1.TypesAndClasses
             var shapes = new List<IShape>
             {
                 //new Ellipse(2,3),
-                //new Circle(1, BaseShape.units.cm),
+                new Circle(1, Units.centimeters),
                 //new Rectangle(1,1),
-                new EquilateralTriangle(5, Units.meter),
+                new EquilateralTriangle(5, Units.meters),
                 //new RegularPolygon()
             };
 
@@ -40,14 +40,23 @@ namespace Module1.TypesAndClasses
             //Console.WriteLine("Test Generics");
             //var b = ShapePrinter.Print();
 
-            var triangle = new EquilateralTriangle(5, Units.centimeter);
-            var triangle2 = new EquilateralTriangle(0.05, Units.meter);
+            var triangle = new EquilateralTriangle(5, Units.centimeters);
+            var triangle2 = new EquilateralTriangle(0.05, Units.meters);
             Console.WriteLine($"Perimeter 1 = {triangle.Perimeter()} cm");
             Console.WriteLine($"Perimeter 2 = {triangle2.Perimeter()} m");
             Console.WriteLine($"Square 1 = {triangle.Square()} cm");
             Console.WriteLine($"Square 2 = {triangle2.Square()} m");
             Console.WriteLine($"Perimeters equal? {triangle.PerimeterEquals(triangle, triangle2)}");
             Console.WriteLine($"Squares equal? {triangle.SquareEquals(triangle, triangle2)}");
+
+            var circle1 = new EquilateralTriangle(5, Units.centimeters);
+            var circle2 = new EquilateralTriangle(0.05, Units.meters);
+            Console.WriteLine($"Perimeter 1 = {circle1.Perimeter()} cm");
+            Console.WriteLine($"Perimeter 2 = {circle2.Perimeter()} m");
+            Console.WriteLine($"Square 1 = {circle1.Square()} cm");
+            Console.WriteLine($"Square 2 = {circle2.Square()} m");
+            Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
+            Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
         }
     }
 }

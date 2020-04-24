@@ -5,11 +5,11 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Circle : BaseShape
     {
-        public readonly int _radius; //for tests becomes protected
-        public readonly units _unit;
+        public readonly int _radius;
+        public readonly Units _unit;
 
         #region constructor
-        public Circle(int radius, units u) : base(u)
+        public Circle(int radius, Units u) : base(u)
         {
             if (radius < 0) 
             {
@@ -22,17 +22,16 @@ namespace Module1.TypesAndClasses.Shapes
 
         #endregion
 
-        override public int Perimeter()
+        override public double Perimeter()
         {
             var result = checked(2 * Math.PI * _radius);
-            int perimeter = Convert.ToInt32(result);
-            return perimeter;
+            return result;
         }
 
-        override public long Square()
+        override public double Square()
         {
             double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
-            return Convert.ToInt64(result);
+            return result;
         }
 
         public override string ToString()
