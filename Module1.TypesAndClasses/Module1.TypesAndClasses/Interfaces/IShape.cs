@@ -14,5 +14,6 @@
         double Perimeter();
 
         Units Units { get; }
+        string ShapeName { get; }
     }
 }

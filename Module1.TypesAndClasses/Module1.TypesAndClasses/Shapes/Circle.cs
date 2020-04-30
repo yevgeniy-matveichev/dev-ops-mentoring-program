@@ -7,7 +7,7 @@ namespace Module1.TypesAndClasses.Shapes
     {
         public readonly double _radius;
         public readonly Units _unit;
-
+        public override string ShapeName => nameof(Circle);
         #region constructor
         public Circle(double radius, Units u) : base(u)
         {

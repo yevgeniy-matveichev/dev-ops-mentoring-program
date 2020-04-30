@@ -7,7 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using Xunit;
-
+using System.Linq;
 namespace Module1.TypesAndClasses.Tests
 {
     public class ShapesTests : IDisposable
@@ -61,14 +61,51 @@ namespace Module1.TypesAndClasses.Tests
             {
                 new Ellipse(2,2),
                 new EquilateralTriangle(5),
-                new Rectangle(4,4, Units.centimeters)
+                new Rectangle(4,4, Units.meters),
+                new Rectangle(40,50, Units.centimeters),
+                new Rectangle(60,40, Units.centimeters),
+                new Rectangle(40,20, Units.centimeters),
+                new Rectangle(4000,8000, Units.millimeters)
             };
-
-
+           
             foreach (var shape in shapes)
             {
                 Assert.Equal($"Shape: '{shape.GetType().Name}'. Square = {shape.Square()}, perimeter = {shape.Perimeter()}", shape.ToString());
             }
+        }
+
+        [Fact]
+        public void TestLinq()
+        {
+            var shapes = new List<IShape>
+            {
+                new Circle(2,Units.meters),
+                new EquilateralTriangle(5),
+                new Rectangle(4,4, Units.meters),
+                new Rectangle(40,50, Units.centimeters),
+                new Rectangle(600,400, Units.centimeters),
+                new Rectangle(400,200, Units.centimeters),
+                new Rectangle(4000,8000, Units.millimeters)
+            };
+           // IEnumerable<IShape> Fileterdshape = shapes.Where(shape => shape.Units == Units.meters);
+        var ShapeCircle = shapes.Single(shape => shape.ShapeName == "Circle");
+            Assert.True(ShapeCircle.ShapeName == "Circle");
+       // Test to Find the shape with known Periometer
+        var ShapePerimeter = shapes.Single(shape => shape.Perimeter() == 12);
+           Assert.True(ShapePerimeter.Perimeter() == 12);
+        // Test to Find Circle Shape with the biggest Square
+        var ShapeSquareCircle = shapes.OfType<Circle>().Where(shape => shape.Square() > 1).OrderByDescending(shape => shape.Square()).First();
+           Assert.True(ShapeSquareCircle.Square() == new Circle(2, Units.meters).Square());
+        // Test to find Rectangle with the minimum Perimeter with no exceptions
+        var ShapePerimeterRectangle = shapes.OfType<Rectangle>().OrderBy(shape => shape.Perimeter()).FirstOrDefault();
+            Assert.True(ShapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.centimeters).Perimeter());
+            // test to Select List of Rectangle and Circle
+            List<IShape> ShapeRectangleAndCircle = shapes.Where(shape => shape.ShapeName == "Rectangle" || shape.ShapeName == "Circle").ToList();
+            Assert.True(ShapeRectangleAndCircle[1] == shapes[2]);
+            // Test Filter with Perimeters
+            var PerimeterList = shapes.Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
+            Assert.True(PerimeterList[1] == 12);
+
         }
 
         //[Fact]

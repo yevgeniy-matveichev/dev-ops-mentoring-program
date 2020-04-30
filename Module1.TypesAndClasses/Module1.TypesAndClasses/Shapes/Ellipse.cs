@@ -9,9 +9,11 @@ namespace Module1.TypesAndClasses.Shapes
         private int radius2;
 
         public Units unit { get; }
+       
 
-     
         public Units Units => throw new NotImplementedException();
+
+        public string ShapeName => nameof(Ellipse);
 
         public Ellipse(int radius1, int radius2, Units units = Units.meters)
         {
