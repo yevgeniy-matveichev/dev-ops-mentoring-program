@@ -89,32 +89,25 @@ namespace Module1.TypesAndClasses.Tests
             };
            // IEnumerable<IShape> Fileterdshape = shapes.Where(shape => shape.Units == Units.meters);
         var ShapeCircle = shapes.Single(shape => shape.ShapeName == "Circle");
-            Assert.True(ShapeCircle.ShapeName == "Circle");
+        Assert.True(ShapeCircle.ShapeName == "Circle");
        // Test to Find the shape with known Periometer
         var ShapePerimeter = shapes.Single(shape => shape.Perimeter() == 12);
-           Assert.True(ShapePerimeter.Perimeter() == 12);
+        Assert.True(ShapePerimeter.Perimeter() == 12);
         // Test to Find Circle Shape with the biggest Square
         var ShapeSquareCircle = shapes.OfType<Circle>().Where(shape => shape.Square() > 1).OrderByDescending(shape => shape.Square()).First();
-           Assert.True(ShapeSquareCircle.Square() == new Circle(2, Units.meters).Square());
+        Assert.True(ShapeSquareCircle.Square() == new Circle(2, Units.meters).Square());
         // Test to find Rectangle with the minimum Perimeter with no exceptions
         var ShapePerimeterRectangle = shapes.OfType<Rectangle>().OrderBy(shape => shape.Perimeter()).FirstOrDefault();
-            Assert.True(ShapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.centimeters).Perimeter());
-            // test to Select List of Rectangle and Circle
-            List<IShape> ShapeRectangleAndCircle = shapes.Where(shape => shape.ShapeName == "Rectangle" || shape.ShapeName == "Circle").ToList();
-            Assert.True(ShapeRectangleAndCircle[1] == shapes[2]);
-            // Test Filter with Perimeters
-            var PerimeterList = shapes.Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
-            Assert.True(PerimeterList[1] == 12);
+        Assert.True(ShapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.centimeters).Perimeter());
+       // test to Select List of Rectangle and Circle
+        List<IShape> ShapeRectangleAndCircle = shapes.Where(shape => shape.ShapeName == "Rectangle" || shape.ShapeName == "Circle").ToList();
+        Assert.True(ShapeRectangleAndCircle[1] == shapes[2]);
+        // Test Filter with Perimeters
+        var PerimeterList = shapes.Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
+        Assert.True(PerimeterList[1] == 12);
 
         }
-
-        //[Fact]
-        //public void TestCircleToString()
-        //{
-        //    //Circle _circle = new Circle(1, _unitCm);
-        //    Assert.Equal($"Shape: '{_circle.GetType().Name}'. Square = {_circle.Square()}, perimeter = {_circle.Perimeter()}, radius = {_circle._radius}", _circle.ToString());
-        //}
-
+              
         [Fact]
         public void TestShapesEquals()
         {

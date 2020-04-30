@@ -60,6 +60,8 @@ namespace Module1.TypesAndClasses
             Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
             Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
             Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
+
+            #region For Testing Linq
             Console.WriteLine("Module 3. Shapes Linq example.");
             var shapes2 = new List<IShape>
             {
@@ -96,7 +98,7 @@ namespace Module1.TypesAndClasses
             //    Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
             foreach (var shape in PerimeterList)
             {           Console.WriteLine($"Shape:{shape}");            }
-
+            #endregion
         }
     }
 }
