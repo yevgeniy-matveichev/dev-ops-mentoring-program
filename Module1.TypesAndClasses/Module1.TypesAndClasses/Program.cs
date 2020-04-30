@@ -5,6 +5,7 @@ using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Module1.TypesAndClasses
 {
@@ -59,6 +60,43 @@ namespace Module1.TypesAndClasses
             Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
             Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
             Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
+            Console.WriteLine("Module 3. Shapes Linq example.");
+            var shapes2 = new List<IShape>
+            {
+                new Circle(2,Units.meters),
+                new EquilateralTriangle(5),
+                new Rectangle(4,4, Units.meters),
+                new Rectangle(40,50, Units.centimeters),
+                new Rectangle(600,400, Units.centimeters),
+                new Rectangle(400,200, Units.centimeters),
+                new Rectangle(4000,8000, Units.millimeters)
+            };
+            // IEnumerable<IShape> Fileterdshape = shapes.Where(shape => shape.Units == Units.meters);
+            foreach (var shape in shapes2)
+            {
+                Console.WriteLine($"Shape:{shape}");
+            }
+            var ShapePerimeter = shapes2.Single(shape => shape.Perimeter() == 12);
+            Console.WriteLine($"Shape with Perimeter = 12:{ShapePerimeter.ShapeName}, Perimeter: {ShapePerimeter.Perimeter()} {Units.meters}");
+            var ShapeSquareCircle = shapes2.Where(shape => (shape.Square() > 1 && shape.ShapeName == "Circle")).OrderByDescending(shape => shape.Square()).First();
+            Console.WriteLine($"Shape with Square:{ShapeSquareCircle.Square()} m2, Perimeter: {ShapeSquareCircle}");
+            var ShapePerimeterRectangle = shapes2.Where(shape => shape.ShapeName == "Rectangle").OrderBy(shape => shape.Perimeter()).FirstOrDefault();
+            var ShapePerimeterRectangle2 = shapes2.OfType<Rectangle>().OrderBy(shape => shape.Perimeter()).FirstOrDefault();
+            Console.WriteLine($"ShapePerimeterRectangle Shape with Perimeter:{ShapePerimeterRectangle.Perimeter()} m, {ShapePerimeterRectangle}");
+            Console.WriteLine($"ShapePerimeterRectangle2 Shape with Perimeter:{ShapePerimeterRectangle2.Perimeter()} m, {ShapePerimeterRectangle2}");
+            List<IShape> ShapeRectangleandCircle = shapes2.Where(shape => shape.ShapeName == "Rectangle" || shape.ShapeName == "Circle").ToList();
+            Console.WriteLine($"{ShapeRectangleandCircle.Count()} and the First List is {ShapeRectangleandCircle[0]} ");
+
+            // var ShapeRectangleandCircle2 = shapes2.Where(shape => shape.ShapeName == "Rectangle" || shape.ShapeName == "Circle");
+            // Console.WriteLine($"{ShapeRectangleandCircle2.Count()} and the First List is {ShapeRectangleandCircle2.First()} ");
+            List < List < IShape >> ShapeList = new List<List<IShape>> { ShapeRectangleandCircle, shapes };
+            var PerimeterList = shapes.Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
+
+          //  var PerimeterList2 = ShapeList.SelectMany(shape => shape).OrderBy(shape => shape).ToList();
+            //    Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
+            foreach (var shape in PerimeterList)
+            {           Console.WriteLine($"Shape:{shape}");            }
+
         }
     }
 }
