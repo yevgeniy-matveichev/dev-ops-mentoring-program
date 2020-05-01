@@ -5,13 +5,13 @@ namespace Module1.TypesAndClasses.Shapes
 {
     public class Circle : BaseShape
     {
-        public readonly int _radius; //for tests becomes protected
-        public readonly units _unit;
+        public readonly double _radius;
+        public readonly Units _unit;
 
         #region constructor
-        public Circle(int radius, units u) : base(u)
+        public Circle(double radius, Units u) : base(u)
         {
-            if (radius < 0) 
+            if (radius < 0)
             {
                 throw new ArgumentException($"Radius cannot be less than 0! Actual value was '{radius}'");
             }
@@ -22,17 +22,16 @@ namespace Module1.TypesAndClasses.Shapes
 
         #endregion
 
-        override public int Perimeter()
+        override public double Perimeter()
         {
             var result = checked(2 * Math.PI * _radius);
-            int perimeter = Convert.ToInt32(result);
-            return perimeter;
+            return result;
         }
 
-        override public long Square()
+        override public double Square()
         {
-            double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
-            return Convert.ToInt64(result);
+            double result = checked(Math.PI * Math.Pow(_radius, 2));
+            return result;
         }
 
         public override string ToString()
