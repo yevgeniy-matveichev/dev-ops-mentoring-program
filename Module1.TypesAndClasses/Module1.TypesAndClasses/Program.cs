@@ -19,7 +19,7 @@ namespace Module1.TypesAndClasses
                 //new Ellipse(2,3),
                 //new Circle(1, BaseShape.units.cm),
                 //new Rectangle(1,1),
-                new EquilateralTriangle(5, Units.meter),
+                new EquilateralTriangle(5, Units.meters),
                 //new RegularPolygon()
             };
 
@@ -28,26 +28,34 @@ namespace Module1.TypesAndClasses
                 Console.WriteLine(shape.ToString());
             }
 
-            //Console.WriteLine("Testing ShapeHelper");
-            //Console.WriteLine(ShapeHelper.PerimeterEquals(new EquilateralTriangle(5), new Circle(2)));
-            //Console.WriteLine(ShapeHelper.SquareEquals(new EquilateralTriangle(5), new Circle(2)));
+            #region Katsiaryna
 
-            //Console.WriteLine("Testing ShapeExtensions");
-            //var triangle = new EquilateralTriangle(7);
-            //Console.WriteLine(triangle.PerimeterEquals(new EquilateralTriangle(7)));
-            //Console.WriteLine(triangle.SquareEquals(new Rectangle(2, 3)));
+            Console.WriteLine("Testing ShapeHelper");
+            Console.WriteLine(ShapeHelper.PerimeterEquals(new EquilateralTriangle(5, Units.meters), new Circle(2, Units.millimeters)));
+            Console.WriteLine(ShapeHelper.SquareEquals(new EquilateralTriangle(5, Units.meters), new Circle(2, Units.centimeters)));
 
-            //Console.WriteLine("Test Generics");
-            //var b = ShapePrinter.Print();
+            Console.WriteLine("Testing ShapeExtensions");
+            var triangle = new EquilateralTriangle(7, Units.meters);
+            Console.WriteLine(triangle.PerimeterEquals(new EquilateralTriangle(4, Units.centimeters)));
+            Console.WriteLine(triangle.SquareEquals(new Rectangle(2, 3, Units.millimeters)));
 
-            var triangle = new EquilateralTriangle(5, Units.centimeter);
-            var triangle2 = new EquilateralTriangle(0.05, Units.meter);
-            Console.WriteLine($"Perimeter 1 = {triangle.Perimeter()} cm");
-            Console.WriteLine($"Perimeter 2 = {triangle2.Perimeter()} m");
-            Console.WriteLine($"Square 1 = {triangle.Square()} cm");
-            Console.WriteLine($"Square 2 = {triangle2.Square()} m");
-            Console.WriteLine($"Perimeters equal? {triangle.PerimeterEquals(triangle, triangle2)}");
-            Console.WriteLine($"Squares equal? {triangle.SquareEquals(triangle, triangle2)}");
+            Console.WriteLine("Test Generics");
+
+            var triangle1 = new EquilateralTriangle(5, Units.centimeters);
+            var triangle2 = new EquilateralTriangle(0.05, Units.meters);
+            Console.WriteLine($"Perimeter 1 = {triangle1.Perimeter()} cm");
+            Console.WriteLine($"Perimeter 2 = {triangle2.Perimeter()} mm");
+            Console.WriteLine($"Square 1 = {triangle1.Square()} cm");
+            Console.WriteLine($"Square 2 = {triangle2.Square()} mm");
+            Console.WriteLine($"Perimeters equal? {triangle1.PerimeterEquals(triangle1, triangle2)}");
+            Console.WriteLine($"Squares equal? {triangle1.SquareEquals(triangle1, triangle2)}");
+
+            var gen = new ShapePrinter<EquilateralTriangle>();
+            gen.Print(triangle);
+
+            Console.WriteLine(gen.PerimeterEquals(triangle, triangle2));
+
+            #endregion
         }
     }
 }

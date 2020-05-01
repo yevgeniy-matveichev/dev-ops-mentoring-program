@@ -61,7 +61,7 @@ namespace Module1.TypesAndClasses.Tests
             {
                 new Ellipse(2,2),
                 new EquilateralTriangle(5),
-                new Rectangle(4,4)
+                //new Rectangle(4,4)
             };
 
 
@@ -93,8 +93,8 @@ namespace Module1.TypesAndClasses.Tests
             //Assert.True(circle.Equals(circleDuplicate1));
             //Assert.False(circle.Equals(circleDuplicate2));
             //Assert.Throws<System.InvalidCastException>(() => circle.Equals(elipse2));
-            Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
-            Assert.False(new Rectangle(5, 5).Equals(new Rectangle(2, 6)));
+            //Assert.True(new Rectangle(4, 4).Equals(new Rectangle(2, 6)));
+            //Assert.False(new Rectangle(5, 5).Equals(new Rectangle(2, 6)));
             Assert.True(triangle.Equals(_ellipse.Object));
             Assert.False(triangle.Equals(_regularPolygon.Object));
             Assert.True(new Ellipse(5, 6).Equals(new Ellipse(6, 5)));
@@ -107,8 +107,8 @@ namespace Module1.TypesAndClasses.Tests
             //Assert.False(circle == circleDuplicate2);                   
             Assert.True(triangle == _regularPolygon.Object);
             Assert.False(triangle == _rectangle.Object);
-            Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
-            Assert.False(new Rectangle(5, 5) == new Rectangle(2, 8));
+            //Assert.True(new Rectangle(4, 4) == new Rectangle(2, 8));
+            //Assert.False(new Rectangle(5, 5) == new Rectangle(2, 8));
             Assert.True(new Ellipse(5, 6) == new Ellipse(6, 5));
             Assert.False(new Ellipse(5, 1) == new Ellipse(6, 5));
 
@@ -117,8 +117,8 @@ namespace Module1.TypesAndClasses.Tests
             //Assert.True(circle != circleDuplicate2);
             Assert.True(triangle != _rectangle.Object);
             Assert.False(triangle != _regularPolygon.Object);
-            Assert.False(new Rectangle(4, 4) != new Rectangle(2, 8));
-            Assert.True(new Rectangle(5, 5) != new Rectangle(2, 8));
+            //Assert.False(new Rectangle(4, 4) != new Rectangle(2, 8));
+            //Assert.True(new Rectangle(5, 5) != new Rectangle(2, 8));
             Assert.False(new Ellipse(5, 6) != new Ellipse(6, 5));
             Assert.False(new Ellipse(5, 1) != new Ellipse(6, 5));
         }
