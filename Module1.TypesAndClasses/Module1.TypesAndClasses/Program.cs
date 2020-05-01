@@ -28,7 +28,6 @@ namespace Module1.TypesAndClasses
                 Console.WriteLine(shape.ToString());
             }
 
-<<<<<<< HEAD
             #region Katsiaryna
 
             Console.WriteLine("Testing ShapeHelper");
@@ -57,39 +56,6 @@ namespace Module1.TypesAndClasses
             Console.WriteLine(gen.PerimeterEquals(triangle, triangle2));
 
             #endregion
-=======
-            //Console.WriteLine("Testing ShapeHelper");
-            //Console.WriteLine(ShapeHelper.PerimeterEquals(new EquilateralTriangle(5), new Circle(2)));
-            //Console.WriteLine(ShapeHelper.SquareEquals(new EquilateralTriangle(5), new Circle(2)));
-
-            //Console.WriteLine("Testing ShapeExtensions");
-            //var triangle = new EquilateralTriangle(7);
-            //Console.WriteLine(triangle.PerimeterEquals(new EquilateralTriangle(7)));
-            //Console.WriteLine(triangle.SquareEquals(new Rectangle(2, 3)));
-
-            //Console.WriteLine("Test Generics");
-            //var b = ShapePrinter.Print();
-
-            var triangle = new EquilateralTriangle(5, Units.centimeters);
-            var triangle2 = new EquilateralTriangle(0.05, Units.meters);
-            Console.WriteLine($"Perimeter 1 = {triangle.Perimeter()} cm");
-            Console.WriteLine($"Perimeter 2 = {triangle2.Perimeter()} m");
-            Console.WriteLine($"Square 1 = {triangle.Square()} cm");
-            Console.WriteLine($"Square 2 = {triangle2.Square()} m");
-            Console.WriteLine($"Perimeters equal? {triangle.PerimeterEquals(triangle, triangle2)}");
-            Console.WriteLine($"Squares equal? {triangle.SquareEquals(triangle, triangle2)}");
-
-            var circle1 = new Circle(5, Units.centimeters);
-            var circle2 = new Circle(0.05, Units.meters);
-            Console.WriteLine($"Perimeter 1 = {circle1.Perimeter()} cm");
-            Console.WriteLine($"Perimeter 2 = {circle2.Perimeter()} m");
-            Console.WriteLine($"Square 1 = {circle1.Square()} cm");
-            Console.WriteLine($"Square 2 = {circle2.Square()} m");
-            Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
-            Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
-            Console.WriteLine($"Perimeters equal? {circle1.PerimeterEquals(circle1, circle2)}");
-            Console.WriteLine($"Squares equal? {circle1.SquareEquals(circle1, circle2)}");
->>>>>>> 2d4c0c6dcfaecee9b8fafe6536e83e60299e6e83
         }
     }
 }
