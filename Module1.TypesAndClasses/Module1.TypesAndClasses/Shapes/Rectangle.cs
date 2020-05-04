@@ -46,7 +46,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {_metricName}2, perimeter = {Perimeter()} {Units.meters}, SideA = {ToMeters(_metricName,this._sideA)}, SideB = {ToMeters(_metricName,this._sideB)}";
+            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.meters}2, perimeter = {Perimeter()} {Units.meters}, SideA = {ToMeters(_metricName,this._sideA)}, SideB = {ToMeters(_metricName,this._sideB)}";
         }
         #endregion
 
