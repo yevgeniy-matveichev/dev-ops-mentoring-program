@@ -1,0 +1,100 @@
+﻿using Castle.DynamicProxy.Generators;
+using Microsoft.VisualStudio.TestPlatform.TestExecutor;
+using Module1.TypesAndClasses.Interfaces;
+using Module1.TypesAndClasses.Shapes;
+using Module1.TypesAndClasses.Extensions;
+using Moq;
+using System;
+using System.Collections.Generic;
+using Xunit;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+
+namespace Module1.TypesAndClasses.Tests
+{
+    [TestClass]
+    public class IShapeXUnitAlex
+    {
+        private List<IShape> _shapes;
+
+        [TestInitialize]
+        public void TestIShapesInit()
+        {
+            _shapes = new List<IShape>
+            {
+                new Ellipse(2, 2, Units.meters),
+                new Ellipse(2, 3, Units.centimeters),
+                new Ellipse(4, 2, Units.millimeters),
+                new EquilateralTriangle(5, Units.meters),
+                new EquilateralTriangle(7, Units.centimeters),
+                new EquilateralTriangle(9, Units.millimeters),
+                new Rectangle(4, 8, Units.meters),
+                new Rectangle(7, 4, Units.centimeters),
+                new Rectangle(4, 1, Units.millimeters),
+                new Circle(2, Units.meters),
+                new Circle(5, Units.centimeters),
+                new Circle(1, Units.millimeters)
+            };
+        }
+
+        [Fact]
+        //[ExpectedException(typeof(AggregateException))]
+        public void TestPerimeter()
+        {
+            //    Выбрать единственный элемент с заданным периметром(Exception, если не существует). 
+            var selectedShape = _shapes.Where(shape => shape.Perimeter() == 24).Single();
+            Assert.AreEqual(selectedShape, 24);
+        }
+
+        [Fact]
+        //[ExpectedException(typeof(AggregateException))]
+        public void TestCircleSquare()
+        {
+            //    Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра(Exception, если такой Circle в списке отсутствует). 
+            var circle = _shapes.Where(shape => shape.Square() >= 1 && shape.Units.Equals(Units.meters) && shape.GetType().Name.Equals("Circle")).Max();
+            Assert.IsInstanceOfType(circle.GetType(), typeof(Circle));
+            Assert.IsTrue(circle.Square() >= 1 && circle.Units.Equals(Units.meters));
+        }
+
+        [Fact]
+        public void TestRectanglePerimeter()
+        {
+            //    Выбрать Rectangle с наименьшим периметром(no exceptions).  
+            var rect = _shapes.Where(shape => shape.GetType().Name.Equals("Rectangle")).OrderBy(shape => shape.Perimeter()).FirstOrDefault();
+            Assert.IsInstanceOfType(rect.GetType(), typeof(Rectangle));
+            Assert.IsTrue(rect.Perimeter() > 0);
+        }
+
+        [Fact]
+        public void TestType()
+        {
+            //    Отфильтровать список  по типу: выбрать только фигуры типа Rectangle и Circle(оба типа в одном). 
+            var figures = _shapes.Where(shape => shape.GetType().Name.Equals("Rectangle") || shape.GetType().Name.Equals("Circle"));
+            foreach (var figure in figures) 
+            {
+                Assert.IsTrue(figure.GetType() == typeof(Circle) || figure.GetType() == typeof(Rectangle));
+            }
+
+        }
+
+
+        [Fact]
+        public void TestSquareSelect()
+        {
+            //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
+            //    При помощи Select
+        }
+
+        [Fact]
+        public void TestSquareSelectMany()
+        {
+            //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
+            //    При помощи SelectMany
+        }
+
+
+
+
+    }
+}
