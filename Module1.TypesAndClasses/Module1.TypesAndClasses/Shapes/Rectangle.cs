@@ -13,7 +13,9 @@ namespace Module1.TypesAndClasses.Shapes
         private readonly Units _metricName;
 
         #endregion
-        public override string ShapeName => nameof(Rectangle);
+       
+
+        public override ShapeName ShapeName => ShapeName.Rectangle;
 
         public Rectangle(int a, int b, Units units) : base(units)
         {

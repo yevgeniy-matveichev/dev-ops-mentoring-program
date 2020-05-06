@@ -3,11 +3,13 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
+
     public class Circle : BaseShape
     {
         public readonly double _radius;
         public readonly Units _unit;
-        public override string ShapeName => nameof(Circle);
+        public override ShapeName ShapeName => ShapeName.Circle;
+
         #region constructor
         public Circle(double radius, Units u) : base(u)
         {
