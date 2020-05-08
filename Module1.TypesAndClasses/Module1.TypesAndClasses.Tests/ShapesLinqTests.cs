@@ -75,7 +75,5 @@ namespace Module1.TypesAndClasses.Tests
             Assert.True(perimeterList[1] == 12);
             Assert.False(perimeterList[1] == 13);
          }
-
-
     }
 }
