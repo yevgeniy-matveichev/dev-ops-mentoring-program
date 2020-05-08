@@ -6,7 +6,7 @@
         centimeters,
         millimeters
     }
-    public enum ShapeName
+    public enum ShapeType
     {
         Circle,
         Ellipse,
@@ -22,6 +22,6 @@
 
         Units Units { get; }
         
-        ShapeName ShapeName { get; }
+        ShapeType ShapeName { get; }
     }
 }

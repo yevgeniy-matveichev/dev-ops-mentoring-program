@@ -29,9 +29,9 @@ namespace Module1.TypesAndClasses.Tests
         [Fact]
         public void TestLinq()
         {
-            Assert.True((new Rectangle(4, 4, Units.meters)).ShapeName == ShapeName.Rectangle);
-            var ShapeRectangle = shapes.Single(shape => shape.ShapeName == ShapeName.Rectangle);
-            Assert.True(ShapeRectangle.ShapeName == ShapeName.Rectangle);
+            Assert.True((new Rectangle(4, 4, Units.meters)).ShapeName == ShapeType.Rectangle);
+            var ShapeRectangle = shapes.Single(shape => shape.ShapeName == ShapeType.Rectangle);
+            Assert.True(ShapeRectangle.ShapeName == ShapeType.Rectangle);
         }
         [Fact]
         // Test to Find the shape with known Perimeter
@@ -63,7 +63,7 @@ namespace Module1.TypesAndClasses.Tests
         [Fact]
         public void TestRectangleAndCircle()
         {
-            List<IShape> shapeRectangleAndCircle = shapes.Where(shape => shape.ShapeName == ShapeName.Rectangle || shape.ShapeName == ShapeName.Circle).ToList();
+            List<IShape> shapeRectangleAndCircle = shapes.Where(shape => shape.ShapeName == ShapeType.Rectangle || shape.ShapeName == ShapeType.Circle).ToList();
             Assert.True(shapeRectangleAndCircle[1] == shapes[2]);
         }
 

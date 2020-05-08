@@ -14,7 +14,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         public Units Units { get; }
 
-        public abstract ShapeName ShapeName { get; }
+        public abstract ShapeType ShapeName { get; }
 
         protected BaseShape(Units unit)
         {

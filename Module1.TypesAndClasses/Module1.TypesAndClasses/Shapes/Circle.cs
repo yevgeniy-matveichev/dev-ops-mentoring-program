@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Shapes
     {
         public readonly double _radius;
         public readonly Units _unit;
-        public override ShapeName ShapeName => ShapeName.Circle;
+        public override ShapeType ShapeName => ShapeType.Circle;
 
         #region constructor
         public Circle(double radius, Units u) : base(u)

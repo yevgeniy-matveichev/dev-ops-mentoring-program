@@ -15,7 +15,7 @@ namespace Module1.TypesAndClasses.Shapes
         #endregion
        
 
-        public override ShapeName ShapeName => ShapeName.Rectangle;
+        public override ShapeType ShapeName => ShapeType.Rectangle;
 
         public Rectangle(int a, int b, Units units) : base(units)
         {
