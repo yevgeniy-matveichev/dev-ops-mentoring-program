@@ -14,12 +14,11 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace Module1.TypesAndClasses.Tests
 {
     [TestClass]
-    public class IShapeXUnitAlex
+    public class ShapeXUnitAlex
     {
         private List<IShape> _shapes;
 
-        [TestInitialize]
-        public void TestIShapesInit()
+        public ShapeXUnitAlex()
         {
             _shapes = new List<IShape>
             {
@@ -39,16 +38,14 @@ namespace Module1.TypesAndClasses.Tests
         }
 
         [Fact]
-        //[ExpectedException(typeof(AggregateException))]
         public void TestPerimeter()
         {
             //    Выбрать единственный элемент с заданным периметром(Exception, если не существует). 
-            var selectedShape = _shapes.Where(shape => shape.Perimeter() == 24).Single();
+            var selectedShape = _shapes.Single(shape => shape.Perimeter() == 24);
             Assert.AreEqual(selectedShape, 24);
         }
 
         [Fact]
-        //[ExpectedException(typeof(AggregateException))]
         public void TestCircleSquare()
         {
             //    Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра(Exception, если такой Circle в списке отсутствует). 
