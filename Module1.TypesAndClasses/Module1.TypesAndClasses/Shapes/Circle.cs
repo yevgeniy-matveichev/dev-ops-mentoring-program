@@ -19,7 +19,7 @@ namespace Module1.TypesAndClasses.Shapes
                 throw new ArgumentException($"Radius cannot be less than 0! Actual value was '{radius}'");
             }
 
-            _radius = radius;
+            _radius = ToMeters(u, radius);
             _unit = u;
         }
 
