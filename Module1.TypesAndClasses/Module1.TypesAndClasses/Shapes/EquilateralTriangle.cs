@@ -7,6 +7,7 @@ namespace Module1.TypesAndClasses.Shapes
     public class EquilateralTriangle : BaseShape
     {
         private readonly double _sideInMeters;
+        public override ShapeType ShapeName => ShapeType.EquilateralTriangle;
 
         public EquilateralTriangle(double side, Units units = Units.meters) : base(units)
         {

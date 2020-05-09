@@ -10,8 +10,11 @@ namespace Module1.TypesAndClasses.Shapes
         public abstract double Perimeter();
 
         public abstract double Square();
+        
 
         public Units Units { get; }
+
+        public abstract ShapeType ShapeName { get; }
 
         protected BaseShape(Units unit)
         {

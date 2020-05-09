@@ -13,8 +13,11 @@ namespace Module1.TypesAndClasses.Shapes
         private readonly Units _metricName;
 
         #endregion
+       
 
-       public Rectangle(int a, int b, Units units) : base(units)
+        public override ShapeType ShapeName => ShapeType.Rectangle;
+
+        public Rectangle(int a, int b, Units units) : base(units)
         {
             if (a >= 0 && b >= 0)
             {
@@ -32,12 +35,12 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override double Perimeter()
         {
-            return (_sideA + _sideB) * 2;
+            return (ToMeters(_metricName,_sideA) + ToMeters(_metricName,_sideB)) * 2;
         }
 
         public override double Square()
         {
-            return (_sideA * _sideB);
+            return (ToMeters(_metricName, _sideA) * ToMeters(_metricName, _sideB));
         }
         #endregion
 
@@ -45,7 +48,7 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {_metricName}2, perimeter = {Perimeter()} {_metricName}, SideA = {_sideA}, SideB = {_sideB}";
+            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.meters}2, perimeter = {Perimeter()} {Units.meters}, SideA = {ToMeters(_metricName,this._sideA)}, SideB = {ToMeters(_metricName,this._sideB)}";
         }
         #endregion
 

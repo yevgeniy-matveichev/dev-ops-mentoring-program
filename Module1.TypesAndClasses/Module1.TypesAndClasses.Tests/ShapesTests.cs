@@ -7,7 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using Xunit;
-
+using System.Linq;
 namespace Module1.TypesAndClasses.Tests
 {
     public class ShapesTests : IDisposable
@@ -62,26 +62,27 @@ namespace Module1.TypesAndClasses.Tests
                 new Ellipse(2,2),
                 new EquilateralTriangle(5),
 
+
                 //new Rectangle(4,4)
 
                 new Rectangle(4,4, Units.centimeters)
 
+
+                new Rectangle(4,4, Units.meters),
+                new Rectangle(40,50, Units.centimeters),
+                new Rectangle(60,40, Units.centimeters),
+                new Rectangle(40,20, Units.centimeters),
+                new Rectangle(4000,8000, Units.millimeters)
+
             };
-
-
+           
             foreach (var shape in shapes)
             {
                 Assert.Equal($"Shape: '{shape.GetType().Name}'. Square = {shape.Square()}, perimeter = {shape.Perimeter()}", shape.ToString());
             }
         }
 
-        //[Fact]
-        //public void TestCircleToString()
-        //{
-        //    //Circle _circle = new Circle(1, _unitCm);
-        //    Assert.Equal($"Shape: '{_circle.GetType().Name}'. Square = {_circle.Square()}, perimeter = {_circle.Perimeter()}, radius = {_circle._radius}", _circle.ToString());
-        //}
-
+        
         [Fact]
         public void TestShapesEquals()
         {

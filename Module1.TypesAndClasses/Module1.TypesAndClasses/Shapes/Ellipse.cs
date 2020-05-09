@@ -10,8 +10,10 @@ namespace Module1.TypesAndClasses.Shapes
 
         public Units unit { get; }
 
-     
+       
         public Units Units => throw new NotImplementedException();
+
+       ShapeType IShape.ShapeName => ShapeType.Ellipse;
 
         public Ellipse(int radius1, int radius2, Units units = Units.meters)
         {

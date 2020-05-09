@@ -6,6 +6,13 @@
         centimeters,
         millimeters
     }
+    public enum ShapeType
+    {
+        Circle,
+        Ellipse,
+        EquilateralTriangle,
+        Rectangle
+    }
 
     public interface IShape
     {
@@ -14,5 +21,7 @@
         double Perimeter();
 
         Units Units { get; }
+        
+        ShapeType ShapeName { get; }
     }
 }
