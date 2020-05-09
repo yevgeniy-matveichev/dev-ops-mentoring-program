@@ -29,12 +29,13 @@ namespace Module1.TypesAndClasses.Tests
         public void Test_SinglePerimeter()
         {
             /* a. Выбрать единственный элемент с заданным периметром (Exception, если не существует) */
+
             IShape shape = shapes.Single(s => s.Perimeter() == 0.09);
             Assert.Equal(shapes[0], shape);
         } 
 
         [Fact]
-        public void Test_2()
+        public void Test_Circle_LargestSquare()
         {
             /* b. Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра 
                  (Exception, если такой Circle в списке отсутствует) */
@@ -54,12 +55,19 @@ namespace Module1.TypesAndClasses.Tests
         }
 
         [Fact]
-        public void Test_4()
+        public void Test_RectangleCircle_Filtered()
         {
             /* d. Отфильтровать список  по типу: выбрать только фигуры типа Rectangle и Circle (оба типа в одном) */
 
-            var rc = shapes.SkipWhile(s => s.GetType().Name == "EquilateralTriangle" && s.GetType().Name == "Rectangle").ToList();
-            //Assert.
+            List<IShape> rc = shapes.Where(s => s.GetType().Name == "Rectangle" || s.GetType().Name == "Circle").ToList();
+            Assert.Contains(shapes[3], rc);
+            Assert.Contains(shapes[4], rc);
+            Assert.Contains(shapes[5], rc);
+            Assert.Contains(shapes[9], rc);
+            Assert.Contains(shapes[10], rc);
+            Assert.Contains(shapes[11], rc);
+            Assert.DoesNotContain(shapes[6], rc);
+            Assert.DoesNotContain(shapes[1], rc);
         }
 
         [Fact]
