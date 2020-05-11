@@ -15,19 +15,19 @@ namespace Module1.TypesAndClasses
         {
             Console.WriteLine("Module 1. Shapes example.");
 
-            //var shapes = new List<IShape>
-            //{
-            //    new Ellipse(2,3),
-            //    new Circle(1, Units.centimeters),
-            //    new Rectangle(1,1,Units.meters),
-            //    new EquilateralTriangle(5, Units.meters),
-            //    //new RegularPolygon()
-            //};
+            var shapes = new List<IShape>
+            {
+                new Ellipse(2,3),
+                new Circle(1, Units.centimeters),
+                new Rectangle(1,1,Units.meters),
+                new EquilateralTriangle(5, Units.meters),
+                //new RegularPolygon()
+            };
 
-            //foreach (var shape in shapes)
-            //{
-            //    Console.WriteLine(shape.ToString());
-            //}
+            foreach (var shape in shapes)
+            {
+                Console.WriteLine(shape.ToString());
+            }
 
             //var triangle = new EquilateralTriangle(5, Units.centimeters);
             //var triangle2 = new EquilateralTriangle(0.05, Units.meters);
@@ -77,7 +77,7 @@ namespace Module1.TypesAndClasses
             Console.WriteLine($"rectangle2: perimeter = {rectangle2.Perimeter()} {rectangle2.Units}, square = {rectangle2.Square()} {rectangle2.Units}");
             Console.WriteLine($"rectangle3: perimeter = {rectangle3.Perimeter()} {rectangle3.Units}, square = {rectangle3.Square()} {rectangle3.Units}");
 
-            var shapes = new List<IShape> {
+            var KateShapes = new List<IShape> {
                 new EquilateralTriangle(3, Units.centimeters),
                 new EquilateralTriangle(7.8, Units.millimeters),
                 new EquilateralTriangle(5, Units.meters),
@@ -92,10 +92,19 @@ namespace Module1.TypesAndClasses
                 new Rectangle(1, 2, Units.meters)
             };
 
-            var rc = shapes.Where(s => s.GetType().Name == "Rectangle" || s.GetType().Name == "Circle").ToList();
-            foreach (var i in rc) {
+            //var rc = shapes.Where(s => s.GetType().Name == "Rectangle" || s.GetType().Name == "Circle").ToList();
+            //foreach (var i in rc) {
+            //    Console.WriteLine(i);
+            //}
+
+            var squares = KateShapes.Select(s => s.Square()).OrderBy(s => s);
+            foreach (var i in squares)
+            {
                 Console.WriteLine(i);
             }
+
+            Console.WriteLine(squares.Max());
+            Console.WriteLine(squares.Min());
 
             #endregion
         }

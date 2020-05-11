@@ -1,8 +1,6 @@
 ﻿using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using System.Linq;
 
@@ -40,7 +38,6 @@ namespace Module1.TypesAndClasses.Tests
             /* b. Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра 
                  (Exception, если такой Circle в списке отсутствует) */
 
-            // здесь все работает ок, только нужно учесть единицы измерения, а лучше, если ребята все таки воспользуются методом ToMeters() :)
             double circle = shapes.OfType<Circle>().Where(s => s.Square() >= 1).Max(s => s.Square());
             Assert.Equal(shapes[3].Square(), circle);
         }
@@ -71,11 +68,21 @@ namespace Module1.TypesAndClasses.Tests
         }
 
         [Fact]
-        public void Test_5() 
+        public void Test_Select() 
         {
-            /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения
-                   i. При помощи Select 
-                   ii. При помощи SelectMany */
+            /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи Select */
+
+            var squares = shapes.Select(s => s.Square()).OrderBy(s => s);
+            Assert.Equal(squares.Max(), shapes[7].Square());
+            Assert.Equal(squares.Min(), shapes[1].Square());
+        }
+
+        [Fact]
+        public void Test_SelectMany()
+        {
+            /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи SelectMany */
+
+            //var squares = shapes.SelectMany()
         }
     }
 }
