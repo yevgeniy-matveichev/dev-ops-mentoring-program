@@ -65,7 +65,7 @@ namespace Module1.TypesAndClasses.Tests
 
                 //new Rectangle(4,4)
 
-                new Rectangle(4,4, Units.centimeters)
+                new Rectangle(4,4, Units.centimeters),
 
 
                 new Rectangle(4,4, Units.meters),

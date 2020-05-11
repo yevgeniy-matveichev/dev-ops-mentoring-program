@@ -8,12 +8,9 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Module1.TypesAndClasses.Tests
 {
-    [TestClass]
     public class ShapeXUnitAlex
     {
         private List<IShape> _shapes;
@@ -42,45 +39,51 @@ namespace Module1.TypesAndClasses.Tests
         {
             //    Выбрать единственный элемент с заданным периметром(Exception, если не существует). 
             var selectedShape = _shapes.Single(shape => shape.Perimeter() == 24);
-            Assert.AreEqual(selectedShape, 24);
+            Assert.Equal(24, selectedShape.Perimeter());
         }
 
         [Fact]
         public void TestCircleSquare()
         {
             //    Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра(Exception, если такой Circle в списке отсутствует). 
-            var circle = _shapes.Where(shape => shape.Square() >= 1 && shape.Units.Equals(Units.meters) && shape.GetType().Name.Equals("Circle")).Max();
-            Assert.IsInstanceOfType(circle.GetType(), typeof(Circle));
-            Assert.IsTrue(circle.Square() >= 1 && circle.Units.Equals(Units.meters));
+            var circle = _shapes.Where(shape => shape.Square() >= 1 && shape.Units.Equals(Units.meters) && shape.ShapeName.Equals(ShapeType.Circle))
+                                .Max();
+            Assert.IsType(circle.GetType(), typeof(Circle));
+            Assert.True(circle.Square() >= 1 && circle.Units.Equals(Units.meters));
         }
 
         [Fact]
         public void TestRectanglePerimeter()
         {
             //    Выбрать Rectangle с наименьшим периметром(no exceptions).  
-            var rect = _shapes.Where(shape => shape.GetType().Name.Equals("Rectangle")).OrderBy(shape => shape.Perimeter()).FirstOrDefault();
-            Assert.IsInstanceOfType(rect.GetType(), typeof(Rectangle));
-            Assert.IsTrue(rect.Perimeter() > 0);
+            var rect = _shapes.Where(shape => shape.ShapeName.Equals(ShapeType.Rectangle))
+                                .OrderBy(shape => shape.Perimeter())
+                                .FirstOrDefault();
+            Assert.IsType(rect.GetType(), typeof(Rectangle));
+            Assert.True(rect.Perimeter() > 0);
         }
 
         [Fact]
         public void TestType()
         {
             //    Отфильтровать список  по типу: выбрать только фигуры типа Rectangle и Circle(оба типа в одном). 
-            var figures = _shapes.Where(shape => shape.GetType().Name.Equals("Rectangle") || shape.GetType().Name.Equals("Circle"));
-            foreach (var figure in figures) 
+            var figures = _shapes.Where(shape => shape.ShapeName.Equals(ShapeType.Rectangle) || shape.ShapeName.Equals(ShapeType.Circle));
+            foreach (var figure in figures)
             {
-                Assert.IsTrue(figure.GetType() == typeof(Circle) || figure.GetType() == typeof(Rectangle));
+                Assert.True(figure.GetType() == typeof(Circle) || figure.GetType() == typeof(Rectangle));
             }
 
         }
-
 
         [Fact]
         public void TestSquareSelect()
         {
             //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
             //    При помощи Select
+            var selectSquare = _shapes.OrderBy(shape => shape.Square())
+                                        .Select(shape => shape.Square());
+            var maxSquare = _shapes.Max(shape => shape.Square());
+            Assert.Equal(maxSquare, selectSquare.First());
         }
 
         [Fact]
@@ -88,10 +91,10 @@ namespace Module1.TypesAndClasses.Tests
         {
             //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
             //    При помощи SelectMany
+            //var selectManySquare = _shapes.SelectMany(shape => shape.Units, shape => shape.Square()).OrderBy(shape => shape.Square());
+
+            //var maxSquare = _shapes.Max(shape => shape.Square());
+            //Assert.Equal(maxSquare, selectManySquare.First());
         }
-
-
-
-
     }
 }

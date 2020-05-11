@@ -7,6 +7,7 @@ namespace Module1.TypesAndClasses.Shapes
     public class EquilateralTriangle : BaseShape
     {
         private readonly double _sideInMeters;
+
         public override ShapeType ShapeName => ShapeType.EquilateralTriangle;
 
         public EquilateralTriangle(double side, Units units = Units.meters) : base(units)
@@ -34,8 +35,8 @@ namespace Module1.TypesAndClasses.Shapes
             var sb = new StringBuilder();
 
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
-            sb.Append($"Square = {this.Square()}, ");
-            sb.Append($"perimeter = {this.Perimeter()}. ");
+            sb.Append($"Square = {this.Square()} {Units}, ");
+            sb.Append($"perimeter = {this.Perimeter()} {Units}. ");
             sb.Append($"Side = {_sideInMeters} ");
             sb.Append($"{Units}.");
 
