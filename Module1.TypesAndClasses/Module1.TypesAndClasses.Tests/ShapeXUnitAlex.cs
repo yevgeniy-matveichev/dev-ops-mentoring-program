@@ -92,7 +92,6 @@ namespace Module1.TypesAndClasses.Tests
             //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
             //    При помощи SelectMany
             //var selectManySquare = _shapes.SelectMany(shape => shape.Units, shape => shape.Square()).OrderBy(shape => shape.Square());
-
             //var maxSquare = _shapes.Max(shape => shape.Square());
             //Assert.Equal(maxSquare, selectManySquare.First());
         }
