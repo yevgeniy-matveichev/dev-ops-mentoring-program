@@ -10,23 +10,22 @@ namespace Module1.TypesAndClasses.Tests.Linq
     public class ShapesLinqTests
     {
         private List<IShape> shapes = new List<IShape>
-            {
-                new Circle(2,Units.Meters),
-                new EquilateralTriangle(5),
-                new Rectangle(4,4, Units.Meters),
-                new Rectangle(40,50, Units.Centimeters),
-                new Rectangle(600,400, Units.Centimeters),
-                new Rectangle(400,200, Units.Centimeters),
-                new Rectangle(4000,8000, Units.Millimeters)
-            };
-
+        {
+            new Circle(2,Units.Meters),
+            new EquilateralTriangle(5),
+            new Rectangle(4,4, Units.Meters),
+            new Rectangle(40,50, Units.Centimeters),
+            new Rectangle(600,400, Units.Centimeters),
+            new Rectangle(400,200, Units.Centimeters),
+            new Rectangle(4000,8000, Units.Millimeters)
+        };
 
         [Fact]
         public void TestLinq()
         {
-            Assert.True((new Rectangle(4, 4, Units.Meters)).ShapeName == ShapeType.Rectangle);
-            var ShapeRectangle = shapes.Single(shape => shape.ShapeName == ShapeType.Rectangle);
-            Assert.True(ShapeRectangle.ShapeName == ShapeType.Rectangle);
+            Assert.True(new Rectangle(4, 4, Units.Meters).ShapeName == ShapeType.Rectangle);
+            var shapeCircle = shapes.Single(shape => shape.ShapeName == ShapeType.Circle);
+            Assert.True(shapeCircle.ShapeName == ShapeType.Circle);
         }
 
         [Fact]

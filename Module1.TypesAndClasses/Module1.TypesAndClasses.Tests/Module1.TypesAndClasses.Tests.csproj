@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Module1.TypesAndClasses\Module1.TypesAndClasses.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Shapes\" />
+  </ItemGroup>
+
 </Project>

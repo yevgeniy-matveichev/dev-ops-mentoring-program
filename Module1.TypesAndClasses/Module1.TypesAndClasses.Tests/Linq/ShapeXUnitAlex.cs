@@ -51,10 +51,10 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestRectanglePerimeter()
         {
             //    Выбрать Rectangle с наименьшим периметром(no exceptions).  
-            var rect = _shapes.Where(shape => shape.ShapeName.Equals(ShapeType.Rectangle))
+            Rectangle rect = (Rectangle)_shapes.Where(shape => shape.ShapeName.Equals(ShapeType.Rectangle))
                                 .OrderBy(shape => shape.Perimeter())
                                 .FirstOrDefault();
-            Assert.IsType(rect.GetType(), typeof(Rectangle));
+
             Assert.True(rect.Perimeter() > 0);
         }
 
@@ -74,10 +74,17 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
             //    При помощи Select
-            var selectSquare = _shapes.OrderBy(shape => shape.Square())
-                                        .Select(shape => shape.Square());
-            var maxSquare = _shapes.Max(shape => shape.Square());
-            Assert.Equal(maxSquare, selectSquare.First());
+            var maxSquare = _shapes.OrderBy(shape => shape.Square())
+                                   .Select(shape => shape.Square())
+                                   .Max(square => square);
+
+            var maxSquare2 = _shapes
+                                    .Select(shape => shape.Square())
+                                    .OrderBy(shape => shape)                                   
+                                    .Max(square => square);
+
+            // todo:
+            // Assert.Equal(_shapes.First().Square(), maxSquare);
         }
 
         [Fact]
