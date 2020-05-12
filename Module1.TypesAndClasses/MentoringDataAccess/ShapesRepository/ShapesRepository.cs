@@ -12,7 +12,7 @@ namespace MentoringDataAccess.ShapesRepository
         {
             //TODO: implement read the embedded resources
 
-            return $"shape '{shapeName}' in recieved";
+            return $"shape '{shapeName}' is recieved";
         }
 
     }
