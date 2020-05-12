@@ -1,7 +1,7 @@
-using Module1.TypesAndClasses.Interfaces;
+using Mentoring.Shapes.Interfaces;
 using System;
 
-namespace Module1.TypesAndClasses.Shapes
+namespace Mentoring.Shapes.Shapes
 {
     public abstract class BaseShape : IShape
     {
@@ -10,7 +10,7 @@ namespace Module1.TypesAndClasses.Shapes
         public abstract double Perimeter();
 
         public abstract double Square();
-        
+
         public Units Unit { get; }
 
         public abstract ShapeType ShapeName { get; }
@@ -37,7 +37,7 @@ namespace Module1.TypesAndClasses.Shapes
             return Math.Abs(delta) < Delta;
         }
 
-        public bool SquareEquals(IShape shape1, IShape shape2) 
+        public bool SquareEquals(IShape shape1, IShape shape2)
         {
             if (shape1 == null)
             {
@@ -48,7 +48,7 @@ namespace Module1.TypesAndClasses.Shapes
             {
                 throw new ArgumentNullException(nameof(shape2));
             }
-            
+
             double delta = shape1.Square() - shape2.Square();
 
             return Math.Abs(delta) < Delta;

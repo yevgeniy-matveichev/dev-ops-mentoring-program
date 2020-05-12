@@ -1,9 +1,9 @@
-﻿using Module1.TypesAndClasses.Interfaces;
+﻿using Mentoring.Shapes.Interfaces;
 using System;
 
-namespace Module1.TypesAndClasses.Shapes
+namespace Mentoring.Shapes.Shapes
 {
-    public class Ellipse :  BaseShape
+    public class Ellipse : BaseShape
     {
         private readonly int _radius1;
         private readonly int _radius2;
@@ -38,13 +38,13 @@ namespace Module1.TypesAndClasses.Shapes
             {
                 return ToMeters(Unit, this.Perimeter()) == ToMeters(shape.Unit, shape.Perimeter());
             }
-            
+
             return false;
         }
 
         public void Print()
         {
-            Console.WriteLine($"Ellipse. Square: {Square()}, perimeter:{Perimeter()}. Radius 1: {_radius1}, Radius 2 : {_radius2}" );
+            Console.WriteLine($"Ellipse. Square: {Square()}, perimeter:{Perimeter()}. Radius 1: {_radius1}, Radius 2 : {_radius2}");
         }
 
         #endregion

@@ -1,8 +1,8 @@
-using Module1.TypesAndClasses.Interfaces;
-using Module1.TypesAndClasses.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mentoring.Shapes.Interfaces;
+using Mentoring.Shapes.Shapes;
 
 namespace Module1.TypesAndClasses
 {
