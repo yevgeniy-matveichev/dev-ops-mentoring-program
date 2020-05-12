@@ -1,9 +1,28 @@
 ﻿namespace Module1.TypesAndClasses.Interfaces
 {
+    public enum Units
+    {
+        Meters,
+        Centimeters,
+        Millimeters
+    }
+
+    public enum ShapeType
+    {
+        Circle,
+        Ellipse,
+        EquilateralTriangle,
+        Rectangle
+    }
+
     public interface IShape
     {
-        long Square();
+        double Square();
 
-        int Perimeter();
+        double Perimeter();
+
+        Units Unit { get; }
+        
+        ShapeType ShapeName { get; }
     }
 }

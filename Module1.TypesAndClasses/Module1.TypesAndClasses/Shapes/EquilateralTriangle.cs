@@ -4,85 +4,46 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class EquilateralTriangle : IShape
+    public class EquilateralTriangle : BaseShape
     {
-        private readonly int _a;
+        private readonly double _sideInMeters;
 
-        public EquilateralTriangle(int side)
+        public EquilateralTriangle(double side, Units units = Units.Meters) : base(units)
         {
             if (side <= 0)
             {
                 throw new ArgumentException("The side cannot be less or equal to 0.");
             }
 
-            _a = side;
+            _sideInMeters = ToMeters(units, side);
         }
 
-        public int Perimeter()
+        #region public methods
+
+        public override ShapeType ShapeName => ShapeType.EquilateralTriangle;
+
+        public override double Perimeter()
         {
-            return 3 * _a;
+            return 3 * _sideInMeters;
         }
 
-        public long Square()
+        public override double Square()
         {
-            var res = (Math.Sqrt(3) / 4) * Math.Pow(_a, 2);
-            return (long)res;
+            return (Math.Sqrt(3) / 4) * Math.Pow(_sideInMeters, 2);
         }
 
         public override string ToString() {
-            var eTriangle = new EquilateralTriangle(5);
-
             var sb = new StringBuilder();
+
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
-            sb.Append($"Square = {eTriangle.Square()}, ");
-            sb.Append($"perimeter = {eTriangle.Perimeter()}");
+            sb.Append($"Square = {this.Square()} {Unit}, ");
+            sb.Append($"perimeter = {this.Perimeter()} {Unit}. ");
+            sb.Append($"Side = {_sideInMeters} ");
+            sb.Append($"{Unit}.");
 
             return sb.ToString();
         }
 
-        public override bool Equals(object obj)
-        {
-            IShape objectShape = obj as IShape;
-
-            if (objectShape == null) return false;
-            return objectShape.Perimeter() == Perimeter();
-        }
-
-        public static bool operator ==(EquilateralTriangle obj1, IShape obj2)
-        {
-            if (ReferenceEquals(obj1, null))
-            {
-                if (ReferenceEquals(obj2, null))
-                {
-                    return true;
-                }
-                return false;
-            }
-
-            if (ReferenceEquals(obj2, null))
-            {
-                return false;
-            }
-
-            return obj1.Square() == obj2.Square();
-        }
-        public static bool operator !=(EquilateralTriangle obj1, IShape obj2)
-        {
-            if (ReferenceEquals(obj1, null))
-            {
-                if (ReferenceEquals(obj2, null))
-                {
-                    return false;
-                }
-                return true;
-            }
-
-            if (ReferenceEquals(obj2, null))
-            {
-                return true;
-            }
-
-            return obj1.Square() != obj2.Square();
-        }
+        #endregion
     }
 }

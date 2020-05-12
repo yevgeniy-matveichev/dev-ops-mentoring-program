@@ -3,65 +3,48 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Rectangle : IShape
+    public class Rectangle : BaseShape
     {
         #region  private fields
 
         private readonly int _sideA;
         private readonly int _sideB;
 
-        #endregion 
+        #endregion    
 
-        public Rectangle(int a, int b)
+        public Rectangle(int a, int b, Units unit) : base(unit)
         {
-            if (a >= 0 && b >= 0)
+            if (a < 0 || b < 0)
             {
-                _sideA = a;
-                _sideB = b;
+                throw new ArgumentException($"Cannot perform an operation: Argument values must be positive ");
             }
-            else 
-            { 
-                throw new ArgumentException($"Cannot perform an operation: Argument values must be positive "); 
-            }
+
+            _sideA = a;
+            _sideB = b;
         }
 
-        #region Public Functions
-              
-        public int Perimeter()
+        public override ShapeType ShapeName => ShapeType.Rectangle;
+
+        #region public methods
+
+        public override double Perimeter()
         {
-            return (_sideA + _sideB) * 2;
+            return (ToMeters(this.Unit,_sideA) + ToMeters(this.Unit, _sideB)) * 2;
         }
 
-        public long Square()
+        public override double Square()
         {
-            return (_sideA * _sideB);
+            return (ToMeters(this.Unit, _sideA) * ToMeters(this.Unit, _sideB));
         }
-        #endregion
 
-        #region Public Methods
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()}, perimeter = {Perimeter()}";
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-                return false;
-            Rectangle m = obj as Rectangle;
-            return m.Perimeter() == this.Perimeter();
+            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.Meters}2,"
+                + $"perimeter = {Perimeter()} {Units.Meters}, SideA = {ToMeters(this.Unit,this._sideA)}, "
+                + $"SideB = {ToMeters(this.Unit, this._sideB)}";
         }
         
-        public static bool operator ==(Rectangle obj1, Rectangle obj2)
-        {
-            return obj1.Square() == obj2.Square();
-        }
-       
-        public static bool operator !=(Rectangle obj1, Rectangle obj2)
-        {
-            return obj1.Square() != obj2.Square();
-        }
-
         #endregion
     }
 }
+

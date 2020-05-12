@@ -3,63 +3,43 @@ using System;
 
 namespace Module1.TypesAndClasses.Shapes
 {
-    public class Circle : IShape
+    public class Circle : BaseShape
     {
-        #region private
-        private readonly int _radius;
+        public readonly double _radius;
+        public readonly Units _unit;
 
-        #endregion
+        public override ShapeType ShapeName => ShapeType.Circle;
 
         #region constructor
-        public Circle(int radius) 
+
+        public Circle(double radius, Units u) : base(u)
         {
-            if (radius < 0) 
+            if (radius < 0)
             {
                 throw new ArgumentException($"Radius cannot be less than 0! Actual value was '{radius}'");
             }
 
-            _radius = radius;
+            _radius = ToMeters(u, radius);
+            _unit = u;
         }
 
         #endregion
 
-        public int Perimeter()
+        override public double Perimeter()
         {
             var result = checked(2 * Math.PI * _radius);
-            int perimeter = Convert.ToInt32(result);
-            return perimeter;
+            return result;
         }
 
-        public long Square()
+        override public double Square()
         {
-            double result = checked(Math.PI * Math.Pow(Convert.ToDouble(_radius), Convert.ToDouble(2)));
-            return Convert.ToInt64(result);
+            double result = checked(Math.PI * Math.Pow(_radius, 2));
+            return result;
         }
 
         public override string ToString()
         {
-            return $"Shape: '{this.GetType().Name}'. Square = {this.Square()}, perimeter = {this.Perimeter()}";
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            
-            Circle circle = (Circle)obj;
-            return this.Perimeter() == circle.Perimeter();
-        }
-
-        public static bool operator ==(Circle circle1, Circle circle2)
-        {
-            return circle1.Square() == circle2.Square();
-        }
-
-        public static bool operator !=(Circle circle1, Circle circle2)
-        {
-            return !(circle1.Square() == circle2.Square());
+            return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}, radius = {this._radius}";
         }
     }
 }
