@@ -1,6 +1,3 @@
-using Module1.TypesAndClasses.Extensions;
-using Module1.TypesAndClasses.Generics;
-using Module1.TypesAndClasses.Helpers;
 using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
 using System;
