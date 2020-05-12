@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module1.TypesAndClasses", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module1.TypesAndClasses.Tests", "Module1.TypesAndClasses.Tests\Module1.TypesAndClasses.Tests.csproj", "{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentoringDataAccess", "MentoringDataAccess\MentoringDataAccess.csproj", "{041B5380-5E71-4993-B590-7B6A2AAAF879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MentoringDataAccess", "MentoringDataAccess~\MentoringDataAccess.csproj", "{80595D6E-BB3F-4B9D-A1A0-D47D1F8D9BF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{041B5380-5E71-4993-B590-7B6A2AAAF879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{041B5380-5E71-4993-B590-7B6A2AAAF879}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{041B5380-5E71-4993-B590-7B6A2AAAF879}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{041B5380-5E71-4993-B590-7B6A2AAAF879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80595D6E-BB3F-4B9D-A1A0-D47D1F8D9BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80595D6E-BB3F-4B9D-A1A0-D47D1F8D9BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80595D6E-BB3F-4B9D-A1A0-D47D1F8D9BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80595D6E-BB3F-4B9D-A1A0-D47D1F8D9BF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

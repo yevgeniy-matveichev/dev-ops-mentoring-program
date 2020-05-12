@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Shapes\**" />
+    <EmbeddedResource Remove="Shapes\**" />
+    <None Remove="Shapes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Moq" Version="4.13.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
@@ -16,10 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Module1.TypesAndClasses\Module1.TypesAndClasses.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Shapes\" />
   </ItemGroup>
 
 </Project>
