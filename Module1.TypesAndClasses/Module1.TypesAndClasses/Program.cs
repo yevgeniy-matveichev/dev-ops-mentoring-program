@@ -41,6 +41,10 @@ namespace Module1.TypesAndClasses
                         Console.WriteLine("You've chosen Triangle.");
                         //break;
                         return;
+                    case "":
+                        // todo: read all shapes from the ShapesService
+                        Console.WriteLine("Processing all shapes...");
+                        return;
                     default:
                         Console.WriteLine($"The shape is not supported. Supported shapes: {args[0]} - Circle, {args[1]} - Ellipse, {args[2]} - Rectangle, {args[3]} - Triangle");
                         break;
