@@ -23,23 +23,19 @@ namespace Module1.TypesAndClasses
                 {
                     case "c":
                         // todo: read the shape of type Circle from the ShapesService
-                        Console.WriteLine("You've chosen Circle.");
-                        //break;
+                        Console.WriteLine("Processing Circle...");
                         return;
                     case "e":
                         // todo: read the shape of type Ellipse from the ShapesService
-                        Console.WriteLine("You've chosen Ellipse");
-                        //break;
+                        Console.WriteLine("Processing Ellipse...");
                         return;
                     case "r":
                         // todo: read the shape of type Rectangle from the ShapesService
-                        Console.WriteLine("You've chosen Rectangle.");
-                        //break;
+                        Console.WriteLine("Processing Rectangle...");
                         return;
                     case "t":
                         // todo: read the shape of type EquilateralTriangle from the ShapesService
-                        Console.WriteLine("You've chosen Triangle.");
-                        //break;
+                        Console.WriteLine("Processing Triangle...");
                         return;
                     case "":
                         // todo: read all shapes from the ShapesService
