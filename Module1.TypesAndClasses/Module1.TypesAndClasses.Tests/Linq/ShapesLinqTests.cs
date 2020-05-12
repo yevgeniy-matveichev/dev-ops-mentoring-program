@@ -1,38 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Module1.TypesAndClasses.Interfaces;
 using Module1.TypesAndClasses.Shapes;
-using Module1.TypesAndClasses.Extensions;
-using Moq;
 using Xunit;
 using System.Linq;
 
 
-namespace Module1.TypesAndClasses.Tests
+namespace Module1.TypesAndClasses.Tests.Linq
 {
-
     public class ShapesLinqTests
     {
         private List<IShape> shapes = new List<IShape>
             {
-                new Circle(2,Units.meters),
+                new Circle(2,Units.Meters),
                 new EquilateralTriangle(5),
-                new Rectangle(4,4, Units.meters),
-                new Rectangle(40,50, Units.centimeters),
-                new Rectangle(600,400, Units.centimeters),
-                new Rectangle(400,200, Units.centimeters),
-                new Rectangle(4000,8000, Units.millimeters)
+                new Rectangle(4,4, Units.Meters),
+                new Rectangle(40,50, Units.Centimeters),
+                new Rectangle(600,400, Units.Centimeters),
+                new Rectangle(400,200, Units.Centimeters),
+                new Rectangle(4000,8000, Units.Millimeters)
             };
 
 
         [Fact]
         public void TestLinq()
         {
-            Assert.True((new Rectangle(4, 4, Units.meters)).ShapeName == ShapeType.Rectangle);
+            Assert.True((new Rectangle(4, 4, Units.Meters)).ShapeName == ShapeType.Rectangle);
             var ShapeRectangle = shapes.Single(shape => shape.ShapeName == ShapeType.Rectangle);
             Assert.True(ShapeRectangle.ShapeName == ShapeType.Rectangle);
         }
+
         [Fact]
         // Test to Find the shape with known Perimeter
         public void TestPerimeter()
@@ -47,7 +43,7 @@ namespace Module1.TypesAndClasses.Tests
         public void TestCircleSquare()
         {
             var shapeSquareCircle = shapes.OfType<Circle>().Where(shape => shape.Square() > 1).OrderByDescending(shape => shape.Square()).First();
-            Assert.True(shapeSquareCircle.Square() == new Circle(2, Units.meters).Square());
+            Assert.True(shapeSquareCircle.Square() == new Circle(2, Units.Meters).Square());
         }
 
         // Test to find Rectangle with the minimum Perimeter with no exceptions
@@ -55,7 +51,7 @@ namespace Module1.TypesAndClasses.Tests
         public void TestPerimeterRectangle()
         { 
              var shapePerimeterRectangle = shapes.OfType<Rectangle>().OrderBy(shape => shape.Perimeter()).FirstOrDefault();
-             Assert.True(shapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.centimeters).Perimeter());
+             Assert.True(shapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.Centimeters).Perimeter());
              Assert.True(shapePerimeterRectangle != null);
         }
 

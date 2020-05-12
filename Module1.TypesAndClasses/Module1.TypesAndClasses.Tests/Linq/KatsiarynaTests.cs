@@ -4,23 +4,24 @@ using System.Collections.Generic;
 using Xunit;
 using System.Linq;
 
-namespace Module1.TypesAndClasses.Tests
+namespace Module1.TypesAndClasses.Tests.Linq
 {
     public class KatsiarynaTests
     {
+        // todo: move to constructor
         List<IShape> shapes = new List<IShape> {
-                new EquilateralTriangle(3, Units.centimeters),
-                new EquilateralTriangle(7.8, Units.millimeters),
-                new EquilateralTriangle(5, Units.meters),
-                new Circle(5, Units.meters),
-                new Circle(8, Units.millimeters),
-                new Circle(2.6, Units.centimeters),
-                new Ellipse(4, 6, Units.millimeters),
-                new Ellipse(6, 9, Units.centimeters),
-                new Ellipse(1, 2, Units.meters),
-                new Rectangle(5, 8, Units.centimeters),
-                new Rectangle(10, 24, Units.millimeters),
-                new Rectangle(1, 2, Units.meters)
+                new EquilateralTriangle(3, Units.Centimeters),
+                new EquilateralTriangle(7.8, Units.Millimeters),
+                new EquilateralTriangle(5, Units.Meters),
+                new Circle(5, Units.Meters),
+                new Circle(8, Units.Millimeters),
+                new Circle(2.6, Units.Centimeters),
+                new Ellipse(4, 6, Units.Millimeters),
+                new Ellipse(6, 9, Units.Centimeters),
+                new Ellipse(1, 2, Units.Meters),
+                new Rectangle(5, 8, Units.Centimeters),
+                new Rectangle(10, 24, Units.Millimeters),
+                new Rectangle(1, 2, Units.Meters)
             };
 
         [Fact]
@@ -82,7 +83,7 @@ namespace Module1.TypesAndClasses.Tests
         {
             /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи SelectMany */
 
-            //var squares = shapes.SelectMany()
+            // todo:
         }
     }
 }

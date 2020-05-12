@@ -8,9 +8,7 @@ namespace Module1.TypesAndClasses.Shapes
     {
         private readonly double _sideInMeters;
 
-        public override ShapeType ShapeName => ShapeType.EquilateralTriangle;
-
-        public EquilateralTriangle(double side, Units units = Units.meters) : base(units)
+        public EquilateralTriangle(double side, Units units = Units.Meters) : base(units)
         {
             if (side <= 0)
             {
@@ -20,6 +18,10 @@ namespace Module1.TypesAndClasses.Shapes
             _sideInMeters = ToMeters(units, side);
         }
 
+        #region public methods
+
+        public override ShapeType ShapeName => ShapeType.EquilateralTriangle;
+
         public override double Perimeter()
         {
             return 3 * _sideInMeters;
@@ -27,20 +29,21 @@ namespace Module1.TypesAndClasses.Shapes
 
         public override double Square()
         {
-            var res = (Math.Sqrt(3) / 4) * Math.Pow(_sideInMeters, 2);
-            return res;
+            return (Math.Sqrt(3) / 4) * Math.Pow(_sideInMeters, 2);
         }
 
         public override string ToString() {
             var sb = new StringBuilder();
 
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
-            sb.Append($"Square = {this.Square()} {Units}, ");
-            sb.Append($"perimeter = {this.Perimeter()} {Units}. ");
+            sb.Append($"Square = {this.Square()} {Unit}, ");
+            sb.Append($"perimeter = {this.Perimeter()} {Unit}. ");
             sb.Append($"Side = {_sideInMeters} ");
-            sb.Append($"{Units}.");
+            sb.Append($"{Unit}.");
 
             return sb.ToString();
         }
+
+        #endregion
     }
 }

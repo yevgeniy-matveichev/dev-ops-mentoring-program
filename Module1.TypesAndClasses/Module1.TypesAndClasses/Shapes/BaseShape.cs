@@ -11,14 +11,13 @@ namespace Module1.TypesAndClasses.Shapes
 
         public abstract double Square();
         
-
-        public Units Units { get; }
+        public Units Unit { get; }
 
         public abstract ShapeType ShapeName { get; }
 
         protected BaseShape(Units unit)
         {
-            this.Units = unit;
+            this.Unit = unit;
         }
 
         public bool PerimeterEquals(IShape shape1, IShape shape2)
@@ -59,11 +58,11 @@ namespace Module1.TypesAndClasses.Shapes
         {
             switch (unit)
             {
-                case Units.meters:
+                case Units.Meters:
                     return value;
-                case Units.centimeters:
+                case Units.Centimeters:
                     return value / 100;
-                case Units.millimeters:
+                case Units.Millimeters:
                     return value / 1000;
                 default:
                     throw new NotSupportedException($"The unit of measurement {unit} is not supported.");

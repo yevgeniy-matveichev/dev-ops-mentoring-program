@@ -2,10 +2,11 @@
 {
     public enum Units
     {
-        meters,
-        centimeters,
-        millimeters
+        Meters,
+        Centimeters,
+        Millimeters
     }
+
     public enum ShapeType
     {
         Circle,
@@ -20,7 +21,7 @@
 
         double Perimeter();
 
-        Units Units { get; }
+        Units Unit { get; }
         
         ShapeType ShapeName { get; }
     }
