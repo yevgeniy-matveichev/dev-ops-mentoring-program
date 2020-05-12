@@ -23,7 +23,7 @@ namespace Mentoring.Shapes.Shapes
             _sideB = b;
         }
 
-        public override ShapeType ShapeName => ShapeType.Rectangle;
+        public override ShapeType shapeType => ShapeType.Rectangle;
 
         #region public methods
 
