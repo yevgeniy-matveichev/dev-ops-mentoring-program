@@ -7,7 +7,12 @@ namespace Module1.TypesAndClasses
         static void Main(string[] args)
         {
             Console.WriteLine($"Hello! This is Shapes program. Supported shapes: Circle, Ellipse, Rectangle and Triangle.\n");
-            Console.WriteLine($"Please enter the letter of the shape you would like to process: {args[0]} - Circle, {args[1]} - Ellipse, {args[2]} - Rectangle, {args[3]} - Triangle.\n");
+            Console.WriteLine($"Please enter one of the options bellow: " +
+                              $"\n1. '{args[0]}' to process Circle " +
+                              $"\n2. '{args[1]}' to process Ellipse " +
+                              $"\n3. '{args[2]}' to process Rectangle " +
+                              $"\n4. '{args[3]}' to process Triangle " +
+                              $"\n5. Empty to process all the shapes\n");
 
             for (var attempt = 0; attempt < 4; attempt++)
             {
