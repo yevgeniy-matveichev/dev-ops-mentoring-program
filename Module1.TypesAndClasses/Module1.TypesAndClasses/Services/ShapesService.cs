@@ -24,7 +24,7 @@ namespace Module1.TypesAndClasses.Services
             string shapeName = $"{shapeType}.json";
             // todo: call repository
             // todo: string shape = _shapeRepository.Read(shapeName);
-            // todo: parse the string to JSON
+            // todo: parse the string from JSON
             
             return null;
         }

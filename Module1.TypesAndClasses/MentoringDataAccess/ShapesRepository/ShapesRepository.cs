@@ -11,7 +11,10 @@ namespace MentoringDataAccess.ShapesRepository
         {
             //TODO: implement read the embedded resources
 
-            return $"shape '{shapeName}' is recieved";
+            return  @"{"
+                    + "\"Unit\": \"Centimeters\","
+                    + "\"Radius\": 10"
+                    + "}";
         }
     }
 }
