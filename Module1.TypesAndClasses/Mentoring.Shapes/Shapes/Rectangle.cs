@@ -1,7 +1,7 @@
-﻿using Module1.TypesAndClasses.Interfaces;
+﻿using Mentoring.Shapes.Interfaces;
 using System;
 
-namespace Module1.TypesAndClasses.Shapes
+namespace Mentoring.Shapes.Shapes
 {
     public class Rectangle : BaseShape
     {

@@ -1,4 +1,6 @@
 using System;
+using Mentoring.Shapes.Interfaces;
+using Mentoring.Shapes.Shapes;
 
 namespace Module1.TypesAndClasses
 {

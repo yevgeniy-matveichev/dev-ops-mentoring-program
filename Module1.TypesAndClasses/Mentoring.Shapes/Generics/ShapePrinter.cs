@@ -1,11 +1,16 @@
-﻿using Module1.TypesAndClasses.Interfaces;
+﻿using Mentoring.Shapes.Interfaces;
 using System;
 
-namespace Module1.TypesAndClasses.Extensions
+namespace Mentoring.Shapes.Generics
 {
-    public static class IShapeExtensions
+    public class ShapePrinter<T> where T: IShape
     {
-        public static bool PerimeterEquals(this IShape shape, IShape other)
+        public void Print(T shape)
+        {
+            Console.WriteLine(shape.ToString());
+        }
+
+        public bool PerimeterEquals(T shape, T other)
         {
             if (shape == null)
             {
@@ -20,7 +25,7 @@ namespace Module1.TypesAndClasses.Extensions
             return shape.Perimeter() == other.Perimeter();
         }
 
-        public static bool SquareEquals(this IShape shape, IShape other)
+        public bool SquareEquals(T shape, T other)
         {
             if (shape == null)
             {

@@ -1,8 +1,8 @@
-﻿using Module1.TypesAndClasses.Interfaces;
+﻿using Mentoring.Shapes.Interfaces;
 using System;
 using System.Text;
 
-namespace Module1.TypesAndClasses.Shapes
+namespace Mentoring.Shapes.Shapes
 {
     public class EquilateralTriangle : BaseShape
     {

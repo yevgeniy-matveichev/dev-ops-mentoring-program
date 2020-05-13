@@ -1,4 +1,4 @@
-﻿namespace Module1.TypesAndClasses.Interfaces
+﻿namespace Mentoring.Shapes.Interfaces
 {
     public enum Units
     {

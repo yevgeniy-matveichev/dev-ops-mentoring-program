@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module1.TypesAndClasses", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module1.TypesAndClasses.Tests", "Module1.TypesAndClasses.Tests\Module1.TypesAndClasses.Tests.csproj", "{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Shapes", "Mentoring.Shapes\Mentoring.Shapes.csproj", "{1329210D-D642-4428-82C7-149B669E69F2}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MentoringDataAccess", "MentoringDataAccess\MentoringDataAccess.csproj", "{EE45A280-7E76-4D3E-8FBB-D1C2C266DF7C}"
 EndProject
 Global
@@ -23,6 +25,10 @@ Global
 		{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BC64C2F-1C06-4733-95AB-F79D89D9E06A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1329210D-D642-4428-82C7-149B669E69F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1329210D-D642-4428-82C7-149B669E69F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1329210D-D642-4428-82C7-149B669E69F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1329210D-D642-4428-82C7-149B669E69F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE45A280-7E76-4D3E-8FBB-D1C2C266DF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE45A280-7E76-4D3E-8FBB-D1C2C266DF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE45A280-7E76-4D3E-8FBB-D1C2C266DF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
