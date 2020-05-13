@@ -50,17 +50,26 @@ namespace Module1.TypesAndClasses.Services
                     + "}";
             }
             //  CircleModel circleModel = JsonSerializer.Deserialize<CircleModel>(shape);
-            if (shapeType == ShapeType.Circle)
+            switch (shapeType)
             {
-                CircleModel empObj = JsonConvert.DeserializeObject<CircleModel>(shape);
+                //if (shapeType == ShapeType.Circle)
+                case ShapeType.Circle:
+                    {
+                        CircleModel empObj = JsonConvert.DeserializeObject<CircleModel>(shape);
 
-                IShape circleModel = new Circle((double)empObj.Radius, Units.Meters);
-
-                return circleModel;
-            }
-            else 
-            { 
-                return null; 
+                        if (Enum.IsDefined(typeof(Units), empObj.Unit))
+                        {
+                            Units metricName = (Units)Enum.Parse(typeof(Units), empObj.Unit);
+                            IShape circleModel = new Circle(empObj.Radius, metricName);
+                            return circleModel;
+                        }
+                        else
+                        {
+                            throw new Exception("not valid Unit in json file");
+                        }
+                    }
+                default: return null;
+                 
             }
         }
     }
