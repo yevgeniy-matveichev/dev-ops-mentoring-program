@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mentoring.Shapes\Mentoring.Shapes.csproj" />
+    <ProjectReference Include="..\MentoringDataAccess\MentoringDataAccess.csproj" />
   </ItemGroup>
 
 </Project>

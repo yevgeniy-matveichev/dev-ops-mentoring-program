@@ -6,8 +6,6 @@ namespace MentoringDataAccess.Interfaces
 {
     public interface IShapeRepository
     {
-
         public string ReadShape(string shapeName);
-
     }
 }

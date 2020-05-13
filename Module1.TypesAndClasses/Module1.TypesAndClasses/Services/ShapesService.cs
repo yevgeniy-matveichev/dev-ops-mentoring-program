@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Mentoring.Shapes;
+using MentoringDataAccess.Interfaces;
 
 namespace Module1.TypesAndClasses.Services
 {
@@ -10,19 +11,22 @@ namespace Module1.TypesAndClasses.Services
     {
         #region  private fields
 
-        private ShapeType _shapeType;
-        
+        // private readonly IShapeRepository _sha..
         #endregion
 
-        public string IShape()
+        ShapesService(IShapeRepository shapeRepository)
         {
-            throw new NotImplementedException();
+            // argumentnull exception
         }
 
-        public string ReadSHape(ShapeType shapetype)
+        public IShape ReadShape(ShapeType shapeType)
         {
-            _shapeType = shapetype;
-            return $"{_shapeType}.json";
+            string shapeName = $"{shapeType}.json";
+            // todo: call repository
+            // todo: string shape = _shapeRepository.Read(shapeName);
+            // todo: parse the string to JSON
+            
+            return null;
         }
     }
 }
