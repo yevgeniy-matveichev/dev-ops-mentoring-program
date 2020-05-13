@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>MentoringDataAccess</RootNamespace>
+    <AssemblyName>MentoringDataAccess</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Module1.TypesAndClasses\Module1.TypesAndClasses.csproj" />
+  </ItemGroup>
+
+</Project>

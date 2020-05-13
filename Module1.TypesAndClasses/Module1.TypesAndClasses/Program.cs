@@ -1,11 +1,6 @@
 using System;
-<<<<<<< HEAD
-using System.Collections.Generic;
-using System.Linq;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
-=======
->>>>>>> c5b85bf4b34c181ec5c7428ad191d6281fb1e3cd
 
 namespace Module1.TypesAndClasses
 {
