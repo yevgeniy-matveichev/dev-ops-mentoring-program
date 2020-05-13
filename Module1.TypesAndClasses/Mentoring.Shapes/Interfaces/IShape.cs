@@ -23,6 +23,6 @@
 
         Units Unit { get; }
         
-        ShapeType ShapeName { get; }
+        ShapeType shapeType { get; }
     }
 }

@@ -14,7 +14,7 @@ namespace Mentoring.Shapes.Shapes
             _radius2 = radius2;
         }
 
-        public override ShapeType ShapeName => ShapeType.Ellipse;
+        public override ShapeType shapeType => ShapeType.Ellipse;
 
         #region public methods
 
