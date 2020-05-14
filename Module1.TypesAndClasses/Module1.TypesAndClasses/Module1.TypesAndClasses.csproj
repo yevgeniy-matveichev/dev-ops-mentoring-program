@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,7 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Json.Net" Version="1.0.22" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mentoring.DataModel\Mentoring.DataModel.csproj" />
     <ProjectReference Include="..\Mentoring.Shapes\Mentoring.Shapes.csproj" />
+    <ProjectReference Include="..\MentoringDataAccess\MentoringDataAccess.csproj" />
   </ItemGroup>
 
 </Project>

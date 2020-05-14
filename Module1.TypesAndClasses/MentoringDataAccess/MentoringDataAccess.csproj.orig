@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>MentoringDataAccess</RootNamespace>
+    <AssemblyName>MentoringDataAccess</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+<<<<<<< HEAD
+    <None Remove="Assets\ellipse.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\ellipse.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Module1.TypesAndClasses\Module1.TypesAndClasses.csproj" />
+=======
+    <None Remove="Assets\circle.json" />
+    <None Remove="Assets\rectangle.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\circle.json" />
+    <EmbeddedResource Include="Assets\rectangle.json" />
+>>>>>>> 944139646be4cfb30423990a5fa8c4ebbf92e9e2
+  </ItemGroup>
+
+</Project>

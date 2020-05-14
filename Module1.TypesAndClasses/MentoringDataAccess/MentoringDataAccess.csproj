@@ -7,15 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\ellipse.json" />
+    <None Remove="Assets\circle.json" />
+    <None Remove="Assets\rectangle.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets\ellipse.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Module1.TypesAndClasses\Module1.TypesAndClasses.csproj" />
+    <EmbeddedResource Include="Assets\circle.json" />
+    <EmbeddedResource Include="Assets\rectangle.json" />
   </ItemGroup>
 
 </Project>

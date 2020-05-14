@@ -20,7 +20,7 @@ namespace Mentoring.Shapes.Shapes
 
         #region public methods
 
-        public override ShapeType ShapeName => ShapeType.EquilateralTriangle;
+        public override ShapeType shapeType => ShapeType.EquilateralTriangle;
 
         public override double Perimeter()
         {

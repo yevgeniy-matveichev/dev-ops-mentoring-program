@@ -7,13 +7,14 @@ namespace MentoringDataAccess.ShapesRepository
 {
     public class ShapesRepository : IShapeRepository
     {
-
         public string ReadShape(string shapeName)
         {
             //TODO: implement read the embedded resources
 
-            return $"shape '{shapeName}' is recieved";
+            return  @"{"
+                    + "\"Unit\": \"Centimeters\","
+                    + "\"Radius\": 10"
+                    + "}";
         }
-
     }
 }

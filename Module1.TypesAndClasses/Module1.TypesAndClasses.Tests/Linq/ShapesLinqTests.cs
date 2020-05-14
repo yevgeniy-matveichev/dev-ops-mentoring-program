@@ -23,9 +23,9 @@ namespace Module1.TypesAndClasses.Tests.Linq
         [Fact]
         public void TestLinq()
         {
-            Assert.True(new Rectangle(4, 4, Units.Meters).ShapeName == ShapeType.Rectangle);
-            var shapeCircle = shapes.Single(shape => shape.ShapeName == ShapeType.Circle);
-            Assert.True(shapeCircle.ShapeName == ShapeType.Circle);
+            Assert.True(new Rectangle(4, 4, Units.Meters).shapeType == ShapeType.Rectangle);
+            var shapeCircle = shapes.Single(shape => shape.shapeType == ShapeType.Circle);
+            Assert.True(shapeCircle.shapeType == ShapeType.Circle);
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         [Fact]
         public void TestRectangleAndCircle()
         {
-            List<IShape> shapeRectangleAndCircle = shapes.Where(shape => shape.ShapeName == ShapeType.Rectangle || shape.ShapeName == ShapeType.Circle).ToList();
+            List<IShape> shapeRectangleAndCircle = shapes.Where(shape => shape.shapeType == ShapeType.Rectangle || shape.shapeType == ShapeType.Circle).ToList();
             Assert.True(shapeRectangleAndCircle[1] == shapes[2]);
         }
 

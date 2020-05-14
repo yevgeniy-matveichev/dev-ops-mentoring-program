@@ -1,5 +1,5 @@
 {
   "Unit": "Centimeters",
-  "_radius1": 10,
-  "_radius2": 5
+  "Radius1": 10,
+  "Radius2": 5
 }
