@@ -15,7 +15,7 @@ namespace Mentoring.Shapes.Shapes
                 throw new ArgumentException("The side cannot be less or equal to 0.");
             }
 
-            _sideInMeters = ToMeters(units, side);
+            _sideInMeters = ShapeHelper.ToMeters(units, side);
         }
 
         #region public methods

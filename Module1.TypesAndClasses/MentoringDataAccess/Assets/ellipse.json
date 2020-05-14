@@ -1,13 +1,5 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "target": "es5"
-  },
-  "exclude": [
-    "node_modules",
-    "wwwroot"
-  ]
+  "Unit": "Centimeters",
+  "_radius1": 10,
+  "_radius2": 5
 }

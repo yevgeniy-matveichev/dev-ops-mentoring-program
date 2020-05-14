@@ -19,7 +19,7 @@ namespace Mentoring.Shapes.Shapes
                 throw new ArgumentException($"Radius cannot be less than 0! Actual value was '{radius}'");
             }
 
-            _radius = ToMeters(u, radius);
+            _radius = ShapeHelper.ToMeters(u, radius);
             _unit = u;
         }
 

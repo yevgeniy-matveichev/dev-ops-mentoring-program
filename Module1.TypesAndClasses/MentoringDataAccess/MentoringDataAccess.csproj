@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\ellipse.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\ellipse.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Module1.TypesAndClasses\Module1.TypesAndClasses.csproj" />
   </ItemGroup>
 
