@@ -11,13 +11,14 @@ namespace Module1.TypesAndClasses.Services
     {
         #region  private fields
 
-      private readonly IShapeRepository _shapeRepository;
+      private readonly IShapeRepository _shapeRepository; // cr: tabulation
 
         #endregion
 
-        #region constructor
+        #region constructor // cr: please add an empty line after
         ShapesService(IShapeRepository shapeRepository)
         {
+            // cr: can be implemented in 1 line: _shapeRepository = shapeRepository ?? throw new ArgumentException...; 
             if (shapeRepository != null) 
             {
               _shapeRepository = shapeRepository; 
@@ -26,8 +27,8 @@ namespace Module1.TypesAndClasses.Services
             { 
                 throw new ArgumentException("shapeRepository parameter is invalid or null"); 
             }
-           
-        }
+            // cr: extra line here is not needed
+        } // cr: add an empty line please
         #endregion
 
         public IShape ReadShape(ShapeType shapeType)
@@ -47,9 +48,13 @@ namespace Module1.TypesAndClasses.Services
            
             switch (shapeType)
             {
-                //if (shapeType == ShapeType.Circle)
-                case ShapeType.Circle:
+                //if (shapeType == ShapeType.Circle) // cr: please remove it
+                case ShapeType.Circle: // cr: good. please implement for other figures as well (generic method can help)
                     {
+                        // cr: good, nice to have this knowledge
+                        // cr: for automatic serialization with Newtonsoft, please see this article:
+                        // cr: https://bytefish.de/blog/enums_json_net/
+
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
                         //  CircleModel circleModel = JsonSerializer.Deserialize<CircleModel>(shape); // Like in the task
                         Console.WriteLine(circleModel.ToString());
@@ -64,8 +69,8 @@ namespace Module1.TypesAndClasses.Services
                             throw new Exception("Not valid Unit in json file");
                         }
                     }
-                default: return null;
-                 
+                default: return null; // cr: please add curly brackets, each on a separate line
+                 // cr: extra line
             }
         }
     }
