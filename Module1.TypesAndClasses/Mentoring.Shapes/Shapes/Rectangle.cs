@@ -12,6 +12,7 @@ namespace Mentoring.Shapes.Shapes
 
         #endregion    
 
+        // cr: let all the shapes work with double values
         public Rectangle(int a, int b, Units unit) : base(unit)
         {
             if (a < 0 || b < 0)
