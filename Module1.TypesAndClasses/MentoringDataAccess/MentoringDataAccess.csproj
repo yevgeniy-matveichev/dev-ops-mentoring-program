@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <None Remove="Assets\circle.json" />
+    <None Remove="Assets\rectangle.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\circle.json" />
+    <EmbeddedResource Include="Assets\rectangle.json" />
   </ItemGroup>
 
 </Project>

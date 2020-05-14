@@ -24,8 +24,8 @@ namespace Module1.TypesAndClasses.Services
         ShapesService(IShapeRepository shapeRepository)
         {
             if (shapeRepository != null) 
-            { 
-                IShapeRepository _shapeRepository = shapeRepository; 
+            {
+              _shapeRepository = shapeRepository; 
             }
             else 
             { 
@@ -49,23 +49,24 @@ namespace Module1.TypesAndClasses.Services
                     + "\"Radius\": 10"
                     + "}";
             }
-            //  CircleModel circleModel = JsonSerializer.Deserialize<CircleModel>(shape);
+           
             switch (shapeType)
             {
                 //if (shapeType == ShapeType.Circle)
                 case ShapeType.Circle:
                     {
-                        CircleModel empObj = JsonConvert.DeserializeObject<CircleModel>(shape);
-
-                        if (Enum.IsDefined(typeof(Units), empObj.Unit))
+                        CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
+                        //  CircleModel circleModel = JsonSerializer.Deserialize<CircleModel>(shape); // Like in the task
+                        Console.WriteLine(circleModel.ToString());
+                        if (Enum.IsDefined(typeof(Units), circleModel.Unit))
                         {
-                            Units metricName = (Units)Enum.Parse(typeof(Units), empObj.Unit);
-                            IShape circleModel = new Circle(empObj.Radius, metricName);
-                            return circleModel;
+                            Units metricName = (Units)Enum.Parse(typeof(Units), circleModel.Unit);
+                            IShape Model = new Circle(circleModel.Radius, metricName);
+                            return Model;
                         }
                         else
                         {
-                            throw new Exception("not valid Unit in json file");
+                            throw new Exception("Not valid Unit in json file");
                         }
                     }
                 default: return null;
