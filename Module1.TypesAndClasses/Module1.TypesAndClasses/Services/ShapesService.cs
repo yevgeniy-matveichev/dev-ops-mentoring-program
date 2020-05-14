@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Module1.TypesAndClasses.Services
 {
-    class ShapesService : IShapesService
+    public class ShapesService : IShapesService
     {
         #region  private fields
 
