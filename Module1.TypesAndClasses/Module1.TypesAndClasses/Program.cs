@@ -17,6 +17,9 @@ namespace Module1.TypesAndClasses
 
         static void Main(string[] args)
         {
+            // todo: what if more than 4 parameters passed?
+            // todo: warning if not supported parameter was passed
+
             if (args.Length == 0)
             {
                 Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {supportedShapes["c"]}, {supportedShapes["e"]}, {supportedShapes["r"]}, {supportedShapes["t"]}\n");
@@ -72,6 +75,7 @@ namespace Module1.TypesAndClasses
             //                  $"\n4. '{args[3]}' to process Triangle ");
         }
 
+        // todo: add functionality to the method bellow
         private string ArgsToShapeName(string[] args)
         {
             return "";
