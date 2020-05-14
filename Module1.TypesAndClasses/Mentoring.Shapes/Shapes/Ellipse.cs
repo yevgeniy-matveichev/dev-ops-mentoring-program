@@ -7,7 +7,7 @@ namespace Mentoring.Shapes.Shapes
     {
         private readonly int _radius1;
         private readonly int _radius2;
-
+         
         public Ellipse(int radius1, int radius2, Units unit = Units.Meters) : base(unit)
         {
             _radius1 = radius1;
@@ -29,19 +29,7 @@ namespace Mentoring.Shapes.Shapes
         }
 
         public override string ToString() => $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}";
-
-        public override bool Equals(object obj)
-        {
-            var shape = obj as IShape;
-
-            if (shape != null)
-            {
-                return ToMeters(Unit, this.Perimeter()) == ToMeters(shape.Unit, shape.Perimeter());
-            }
-
-            return false;
-        }
-
+        
         public void Print()
         {
             Console.WriteLine($"Ellipse. Square: {Square()}, perimeter:{Perimeter()}. Radius 1: {_radius1}, Radius 2 : {_radius2}");

@@ -29,19 +29,19 @@ namespace Mentoring.Shapes.Shapes
 
         public override double Perimeter()
         {
-            return (ToMeters(this.Unit,_sideA) + ToMeters(this.Unit, _sideB)) * 2;
+            return (ShapeHelper.ToMeters(this.Unit,_sideA) + ShapeHelper.ToMeters(this.Unit, _sideB)) * 2;
         }
 
         public override double Square()
         {
-            return (ToMeters(this.Unit, _sideA) * ToMeters(this.Unit, _sideB));
+            return (ShapeHelper.ToMeters(this.Unit, _sideA) * ShapeHelper.ToMeters(this.Unit, _sideB));
         }
 
         public override string ToString()
         {
             return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.Meters}2,"
-                + $"perimeter = {Perimeter()} {Units.Meters}, SideA = {ToMeters(this.Unit,this._sideA)}, "
-                + $"SideB = {ToMeters(this.Unit, this._sideB)}";
+                + $"perimeter = {Perimeter()} {Units.Meters}, SideA = {ShapeHelper.ToMeters(this.Unit,this._sideA)}, "
+                + $"SideB = {ShapeHelper.ToMeters(this.Unit, this._sideB)}";
         }
         
         #endregion
