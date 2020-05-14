@@ -1,14 +1,9 @@
 ﻿using Mentoring.Shapes.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Mentoring.Shapes;
 using MentoringDataAccess.Interfaces;
-using MentoringDataAccess.ShapesRepository;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Shapes;
+using Newtonsoft.Json;
 
 namespace Module1.TypesAndClasses.Services
 {
