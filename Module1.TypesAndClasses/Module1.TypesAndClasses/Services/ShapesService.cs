@@ -35,15 +35,12 @@ namespace Module1.TypesAndClasses.Services
             string shapeName = $"{shapeType}.json";
             // todo: call repository
             //private string _shapeRepository = ReadShape(shapeType);
-            string shape = _shapeRepository.ReadShape(shapeName);
-            // todo: parse the string from JSON
-            if (shape == null)
-            {
-                shape = @"{"
+            string shape = _shapeRepository.ReadShape(shapeName)
+            ??  @"{"
                     + "\"Unit\": \"Centimeters\","
                     + "\"Radius\": 10"
                     + "}";
-            }
+            
            
             switch (shapeType)
             {
