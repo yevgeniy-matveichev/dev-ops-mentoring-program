@@ -23,7 +23,7 @@ namespace Mentoring.Shapes.Shapes
             _sideB = b;
         }
 
-        public override ShapeType shapeType => ShapeType.Rectangle;
+        public override ShapeTypes shapeType => ShapeTypes.Rectangle;
 
         #region public methods
 
@@ -39,8 +39,8 @@ namespace Mentoring.Shapes.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.Meters}2,"
-                + $"perimeter = {Perimeter()} {Units.Meters}, SideA = {ShapeHelper.ToMeters(this.Unit,this._sideA)}, "
+            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.Meter}2,"
+                + $"perimeter = {Perimeter()} {Units.Meter}, SideA = {ShapeHelper.ToMeters(this.Unit,this._sideA)}, "
                 + $"SideB = {ShapeHelper.ToMeters(this.Unit, this._sideB)}";
         }
         

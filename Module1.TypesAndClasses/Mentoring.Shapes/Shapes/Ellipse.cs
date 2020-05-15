@@ -8,13 +8,13 @@ namespace Mentoring.Shapes.Shapes
         private readonly int _radius1;
         private readonly int _radius2;
          
-        public Ellipse(int radius1, int radius2, Units unit = Units.Meters) : base(unit)
+        public Ellipse(int radius1, int radius2, Units unit = Units.Meter) : base(unit)
         {
             _radius1 = radius1;
             _radius2 = radius2;
         }
 
-        public override ShapeType shapeType => ShapeType.Ellipse;
+        public override ShapeTypes shapeType => ShapeTypes.Ellipse;
 
         #region public methods
 

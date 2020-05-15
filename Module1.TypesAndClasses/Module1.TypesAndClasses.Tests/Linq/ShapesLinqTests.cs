@@ -11,21 +11,21 @@ namespace Module1.TypesAndClasses.Tests.Linq
     {
         private List<IShape> shapes = new List<IShape>
         {
-            new Circle(2,Units.Meters),
+            new Circle(2,Units.Meter),
             new EquilateralTriangle(5),
-            new Rectangle(4,4, Units.Meters),
-            new Rectangle(40,50, Units.Centimeters),
-            new Rectangle(600,400, Units.Centimeters),
-            new Rectangle(400,200, Units.Centimeters),
-            new Rectangle(4000,8000, Units.Millimeters)
+            new Rectangle(4,4, Units.Meter),
+            new Rectangle(40,50, Units.Centimeter),
+            new Rectangle(600,400, Units.Centimeter),
+            new Rectangle(400,200, Units.Centimeter),
+            new Rectangle(4000,8000, Units.Millimeter)
         };
 
         [Fact]
         public void TestLinq()
         {
-            Assert.True(new Rectangle(4, 4, Units.Meters).shapeType == ShapeType.Rectangle);
-            var shapeCircle = shapes.Single(shape => shape.shapeType == ShapeType.Circle);
-            Assert.True(shapeCircle.shapeType == ShapeType.Circle);
+            Assert.True(new Rectangle(4, 4, Units.Meter).shapeType == ShapeTypes.Rectangle);
+            var shapeCircle = shapes.Single(shape => shape.shapeType == ShapeTypes.Circle);
+            Assert.True(shapeCircle.shapeType == ShapeTypes.Circle);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestCircleSquare()
         {
             var shapeSquareCircle = shapes.OfType<Circle>().Where(shape => shape.Square() > 1).OrderByDescending(shape => shape.Square()).First();
-            Assert.True(shapeSquareCircle.Square() == new Circle(2, Units.Meters).Square());
+            Assert.True(shapeSquareCircle.Square() == new Circle(2, Units.Meter).Square());
         }
 
         // Test to find Rectangle with the minimum Perimeter with no exceptions
@@ -50,7 +50,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestPerimeterRectangle()
         { 
              var shapePerimeterRectangle = shapes.OfType<Rectangle>().OrderBy(shape => shape.Perimeter()).FirstOrDefault();
-             Assert.True(shapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.Centimeters).Perimeter());
+             Assert.True(shapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.Centimeter).Perimeter());
              Assert.True(shapePerimeterRectangle != null);
         }
 
@@ -58,7 +58,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         [Fact]
         public void TestRectangleAndCircle()
         {
-            List<IShape> shapeRectangleAndCircle = shapes.Where(shape => shape.shapeType == ShapeType.Rectangle || shape.shapeType == ShapeType.Circle).ToList();
+            List<IShape> shapeRectangleAndCircle = shapes.Where(shape => shape.shapeType == ShapeTypes.Rectangle || shape.shapeType == ShapeTypes.Circle).ToList();
             Assert.True(shapeRectangleAndCircle[1] == shapes[2]);
         }
 

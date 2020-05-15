@@ -30,7 +30,7 @@ namespace Module1.TypesAndClasses.Services
         }
         #endregion
 
-        public IShape ReadShape(ShapeType shapeType)
+        public IShape ReadShape(ShapeTypes shapeType)
         {
             string shapeName = $"{shapeType}.json";
             // todo: call repository
@@ -40,7 +40,7 @@ namespace Module1.TypesAndClasses.Services
             if (shape == null)
             {
                 shape = @"{"
-                    + "\"Unit\": \"Centimeters\","
+                    + "\"Unit\": \"Centimeter\","
                     + "\"Radius\": 10"
                     + "}";
             }
@@ -48,7 +48,7 @@ namespace Module1.TypesAndClasses.Services
             switch (shapeType)
             {
                 //if (shapeType == ShapeType.Circle)
-                case ShapeType.Circle:
+                case ShapeTypes.Circle:
                     {
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
                         //  CircleModel circleModel = JsonSerializer.Deserialize<CircleModel>(shape); // Like in the task

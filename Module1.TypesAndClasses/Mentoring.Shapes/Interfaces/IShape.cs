@@ -2,12 +2,12 @@
 {
     public enum Units
     {
-        Meters,
-        Centimeters,
-        Millimeters
+        Meter,
+        Centimeter,
+        Millimeter
     }
 
-    public enum ShapeType
+    public enum ShapeTypes
     {
         Circle,
         Ellipse,
@@ -23,6 +23,6 @@
 
         Units Unit { get; }
         
-        ShapeType shapeType { get; }
+        ShapeTypes shapeType { get; }
     }
 }

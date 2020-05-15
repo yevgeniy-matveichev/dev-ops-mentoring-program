@@ -10,18 +10,18 @@ namespace Module1.TypesAndClasses.Tests.Linq
     {
         // todo: move to constructor
         List<IShape> shapes = new List<IShape> {
-                new EquilateralTriangle(3, Units.Centimeters),
-                new EquilateralTriangle(7.8, Units.Millimeters),
-                new EquilateralTriangle(5, Units.Meters),
-                new Circle(5, Units.Meters),
-                new Circle(8, Units.Millimeters),
-                new Circle(2.6, Units.Centimeters),
-                new Ellipse(4, 6, Units.Millimeters),
-                new Ellipse(6, 9, Units.Centimeters),
-                new Ellipse(1, 2, Units.Meters),
-                new Rectangle(5, 8, Units.Centimeters),
-                new Rectangle(10, 24, Units.Millimeters),
-                new Rectangle(1, 2, Units.Meters)
+                new EquilateralTriangle(3, Units.Centimeter),
+                new EquilateralTriangle(7.8, Units.Millimeter),
+                new EquilateralTriangle(5, Units.Meter),
+                new Circle(5, Units.Meter),
+                new Circle(8, Units.Millimeter),
+                new Circle(2.6, Units.Centimeter),
+                new Ellipse(4, 6, Units.Millimeter),
+                new Ellipse(6, 9, Units.Centimeter),
+                new Ellipse(1, 2, Units.Meter),
+                new Rectangle(5, 8, Units.Centimeter),
+                new Rectangle(10, 24, Units.Millimeter),
+                new Rectangle(1, 2, Units.Meter)
             };
 
         [Fact]

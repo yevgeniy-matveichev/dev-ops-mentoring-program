@@ -13,7 +13,7 @@ namespace Mentoring.Shapes.Shapes
 
         public Units Unit { get; }
 
-        public abstract ShapeType shapeType { get; }
+        public abstract ShapeTypes shapeType { get; }
 
         protected BaseShape(Units unit)
         {
