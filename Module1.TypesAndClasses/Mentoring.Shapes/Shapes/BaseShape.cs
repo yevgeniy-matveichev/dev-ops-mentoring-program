@@ -7,9 +7,9 @@ namespace Mentoring.Shapes.Shapes
     {
         private const double Delta = 0.001;
 
-        public abstract double Perimeter();
+        public abstract double GetPerimeter();
 
-        public abstract double Square();
+        public abstract double GetSquare();
 
         public Units Unit { get; }
 

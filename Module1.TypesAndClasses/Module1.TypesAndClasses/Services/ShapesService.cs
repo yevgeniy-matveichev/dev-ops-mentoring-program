@@ -7,52 +7,43 @@ using Newtonsoft.Json;
 
 namespace Module1.TypesAndClasses.Services
 {
-    class ShapesService : IShapesService
+    public class ShapesService : IShapesService
     {
         #region  private fields
 
-      private readonly IShapeRepository _shapeRepository;
+        private readonly IShapeRepository _shapeRepository; 
 
         #endregion
 
         #region constructor
+        
         ShapesService(IShapeRepository shapeRepository)
         {
-            if (shapeRepository != null) 
-            {
-              _shapeRepository = shapeRepository; 
-            }
-            else 
-            { 
-                throw new ArgumentException("shapeRepository parameter is invalid or null"); 
-            }
-           
-        }
+            
+              _shapeRepository = shapeRepository ?? throw new ArgumentException("shapeRepository parameter is invalid or null");
+        } 
+
         #endregion
 
         public IShape ReadShape(ShapeTypes shapeType)
         {
             string shapeName = $"{shapeType}.json";
-            // todo: call repository
-            //private string _shapeRepository = ReadShape(shapeType);
-            string shape = _shapeRepository.ReadShape(shapeName);
-            // todo: parse the string from JSON
-            if (shape == null)
-            {
-                shape = @"{"
-                    + "\"Unit\": \"Centimeter\","
+            string shape = _shapeRepository.ReadShape(shapeName)
+            ??  @"{"
+                    + "\"Unit\": \"Centimeters\","
                     + "\"Radius\": 10"
                     + "}";
-            }
-           
+
+            // cr: good, nice to have this knowledge
+            // cr: for automatic serialization with Newtonsoft, please see this article:
+            // cr: https://bytefish.de/blog/enums_json_net/          
+            
             switch (shapeType)
             {
-                //if (shapeType == ShapeType.Circle)
-                case ShapeTypes.Circle:
+                 case ShapeTypes.Circle: // cr: good. please implement for other figures as well (generic method can help)
                     {
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
-                        //  CircleModel circleModel = JsonSerializer.Deserialize<CircleModel>(shape); // Like in the task
-                        Console.WriteLine(circleModel.ToString());
+                        
                         if (Enum.IsDefined(typeof(Units), circleModel.Unit))
                         {
                             Units metricName = (Units)Enum.Parse(typeof(Units), circleModel.Unit);
@@ -64,7 +55,40 @@ namespace Module1.TypesAndClasses.Services
                             throw new Exception("Not valid Unit in json file");
                         }
                     }
-                default: return null;
+                case ShapeTypes.Rectangle:
+                    {
+                        RectangleModel rectangleModel = JsonConvert.DeserializeObject<RectangleModel>(shape);
+
+                        if (Enum.IsDefined(typeof(Units), rectangleModel.Unit))
+                        {
+                            Units metricName = (Units)Enum.Parse(typeof(Units), rectangleModel.Unit); 
+                            IShape Model = new Rectangle(rectangleModel.SideA, rectangleModel.SideB, metricName);
+                            return Model;
+                        }
+                        else
+                        {
+                            throw new Exception("Not valid Unit in json file");
+                        }
+                    }
+                case ShapeTypes.Ellipse:
+                    {
+                        EllipseModel ellipseModel = JsonConvert.DeserializeObject<EllipseModel>(shape);
+
+                        if (Enum.IsDefined(typeof(Units), ellipseModel.Unit))
+                        {
+                            Units metricName = (Units)Enum.Parse(typeof(Units), ellipseModel.Unit);
+                            IShape Model = new Ellipse(ellipseModel.Radius1, ellipseModel.Radius2, metricName);
+                            return Model;
+                        }
+                        else
+                        {
+                            throw new Exception("Not valid Unit in json file");
+                        }
+                    }
+                default:
+                    {
+                        throw new Exception($"This method {shapeType} is invalid or not implemented yet"); ;
+                    }
                  
             }
         }

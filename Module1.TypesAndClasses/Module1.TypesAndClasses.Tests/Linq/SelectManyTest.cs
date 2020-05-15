@@ -59,7 +59,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
             /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи SelectMany */
             List<double> squares = _containers
                 .SelectMany(container => container.Shapes) // flat list of containers
-                .Select(shape => shape.Square())           // select squares
+                .Select(shape => shape.GetSquare())           // select squares
                 .OrderBy(square => square)                 // ordering by square
                 .ToList();                                 // real list instead of IQueryable
 

@@ -29,7 +29,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             /* a. Выбрать единственный элемент с заданным периметром (Exception, если не существует) */
 
-            IShape shape = shapes.Single(s => s.Perimeter() == 0.09);
+            IShape shape = shapes.Single(s => s.GetPerimeter() == 0.09);
             Assert.Equal(shapes[0], shape);
         } 
 
@@ -39,8 +39,8 @@ namespace Module1.TypesAndClasses.Tests.Linq
             /* b. Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра 
                  (Exception, если такой Circle в списке отсутствует) */
 
-            double circle = shapes.OfType<Circle>().Where(s => s.Square() >= 1).Max(s => s.Square());
-            Assert.Equal(shapes[3].Square(), circle);
+            double circle = shapes.OfType<Circle>().Where(s => s.GetSquare() >= 1).Max(s => s.GetSquare());
+            Assert.Equal(shapes[3].GetSquare(), circle);
         }
 
         [Fact]
@@ -48,8 +48,8 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             /* c. Выбрать Rectangle с наименьшим периметром (no exceptions) */
 
-            double rectangle = shapes.OfType<Rectangle>().Min(s => s.Perimeter());
-            Assert.Equal(shapes[10].Perimeter(), rectangle);
+            double rectangle = shapes.OfType<Rectangle>().Min(s => s.GetPerimeter());
+            Assert.Equal(shapes[10].GetPerimeter(), rectangle);
         }
 
         [Fact]
@@ -73,9 +73,9 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи Select */
 
-            var squares = shapes.Select(s => s.Square()).OrderBy(s => s);
-            Assert.Equal(squares.Max(), shapes[7].Square());
-            Assert.Equal(squares.Min(), shapes[1].Square());
+            var squares = shapes.Select(s => s.GetSquare()).OrderBy(s => s);
+            Assert.Equal(squares.Max(), shapes[7].GetSquare());
+            Assert.Equal(squares.Min(), shapes[1].GetSquare());
         }
 
         [Fact]

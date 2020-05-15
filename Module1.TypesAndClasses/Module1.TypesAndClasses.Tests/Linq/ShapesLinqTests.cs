@@ -33,24 +33,24 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestPerimeter()
         {
 
-            var shapePerimeter = shapes.Single(shape => shape.Perimeter() == 12);
-            Assert.True(shapePerimeter.Perimeter() == 12);
+            var shapePerimeter = shapes.Single(shape => shape.GetPerimeter() == 12);
+            Assert.True(shapePerimeter.GetPerimeter() == 12);
         }
 
         // Test to Find Circle Shape with the biggest Square
         [Fact]
         public void TestCircleSquare()
         {
-            var shapeSquareCircle = shapes.OfType<Circle>().Where(shape => shape.Square() > 1).OrderByDescending(shape => shape.Square()).First();
-            Assert.True(shapeSquareCircle.Square() == new Circle(2, Units.Meter).Square());
+            var shapeSquareCircle = shapes.OfType<Circle>().Where(shape => shape.GetSquare() > 1).OrderByDescending(shape => shape.GetSquare()).First();
+            Assert.True(shapeSquareCircle.GetSquare() == new Circle(2, Units.Meter).GetSquare());
         }
 
         // Test to find Rectangle with the minimum Perimeter with no exceptions
         [Fact]
         public void TestPerimeterRectangle()
         { 
-             var shapePerimeterRectangle = shapes.OfType<Rectangle>().OrderBy(shape => shape.Perimeter()).FirstOrDefault();
-             Assert.True(shapePerimeterRectangle.Perimeter() == new Rectangle(40, 50, Units.Centimeter).Perimeter());
+             var shapePerimeterRectangle = shapes.OfType<Rectangle>().OrderBy(shape => shape.GetPerimeter()).FirstOrDefault();
+             Assert.True(shapePerimeterRectangle.GetPerimeter() == new Rectangle(40, 50, Units.Centimeter).GetPerimeter());
              Assert.True(shapePerimeterRectangle != null);
         }
 
@@ -66,7 +66,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         [Fact]
         public void TestSelectPerimeter()
         { 
-            var perimeterList = shapes.Select(shape => shape.Perimeter()).OrderBy(shape => shape).ToList();
+            var perimeterList = shapes.Select(shape => shape.GetPerimeter()).OrderBy(shape => shape).ToList();
             Assert.True(perimeterList[1] == 12);
             Assert.False(perimeterList[1] == 13);
          }

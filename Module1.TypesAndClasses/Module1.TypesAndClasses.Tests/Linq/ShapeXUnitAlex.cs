@@ -33,18 +33,18 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestPerimeter()
         {
             //    Выбрать единственный элемент с заданным периметром(Exception, если не существует). 
-            var selectedShape = _shapes.Single(shape => shape.Perimeter() == 24);
-            Assert.Equal(24, selectedShape.Perimeter());
+            var selectedShape = _shapes.Single(shape => shape.GetPerimeter() == 24);
+            Assert.Equal(24, selectedShape.GetPerimeter());
         }
 
         [Fact]
         public void TestCircleSquare()
         {
             //    Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра(Exception, если такой Circle в списке отсутствует). 
-            Circle circle = (Circle)_shapes.Where(shape => shape.Square() >= 1 && shape.Unit.Equals(Units.Meter) && shape.shapeType.Equals(ShapeTypes.Circle))
+            Circle circle = (Circle)_shapes.Where(shape => shape.GetSquare() >= 1 && shape.Unit.Equals(Units.Meter) && shape.shapeType.Equals(ShapeTypes.Circle))
                             .Max();
             
-            Assert.True(circle.Square() >= 1 && circle.Unit.Equals(Units.Meter));
+            Assert.True(circle.GetSquare() >= 1 && circle.Unit.Equals(Units.Meter));
         }
 
         [Fact]
@@ -52,10 +52,10 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             //    Выбрать Rectangle с наименьшим периметром(no exceptions).  
             Rectangle rect = (Rectangle)_shapes.Where(shape => shape.shapeType.Equals(ShapeTypes.Rectangle))
-                                .OrderBy(shape => shape.Perimeter())
+                                .OrderBy(shape => shape.GetPerimeter())
                                 .FirstOrDefault();
 
-            Assert.True(rect.Perimeter() > 0);
+            Assert.True(rect.GetPerimeter() > 0);
         }
 
         [Fact]
@@ -74,17 +74,17 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             //    Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения.
             //    При помощи Select
-            var maxSquare = _shapes.OrderBy(shape => shape.Square())
-                                   .Select(shape => shape.Square())
+            var maxSquare = _shapes.OrderBy(shape => shape.GetSquare())
+                                   .Select(shape => shape.GetSquare())
                                    .Max(square => square);
 
             var maxSquare2 = _shapes
-                                    .Select(shape => shape.Square())
+                                    .Select(shape => shape.GetSquare())
                                     .OrderBy(shape => shape)                                   
                                     .Max(square => square);
 
             // todo:
-            // Assert.Equal(_shapes.First().Square(), maxSquare);
+            // Assert.Equal(_shapes.First().GetSquare(), maxSquare);
         }
 
         [Fact]
