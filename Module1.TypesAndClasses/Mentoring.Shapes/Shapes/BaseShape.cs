@@ -7,13 +7,13 @@ namespace Mentoring.Shapes.Shapes
     {
         private const double Delta = 0.001;
 
-        public abstract double Perimeter();
+        public abstract double GetPerimeter();
 
-        public abstract double Square();
+        public abstract double GetSquare();
 
         public Units Unit { get; }
 
-        public abstract ShapeType shapeType { get; }
+        public abstract ShapeTypes shapeType { get; }
 
         protected BaseShape(Units unit)
         {

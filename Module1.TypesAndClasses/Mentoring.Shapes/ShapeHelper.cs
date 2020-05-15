@@ -11,11 +11,11 @@ namespace Mentoring.Shapes
         {
             switch (unit)
             {
-                case Units.Meters:
+                case Units.Meter:
                     return value;
-                case Units.Centimeters:
+                case Units.Centimeter:
                     return value / 100;
-                case Units.Millimeters:
+                case Units.Millimeter:
                     return value / 1000;
                 default:
                     throw new NotSupportedException($"The unit of measurement {unit} is not supported.");

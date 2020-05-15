@@ -11,42 +11,32 @@ namespace Module1.TypesAndClasses.Tests.Shapes
         [InlineData(5.0, 20.0, 100.0)]
         public void TestSquare(double a, double b, double expectedSquare)
         {
-            // todo: remove this after the Rectangle supports doubles
-            int roundA = (int)a;
-            int roundB = (int)b;
-
-            var rect = new Rectangle(roundA, roundB, Units.Meters);
-            Assert.Equal(expectedSquare, rect.Square());
+           
+            var rect = new Rectangle(a, b, Units.Meter);
+            Assert.Equal(expectedSquare, rect.GetSquare());
         }
 
         [Theory]
-        [InlineData(2.0, 2.0, Units.Meters, 4.0)]
-        [InlineData(2.0, 2.0, Units.Centimeters, 4.0)]
-        [InlineData(2.0, 2.0, Units.Millimeters, 4.0)]
+        [InlineData(2.0, 2.0, Units.Meter, 4.0)]
+        [InlineData(2.0, 2.0, Units.Centimeter, 0.0004)]
+        [InlineData(2.0, 2.0, Units.Millimeter, 0.000004)]
         public void TestSquareWithUnits(double a, double b, Units unit, double expectedSquare)
         {
-            // todo: remove this after the Rectangle supports doubles
-            int roundA = (int)a;
-            int roundB = (int)b;
-
-            var rect = new Rectangle(roundA, roundB, unit);
+         
+            var rect = new Rectangle(a, b, unit);
             Assert.Equal(unit, rect.Unit);
-            Assert.Equal(expectedSquare, rect.Square());            
+            Assert.Equal(expectedSquare, rect.GetSquare());            
         }
 
         [Theory]
-        [InlineData(2.0, 2.0, Units.Meters, 8.0)]
-        [InlineData(2.0, 2.0, Units.Centimeters, 8.0)]
-        [InlineData(2.0, 2.0, Units.Millimeters, 8.0)]
+        [InlineData(2.0, 2.0, Units.Meter, 8.0)]
+        [InlineData(2.0, 2.0, Units.Centimeter, 0.08)]
+        [InlineData(2.0, 2.0, Units.Millimeter, 0.008)]
         public void TestPerimeterWithUnits(double a, double b, Units unit, double expectedPerimeter)
         {
-            // todo: remove this after the Rectangle supports doubles
-            int roundA = (int)a;
-            int roundB = (int)b;
-
-            var rect = new Rectangle(roundA, roundB, unit);
+            var rect = new Rectangle(a, b, unit);
             Assert.Equal(unit, rect.Unit);
-            Assert.Equal(expectedPerimeter, rect.Perimeter());
+            Assert.Equal(expectedPerimeter, rect.GetPerimeter());
         }
     }
 }

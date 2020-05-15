@@ -7,13 +7,13 @@ namespace Mentoring.Shapes.Shapes
     {
         #region  private fields
 
-        private readonly int _sideA;
-        private readonly int _sideB;
+        private readonly double _sideA;
+        private readonly double _sideB;
 
         #endregion    
 
         // cr: let all the shapes work with double values
-        public Rectangle(int a, int b, Units unit) : base(unit)
+        public Rectangle(double a, double b, Units unit) : base(unit)
         {
             if (a < 0 || b < 0)
             {
@@ -24,24 +24,24 @@ namespace Mentoring.Shapes.Shapes
             _sideB = b;
         }
 
-        public override ShapeType shapeType => ShapeType.Rectangle;
+        public override ShapeTypes shapeType => ShapeTypes.Rectangle;
 
         #region public methods
 
-        public override double Perimeter()
+        public override double GetPerimeter()
         {
             return (ShapeHelper.ToMeters(this.Unit,_sideA) + ShapeHelper.ToMeters(this.Unit, _sideB)) * 2;
         }
 
-        public override double Square()
+        public override double GetSquare()
         {
             return (ShapeHelper.ToMeters(this.Unit, _sideA) * ShapeHelper.ToMeters(this.Unit, _sideB));
         }
 
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {Square()} {Units.Meters}2,"
-                + $"perimeter = {Perimeter()} {Units.Meters}, SideA = {ShapeHelper.ToMeters(this.Unit,this._sideA)}, "
+            return $"Shape: '{nameof(Rectangle)}'. Square = {GetSquare()} {Units.Meter}2,"
+                + $"perimeter = {GetPerimeter()} {Units.Meter}, SideA = {ShapeHelper.ToMeters(this.Unit,this._sideA)}, "
                 + $"SideB = {ShapeHelper.ToMeters(this.Unit, this._sideB)}";
         }
         

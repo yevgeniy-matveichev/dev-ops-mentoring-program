@@ -6,8 +6,8 @@ namespace Mentoring.DataModel.Shapes
 {
     public class RectangleModel
     {
-        public int SideA { get; set; }
-        public int SideB { get; set; }
+        public double SideA { get; set; }
+        public double SideB { get; set; }
         public string Unit { get; set; }
     }
 }

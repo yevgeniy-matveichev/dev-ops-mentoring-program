@@ -10,18 +10,18 @@ namespace Module1.TypesAndClasses.Tests.Linq
     {
         // todo: move to constructor
         List<IShape> shapes = new List<IShape> {
-                new EquilateralTriangle(3, Units.Centimeters),
-                new EquilateralTriangle(7.8, Units.Millimeters),
-                new EquilateralTriangle(5, Units.Meters),
-                new Circle(5, Units.Meters),
-                new Circle(8, Units.Millimeters),
-                new Circle(2.6, Units.Centimeters),
-                new Ellipse(4, 6, Units.Millimeters),
-                new Ellipse(6, 9, Units.Centimeters),
-                new Ellipse(1, 2, Units.Meters),
-                new Rectangle(5, 8, Units.Centimeters),
-                new Rectangle(10, 24, Units.Millimeters),
-                new Rectangle(1, 2, Units.Meters)
+                new EquilateralTriangle(3, Units.Centimeter),
+                new EquilateralTriangle(7.8, Units.Millimeter),
+                new EquilateralTriangle(5, Units.Meter),
+                new Circle(5, Units.Meter),
+                new Circle(8, Units.Millimeter),
+                new Circle(2.6, Units.Centimeter),
+                new Ellipse(4, 6, Units.Millimeter),
+                new Ellipse(6, 9, Units.Centimeter),
+                new Ellipse(1, 2, Units.Meter),
+                new Rectangle(5, 8, Units.Centimeter),
+                new Rectangle(10, 24, Units.Millimeter),
+                new Rectangle(1, 2, Units.Meter)
             };
 
         [Fact]
@@ -29,7 +29,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             /* a. Выбрать единственный элемент с заданным периметром (Exception, если не существует) */
 
-            IShape shape = shapes.Single(s => s.Perimeter() == 0.09);
+            IShape shape = shapes.Single(s => s.GetPerimeter() == 0.09);
             Assert.Equal(shapes[0], shape);
         } 
 
@@ -39,8 +39,8 @@ namespace Module1.TypesAndClasses.Tests.Linq
             /* b. Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра 
                  (Exception, если такой Circle в списке отсутствует) */
 
-            double circle = shapes.OfType<Circle>().Where(s => s.Square() >= 1).Max(s => s.Square());
-            Assert.Equal(shapes[3].Square(), circle);
+            double circle = shapes.OfType<Circle>().Where(s => s.GetSquare() >= 1).Max(s => s.GetSquare());
+            Assert.Equal(shapes[3].GetSquare(), circle);
         }
 
         [Fact]
@@ -48,8 +48,8 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             /* c. Выбрать Rectangle с наименьшим периметром (no exceptions) */
 
-            double rectangle = shapes.OfType<Rectangle>().Min(s => s.Perimeter());
-            Assert.Equal(shapes[10].Perimeter(), rectangle);
+            double rectangle = shapes.OfType<Rectangle>().Min(s => s.GetPerimeter());
+            Assert.Equal(shapes[10].GetPerimeter(), rectangle);
         }
 
         [Fact]
@@ -73,9 +73,9 @@ namespace Module1.TypesAndClasses.Tests.Linq
         {
             /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи Select */
 
-            var squares = shapes.Select(s => s.Square()).OrderBy(s => s);
-            Assert.Equal(squares.Max(), shapes[7].Square());
-            Assert.Equal(squares.Min(), shapes[1].Square());
+            var squares = shapes.Select(s => s.GetSquare()).OrderBy(s => s);
+            Assert.Equal(squares.Max(), shapes[7].GetSquare());
+            Assert.Equal(squares.Min(), shapes[1].GetSquare());
         }
 
         [Fact]

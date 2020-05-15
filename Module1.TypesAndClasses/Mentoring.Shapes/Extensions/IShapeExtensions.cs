@@ -17,7 +17,7 @@ namespace Mentoring.Shapes.Extensions
                 throw new ArgumentNullException(nameof(other));
             }
 
-            return shape.Perimeter() == other.Perimeter();
+            return shape.GetPerimeter() == other.GetPerimeter();
         }
 
         public static bool SquareEquals(this IShape shape, IShape other)
@@ -32,7 +32,7 @@ namespace Mentoring.Shapes.Extensions
                 throw new ArgumentNullException(nameof(other));
             }
 
-            return shape.Square() == other.Square();
+            return shape.GetSquare() == other.GetSquare();
         }
     }
 }

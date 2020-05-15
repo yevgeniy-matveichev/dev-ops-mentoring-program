@@ -25,7 +25,7 @@ namespace Module1.TypesAndClasses.Services
 
         #endregion
 
-        public IShape ReadShape(ShapeType shapeType)
+        public IShape ReadShape(ShapeTypes shapeType)
         {
             string shapeName = $"{shapeType}.json";
             string shape = _shapeRepository.ReadShape(shapeName)
@@ -40,7 +40,7 @@ namespace Module1.TypesAndClasses.Services
             
             switch (shapeType)
             {
-                 case ShapeType.Circle: // cr: good. please implement for other figures as well (generic method can help)
+                 case ShapeTypes.Circle: // cr: good. please implement for other figures as well (generic method can help)
                     {
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
                         
@@ -55,7 +55,7 @@ namespace Module1.TypesAndClasses.Services
                             throw new Exception("Not valid Unit in json file");
                         }
                     }
-                case ShapeType.Rectangle:
+                case ShapeTypes.Rectangle:
                     {
                         RectangleModel rectangleModel = JsonConvert.DeserializeObject<RectangleModel>(shape);
 
@@ -70,7 +70,7 @@ namespace Module1.TypesAndClasses.Services
                             throw new Exception("Not valid Unit in json file");
                         }
                     }
-                case ShapeType.Ellipse:
+                case ShapeTypes.Ellipse:
                     {
                         EllipseModel ellipseModel = JsonConvert.DeserializeObject<EllipseModel>(shape);
 

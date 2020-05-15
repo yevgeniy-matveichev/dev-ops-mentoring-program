@@ -8,9 +8,7 @@ namespace Mentoring.Shapes.Shapes
     {
         private readonly double _sideInMeters;
 
-        public override ShapeType shapeType => ShapeType.EquilateralTriangle;
-
-        public EquilateralTriangle(double side, Units units = Units.Meters) : base(units)
+        public EquilateralTriangle(double side, Units units = Units.Meter) : base(units)
         {
             if (side <= 0)
             {
@@ -22,22 +20,25 @@ namespace Mentoring.Shapes.Shapes
 
         #region public methods
 
-        public override double Perimeter()
+        public override ShapeTypes shapeType => ShapeTypes.EquilateralTriangle;
+
+        public override double GetPerimeter()
         {
             return 3 * _sideInMeters;
         }
 
-        public override double Square()
+        public override double GetSquare()
         {
             return (Math.Sqrt(3) / 4) * Math.Pow(_sideInMeters, 2);
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             var sb = new StringBuilder();
 
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
-            sb.Append($"Square = {this.Square()} {Unit}, ");
-            sb.Append($"perimeter = {this.Perimeter()} {Unit}. ");
+            sb.Append($"Square = {this.GetSquare()} {Unit}, ");
+            sb.Append($"perimeter = {this.GetPerimeter()} {Unit}. ");
             sb.Append($"Side = {_sideInMeters} ");
             sb.Append($"{Unit}.");
 

@@ -18,36 +18,36 @@ namespace Module1.TypesAndClasses.Tests.Linq
                 {
                     ContainerName = "Triangles",
                     Shapes = new List<IShape> {
-                        new EquilateralTriangle(3, Units.Centimeters),
-                        new EquilateralTriangle(7.8, Units.Millimeters),
-                        new EquilateralTriangle(5, Units.Meters)
+                        new EquilateralTriangle(3, Units.Centimeter),
+                        new EquilateralTriangle(7.8, Units.Millimeter),
+                        new EquilateralTriangle(5, Units.Meter)
                     }
                 },
                 new ShapeContainer
                 {
                     ContainerName = "Circles",
                     Shapes = new List<IShape> {
-                        new Circle(5, Units.Meters),
-                        new Circle(8, Units.Millimeters),
-                        new Circle(2.6, Units.Centimeters)
+                        new Circle(5, Units.Meter),
+                        new Circle(8, Units.Millimeter),
+                        new Circle(2.6, Units.Centimeter)
                     }
                 },
                 new ShapeContainer
                 {
                     ContainerName = "Ellipses",
                     Shapes = new List<IShape> {
-                        new Ellipse(4, 6, Units.Millimeters),
-                        new Ellipse(6, 9, Units.Centimeters),
-                        new Ellipse(1, 2, Units.Meters)
+                        new Ellipse(4, 6, Units.Millimeter),
+                        new Ellipse(6, 9, Units.Centimeter),
+                        new Ellipse(1, 2, Units.Meter)
                     }
                 },
                 new ShapeContainer
                 {
                     ContainerName = "Rectangles",
                     Shapes = new List<IShape> {
-                        new Rectangle(5, 8, Units.Centimeters),
-                        new Rectangle(10, 24, Units.Millimeters),
-                        new Rectangle(1, 2, Units.Meters)
+                        new Rectangle(5, 8, Units.Centimeter),
+                        new Rectangle(10, 24, Units.Millimeter),
+                        new Rectangle(1, 2, Units.Meter)
                     }
                 }
             };
@@ -59,7 +59,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
             /* e. Выбрать числовые значения всех пощадей, отфильтрованных по возрастанию, с учетом единиц измерения при помощи SelectMany */
             List<double> squares = _containers
                 .SelectMany(container => container.Shapes) // flat list of containers
-                .Select(shape => shape.Square())           // select squares
+                .Select(shape => shape.GetSquare())           // select squares
                 .OrderBy(square => square)                 // ordering by square
                 .ToList();                                 // real list instead of IQueryable
 

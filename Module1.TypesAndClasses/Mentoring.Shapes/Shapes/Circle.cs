@@ -8,7 +8,7 @@ namespace Mentoring.Shapes.Shapes
         public readonly double _radius;
         public readonly Units _unit;
 
-        public override ShapeType shapeType => ShapeType.Circle;
+        public override ShapeTypes shapeType => ShapeTypes.Circle;
 
         #region constructor
 
@@ -25,13 +25,13 @@ namespace Mentoring.Shapes.Shapes
 
         #endregion
 
-        override public double Perimeter()
+        override public double GetPerimeter()
         {
             var result = checked(2 * Math.PI * _radius);
             return result;
         }
 
-        override public double Square()
+        override public double GetSquare()
         {
             double result = checked(Math.PI * Math.Pow(_radius, 2));
             return result;
@@ -39,7 +39,7 @@ namespace Mentoring.Shapes.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{GetType().Name}'. Square = {Square()}, perimeter = {Perimeter()}, radius = {this._radius}";
+            return $"Shape: '{GetType().Name}'. Square = {GetSquare()}, perimeter = {GetPerimeter()}, radius = {this._radius}";
         }
     }
 }
