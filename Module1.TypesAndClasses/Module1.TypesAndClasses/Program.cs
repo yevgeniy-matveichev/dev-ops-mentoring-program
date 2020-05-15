@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
+using Module1.TypesAndClasses.Services;
 
 namespace Module1.TypesAndClasses
 {
     class Program
     {
-        // cr: I would recommend to name it "shapeCommandsMapping"
-        static readonly Dictionary<string, string> supportedShapes = new Dictionary<string, string>
+        static readonly Dictionary<string, string> shapeCommandsMapping = new Dictionary<string, string>
             {
                 { "c", "Circle" },
                 { "e", "Ellipse" },
@@ -36,34 +36,86 @@ namespace Module1.TypesAndClasses
 
             // todo: warning if not supported parameter was passed
 
-            // cr: List<string> supportedShapes = args.ToList();
-            // after that, we do not work with args but wih the supportedShapes:
-            // if (!supportedShapes.Any())
-            // {
-            //    supportedShapes.AddRange() // add here all the commands from the  shapeCommandsMapping
-            // }
-            if (args.Length == 0)
-            {
-                Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {supportedShapes["c"]}, {supportedShapes["e"]}, {supportedShapes["r"]}, {supportedShapes["t"]}\n");
+            //var shapeSerice = new ShapesService();
 
+            List<string> supportedShapes = args.ToList();
+            if (!supportedShapes.Any())
+            {
+                supportedShapes.AddRange(shapeCommandsMapping.Keys);
+
+                Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {shapeCommandsMapping["c"]}, {shapeCommandsMapping["e"]}, {shapeCommandsMapping["r"]}, {shapeCommandsMapping["t"]}\n");
+                Console.WriteLine($"Please enter the Shape type. Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
+                
+                var _userInput = Console.ReadLine();
+
+                while (!_userInput.Equals("exit"))
+                {
+                    // whats the benefit of using Environment.NewLine instead of \n ?
+                    Console.WriteLine($"Put 'c' for Circle {Environment.NewLine}" +
+                                      $"Put 'e' for Ellipse {Environment.NewLine}" +
+                                      $"Put 'r' for Rectangle {Environment.NewLine}" +
+                                      $"Put 't' for Triangle {Environment.NewLine}");
+
+                    var userInput = Console.ReadLine();
+                    var attempt = 0;
+
+                    while (attempt < 4)
+                    {
+                        switch (userInput.ToLower())
+                        {
+                            case "c":
+                                // todo: read the shape of type Circle from the ShapesService
+                                Console.WriteLine("Processing Circle...");
+                                return;
+                            case "e":
+                                // todo: read the shape of type Ellipse from the ShapesService
+                                Console.WriteLine("Processing Ellipse...");
+                                return;
+                            case "r":
+                                // todo: read the shape of type Rectangle from the ShapesService
+                                Console.WriteLine("Processing Rectangle...");
+                                return;
+                            case "t":
+                                // todo: read the shape of type EquilateralTriangle from the ShapesService
+                                Console.WriteLine("Processing Triangle...");
+                                return;
+                            default:
+                                Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {shapeCommandsMapping["c"]}, {shapeCommandsMapping["e"]}, {shapeCommandsMapping["r"]}, {shapeCommandsMapping["t"]}\n");
+                                break;
+                        }
+                    }
+
+                    Console.WriteLine("You've reached the limit of attempts :(\n");
+                }
             } else
             {
                 Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", args)}");
-                Console.WriteLine("Please enter the shape:\n");
+                Console.WriteLine("Please enter the Shape type. Put 'list' to see the full list of supported commands or put 'exit' to quit:\n");
+                
+                var _userInput = Console.ReadLine();
 
-                // cr: while loop instead of for ...
-                for (var attempt = 0; attempt < 5; attempt++)
+                while (!_userInput.Equals("exit"))
                 {
-                    string userInput = Console.ReadLine();
+                    // todo: add varification of user input (must be in the args list)
 
-                    // cr: is not needed, this block can be simply moved out of the loop, without 'if'
-                    if (attempt == 3)
+                    foreach(var arg in args)
                     {
-                        Console.WriteLine("\nYou've reached the limit of attempts :(");
-                        break;
+                        if(supportedShapes.Contains(arg))
+                        {
+                            // todo: replace the ? on shape name somehow
+                            Console.WriteLine($"Put {arg} for ?");
+                        }
                     }
 
-                    switch (userInput)
+                    var userInput = Console.ReadLine();
+
+                    if(!supportedShapes.Contains(userInput))
+                    {
+                        //Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("");
+                    }
+
+                    switch (userInput.ToLower())
                     {
                         case "c":
                             // todo: read the shape of type Circle from the ShapesService
@@ -86,22 +138,15 @@ namespace Module1.TypesAndClasses
                             Console.WriteLine("Processing all shapes...");
                             return;
                         default:
-                            Console.WriteLine($"The shape is not supported. Supported shapes: {string.Join(", ", args)}");
+                            Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {shapeCommandsMapping["c"]}, {shapeCommandsMapping["e"]}, {shapeCommandsMapping["r"]}, {shapeCommandsMapping["t"]}\n");
                             break;
                     }
                 }
             }
-
-            // cr: Environment.NewLine instead of \n
-            //Console.WriteLine($"Please enter one of the options bellow: " +
-            //                  $"\n1. '{args[0]}' to process Circle " +
-            //                  $"\n2. '{args[1]}' to process Ellipse " +
-            //                  $"\n3. '{args[2]}' to process Rectangle " +
-            //                  $"\n4. '{args[3]}' to process Triangle ");
         }
 
         // todo: add functionality to the method bellow
-        private string ArgsToShapeName(string[] args)
+        private string ToFullShapeName(/*string[] args*/)
         {
             return "";
         }

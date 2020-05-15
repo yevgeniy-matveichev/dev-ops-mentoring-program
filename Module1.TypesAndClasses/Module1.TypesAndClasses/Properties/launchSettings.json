@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Module1.TypesAndClasses": {
-      "commandName": "Project",
-      "commandLineArgs": "c e"
+      "commandName": "Project"
     }
   }
 }
