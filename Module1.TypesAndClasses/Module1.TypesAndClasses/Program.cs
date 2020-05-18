@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
+using MentoringDataAccess.Interfaces;
+using MentoringDataAccess.ShapesRepository;
 using Module1.TypesAndClasses.Services;
 
 namespace Module1.TypesAndClasses
@@ -19,136 +21,106 @@ namespace Module1.TypesAndClasses
 
         static void Main(string[] args)
         {
-            // todo: what if more than 4 parameters passed?
-            // => usually, UI should tell user something like
-            // "Hello!. This is... Supported shapes: ..."
-
-            // after that we start the interaction loop:
-            // "Please enter the shape type. Supported Shapes: '" + [list of supported shapes here]
-            // "Put 'list' to see the full list of supported commands or put 'exit' to quit."
-            // "
-            // "Put 'c' for Circle"
-            // "Put 't' for Triangle"
-            // etc.
-            // this could be done via infinite loop (while !userInput.Equals("exit", ..IgnoreCase)).
-            // if user enters "exit", then the program completes.
-            // if user enters "list" - the program prints the list of the supported commands.
-
-            // todo: warning if not supported parameter was passed
-
-            //var shapeSerice = new ShapesService();
+            //IShapeRepository shapeRepository = new IShapeRepository();
+            //var shapeSerice = new ShapesService(shape);
 
             List<string> supportedShapes = args.ToList();
+
             if (!supportedShapes.Any())
             {
                 supportedShapes.AddRange(shapeCommandsMapping.Keys);
+            }
 
-                Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {shapeCommandsMapping["c"]}, {shapeCommandsMapping["e"]}, {shapeCommandsMapping["r"]}, {shapeCommandsMapping["t"]}\n");
-                Console.WriteLine($"Please enter the Shape type. Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
-                
-                var _userInput = Console.ReadLine();
+            Console.WriteLine($"Hello! This is Shapes program. Supported commands (shapes): {string.Join(", ", supportedShapes)}");
+            Console.WriteLine($"Please enter one of the options. Put 'list' to see the full list of supported commands (shapes) or put 'exit' to quit: {Environment.NewLine}");
 
-                while (!_userInput.Equals("exit"))
+            var userInput = Console.ReadLine();
+
+            while (!userInput.Equals("exit"))
+            {
+                switch (userInput.ToLower())
                 {
-                    // whats the benefit of using Environment.NewLine instead of \n ?
-                    Console.WriteLine($"Put 'c' for Circle {Environment.NewLine}" +
-                                      $"Put 'e' for Ellipse {Environment.NewLine}" +
-                                      $"Put 'r' for Rectangle {Environment.NewLine}" +
-                                      $"Put 't' for Triangle {Environment.NewLine}");
+                    case "list":
+                        foreach (var supportedShape in supportedShapes)
+                        {
+                            Console.WriteLine($"Put '{supportedShape}' for {shapeCommandsMapping[supportedShape]}");
+                        }
 
-                    var userInput = Console.ReadLine();
-                    var attempt = 0;
+                        Console.WriteLine("Put 'stop' to exit {0}", Environment.NewLine);
 
-                    while (attempt < 4)
-                    {
-                        switch (userInput.ToLower())
+                        var _userInput = Console.ReadLine();
+
+                        //var shapeRepository = new IShapeRepository();
+                        //IShapeRepository shapeRepository;
+                        //var shapeSerice = new ShapesService(shapeRepository);
+                        //ShapesService shapesService = new ShapesService(shapeRepository);
+
+                        switch (_userInput.ToLower())
                         {
                             case "c":
-                                // todo: read the shape of type Circle from the ShapesService
-                                Console.WriteLine("Processing Circle...");
-                                return;
+                                if (!supportedShapes.Contains(_userInput))
+                                {
+                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
+                                }
+
+                                //ShapeTypes 
+
+                                Console.WriteLine($"Processing {_userInput}");
+                                break;
                             case "e":
-                                // todo: read the shape of type Ellipse from the ShapesService
-                                Console.WriteLine("Processing Ellipse...");
-                                return;
+                                if (!supportedShapes.Contains(_userInput))
+                                {
+                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
+                                }
+
+                                //ShapeTypes 
+
+                                Console.WriteLine($"Processing {_userInput}");
+                                break;
                             case "r":
-                                // todo: read the shape of type Rectangle from the ShapesService
-                                Console.WriteLine("Processing Rectangle...");
-                                return;
+                                if (!supportedShapes.Contains(_userInput))
+                                {
+                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
+                                }
+
+                                //ShapeTypes 
+
+                                Console.WriteLine($"Processing {_userInput}");
+                                break;
                             case "t":
-                                // todo: read the shape of type EquilateralTriangle from the ShapesService
-                                Console.WriteLine("Processing Triangle...");
+                                if (!supportedShapes.Contains(_userInput))
+                                {
+                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
+                                }
+
+                                //ShapeTypes 
+
+                                Console.WriteLine($"Processing {_userInput}");
+                                break;
+                            case "stop":
+                                Console.WriteLine("Exiting the list...");
                                 return;
                             default:
-                                Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {shapeCommandsMapping["c"]}, {shapeCommandsMapping["e"]}, {shapeCommandsMapping["r"]}, {shapeCommandsMapping["t"]}\n");
+                                Console.WriteLine($"Unknown command - {_userInput}");
                                 break;
                         }
-                    }
-
-                    Console.WriteLine("You've reached the limit of attempts :(\n");
-                }
-            } else
-            {
-                Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", args)}");
-                Console.WriteLine("Please enter the Shape type. Put 'list' to see the full list of supported commands or put 'exit' to quit:\n");
-                
-                var _userInput = Console.ReadLine();
-
-                while (!_userInput.Equals("exit"))
-                {
-                    // todo: add varification of user input (must be in the args list)
-
-                    foreach(var arg in args)
-                    {
-                        if(supportedShapes.Contains(arg))
-                        {
-                            // todo: replace the ? on shape name somehow
-                            Console.WriteLine($"Put {arg} for ?");
-                        }
-                    }
-
-                    var userInput = Console.ReadLine();
-
-                    if(!supportedShapes.Contains(userInput))
-                    {
-                        //Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("");
-                    }
-
-                    switch (userInput.ToLower())
-                    {
-                        case "c":
-                            // todo: read the shape of type Circle from the ShapesService
-                            Console.WriteLine("Processing Circle...");
-                            return;
-                        case "e":
-                            // todo: read the shape of type Ellipse from the ShapesService
-                            Console.WriteLine("Processing Ellipse...");
-                            return;
-                        case "r":
-                            // todo: read the shape of type Rectangle from the ShapesService
-                            Console.WriteLine("Processing Rectangle...");
-                            return;
-                        case "t":
-                            // todo: read the shape of type EquilateralTriangle from the ShapesService
-                            Console.WriteLine("Processing Triangle...");
-                            return;
-                        case "":
-                            // todo: read all shapes from the ShapesService
-                            Console.WriteLine("Processing all shapes...");
-                            return;
-                        default:
-                            Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {shapeCommandsMapping["c"]}, {shapeCommandsMapping["e"]}, {shapeCommandsMapping["r"]}, {shapeCommandsMapping["t"]}\n");
-                            break;
-                    }
+                        break;
+                    case "exit":
+                        Console.WriteLine("Exiting the Shapes program...");
+                        return;
+                    default:
+                        Console.WriteLine($"Unknown command - {userInput}");
+                        break;
                 }
             }
         }
-
-        // todo: add functionality to the method bellow
-        private string ToFullShapeName(/*string[] args*/)
-        {
-            return "";
-        }
     }
 }
+
+
+//        // todo: add functionality to the method bellow
+//        private string ToFullShapeName(/*string[] args*/)
+//        {
+//            return "";
+//        }
+
