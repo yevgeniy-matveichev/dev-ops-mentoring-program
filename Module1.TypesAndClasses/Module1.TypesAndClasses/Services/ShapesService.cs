@@ -40,6 +40,21 @@ namespace Module1.TypesAndClasses.Services
             
             switch (shapeType)
             {
+                case ShapeTypes.EquilateralTriangle:
+                    {
+                        EquilateralTriangleModel triangleModel = JsonConvert.DeserializeObject<EquilateralTriangleModel>(shape);
+
+                        if(Enum.IsDefined(typeof(Units), triangleModel.Unit))
+                        {
+                            Units metricName = (Units)Enum.Parse(typeof(Units), triangleModel.Unit);
+                            IShape Model = new EquilateralTriangle(triangleModel.SideInMeters, metricName);
+                            return Model;
+                        } 
+                        else
+                        {
+                            throw new Exception("Not valit Unit in json file");
+                        }
+                    }
                  case ShapeTypes.Circle: // cr: good. please implement for other figures as well (generic method can help)
                     {
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
