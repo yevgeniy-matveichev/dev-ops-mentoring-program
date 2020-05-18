@@ -52,7 +52,7 @@ namespace Module1.TypesAndClasses.Services
                         } 
                         else
                         {
-                            throw new Exception("Not valit Unit in json file");
+                            throw new Exception("Not valid Unit in json file");
                         }
                     }
                  case ShapeTypes.Circle: // cr: good. please implement for other figures as well (generic method can help)
