@@ -17,7 +17,7 @@ namespace Module1.TypesAndClasses.Services
 
         #region constructor
         
-        ShapesService(IShapeRepository shapeRepository)
+        public ShapesService(IShapeRepository shapeRepository)
         {
             
               _shapeRepository = shapeRepository ?? throw new ArgumentException("shapeRepository parameter is invalid or null");
@@ -104,7 +104,6 @@ namespace Module1.TypesAndClasses.Services
                     {
                         throw new Exception($"This method {shapeType} is invalid or not implemented yet"); ;
                     }
-                 
             }
         }
     }
