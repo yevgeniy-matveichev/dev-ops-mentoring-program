@@ -8,6 +8,8 @@ namespace Mentoring.Shapes.Shapes
     {
         private readonly double _sideInMeters;
 
+        public override ShapeTypes shapeType => ShapeTypes.EquilateralTriangle;
+
         public EquilateralTriangle(double side, Units units = Units.Meter) : base(units)
         {
             if (side <= 0)
@@ -19,8 +21,6 @@ namespace Mentoring.Shapes.Shapes
         }
 
         #region public methods
-
-        public override ShapeTypes shapeType => ShapeTypes.EquilateralTriangle;
 
         public override double GetPerimeter()
         {
