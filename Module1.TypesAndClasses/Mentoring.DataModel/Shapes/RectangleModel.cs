@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Mentoring.Shapes.Interfaces;
+
 
 namespace Mentoring.DataModel.Shapes
 {
@@ -8,6 +10,6 @@ namespace Mentoring.DataModel.Shapes
     {
         public double SideA { get; set; }
         public double SideB { get; set; }
-        public string Unit { get; set; }
+        public Units Unit { get; set; }
     }
 }
