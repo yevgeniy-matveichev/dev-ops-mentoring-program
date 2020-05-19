@@ -1,4 +1,5 @@
-﻿using Mentoring.Shapes.Interfaces;
+﻿using Mentoring.DataModel;
+using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
 using Xunit;
 

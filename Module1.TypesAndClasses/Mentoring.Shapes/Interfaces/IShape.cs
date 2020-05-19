@@ -1,12 +1,8 @@
-﻿namespace Mentoring.Shapes.Interfaces
+﻿using Mentoring.DataModel;
+
+namespace Mentoring.Shapes.Interfaces
 {
-    public enum Units
-    {
-        // cr: rename all these values to singular, please. e.g. Meters => Meter (sorry, it was my mistake)
-        Meter,
-        Centimeter,
-        Millimeter
-    }
+  
 
     // cr: ShapeType => ShapeTypes, please. Enum names are usually plurual, enum members - singular
     public enum ShapeTypes

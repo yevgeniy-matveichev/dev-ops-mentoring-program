@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Mentoring.DataModel;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
 using Xunit;

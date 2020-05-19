@@ -1,10 +1,6 @@
-﻿using Mentoring.DataModel.Shapes;
-using Mentoring.Shapes.Interfaces;
-using Mentoring.Shapes.Shapes;
+﻿using Mentoring.DataModel;
+using Mentoring.DataModel.Shapes;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Module1.TypesAndClasses.Tests.Module2
