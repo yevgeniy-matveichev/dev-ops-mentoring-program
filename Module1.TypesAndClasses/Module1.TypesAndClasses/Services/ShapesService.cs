@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Module1.TypesAndClasses.Services
 {
-      public class ShapesService : IShapesService
+    public class ShapesService : IShapesService
     {
         #region  private fields
 
@@ -20,8 +20,7 @@ namespace Module1.TypesAndClasses.Services
         
         public ShapesService(IShapeRepository shapeRepository)
         {
-            
-              _shapeRepository = shapeRepository ?? throw new ArgumentException("shapeRepository parameter is invalid or null");
+            _shapeRepository = shapeRepository ?? throw new ArgumentNullException(nameof(shapeRepository));
         } 
 
         #endregion

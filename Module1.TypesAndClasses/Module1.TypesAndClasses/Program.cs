@@ -21,8 +21,8 @@ namespace Module1.TypesAndClasses
 
         static void Main(string[] args)
         {
-            //IShapeRepository shapeRepository = new IShapeRepository();
-            //var shapeSerice = new ShapesService(shape);
+            ShapesRepository shapeRepository = new ShapesRepository();
+            var shapeService = new ShapesService(shapeRepository);
 
             List<string> supportedShapes = args.ToList();
 
@@ -58,6 +58,7 @@ namespace Module1.TypesAndClasses
 
                         switch (_userInput.ToLower())
                         {
+                           
                             case "c":
                                 if (!supportedShapes.Contains(_userInput))
                                 {
