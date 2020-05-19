@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mentoring.Shapes.Interfaces;
-using Mentoring.Shapes.Shapes;
 using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataAccess.ShapesRepository;
 using Module1.TypesAndClasses.Services;
@@ -16,13 +15,13 @@ namespace Module1.TypesAndClasses
                 { "c", "Circle" },
                 { "e", "Ellipse" },
                 { "r", "Rectangle" },
-                { "t", "Triangle" }
+                { "t", "EquilateralTriangle" }
             };
 
         static void Main(string[] args)
         {
-            ShapesRepository shapeRepository = new ShapesRepository();
-            var shapeService = new ShapesService(shapeRepository);
+            IShapeRepository shapeRepository = new ShapesRepository();
+            ShapesService shapeService = new ShapesService(shapeRepository);
 
             List<string> supportedShapes = args.ToList();
 
@@ -31,114 +30,86 @@ namespace Module1.TypesAndClasses
                 supportedShapes.AddRange(shapeCommandsMapping.Keys);
             }
 
-            Console.WriteLine($"Hello! This is Shapes program. Supported commands (shapes): {string.Join(", ", supportedShapes)}");
-            Console.WriteLine($"Please enter one of the options. Put 'list' to see the full list of supported commands (shapes) or put 'exit' to quit: {Environment.NewLine}");
+            Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", ToFullShapeName(supportedShapes))} {Environment.NewLine}");
+            Console.WriteLine($"Please enter the command. Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
 
             var userInput = Console.ReadLine();
-            ShapesRepository shape = new ShapesRepository();
             
             while (!userInput.Equals("exit"))
             {
                 switch (userInput.ToLower())
                 {
+                    case "c": 
+                        if (!supportedShapes.Contains(userInput))
+                        {
+                            Console.WriteLine($"Not supported command - {userInput}");
+                        }
+
+                        Console.WriteLine(shapeService.ReadShape(ShapeTypes.Circle).ToString());
+
+                        return;
+
+                    case "e":
+                        if (!supportedShapes.Contains(userInput))
+                        {
+                            Console.WriteLine($"Not supported command - {userInput}");
+                        }
+
+                        Console.WriteLine(shapeService.ReadShape(ShapeTypes.Ellipse).ToString());
+
+                        return;
+
+                    case "r":
+                        if (!supportedShapes.Contains(userInput))
+                        {
+                            Console.WriteLine($"Not supported command - {userInput}");
+                        }
+
+                        Console.WriteLine(shapeService.ReadShape(ShapeTypes.Rectangle).ToString());
+
+                        return;
+
+                    case "t":
+                        if (!supportedShapes.Contains(userInput))
+                        {
+                            Console.WriteLine($"Not supported command - {userInput}");
+                        }
+
+                        Console.WriteLine(shapeService.ReadShape(ShapeTypes.EquilateralTriangle).ToString());
+
+                        return;
+
                     case "list":
                         foreach (var supportedShape in supportedShapes)
                         {
                             Console.WriteLine($"Put '{supportedShape}' for {shapeCommandsMapping[supportedShape]}");
                         }
 
-                        Console.WriteLine("Put 'stop' to exit {0}", Environment.NewLine);
-
-                        var _userInput = Console.ReadLine();
-
-                        //var shapeRepository = new IShapeRepository();
-                        //IShapeRepository shapeRepository;
-                        //var shapeSerice = new ShapesService(shapeRepository);
-                        //ShapesService shapesService = new ShapesService(shapeRepository);
-
-                        switch (_userInput.ToLower())
-                        {
-                           
-                            case "c":
-                                if (!supportedShapes.Contains(_userInput))
-                                {
-                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
-                                }
-                                else
-                                {
-                                    shape.ReadShape(shapeCommandsMapping["c"]);
-                                }
-
-                                //ShapeTypes 
-
-                                Console.WriteLine($"Processing {_userInput}");
-                                break;
-                            case "e":
-                                if (!supportedShapes.Contains(_userInput))
-                                {
-                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
-                                }
-                                else
-                                {
-                                    shape.ReadShape(shapeCommandsMapping["e"]);
-                                }
-
-                                //ShapeTypes 
-
-                                Console.WriteLine($"Processing {_userInput}");
-                                break;
-                            case "r":
-                                if (!supportedShapes.Contains(_userInput))
-                                {
-                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
-                                }
-                                else
-                                {
-                                    shape.ReadShape(shapeCommandsMapping["r"]);
-                                }
-
-                                //ShapeTypes 
-
-                                Console.WriteLine($"Processing {_userInput}");
-                                break;
-                            case "t":
-                                if (!supportedShapes.Contains(_userInput))
-                                {
-                                    Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
-                                }
-                                else
-                                {
-                                    shape.ReadShape(shapeCommandsMapping["t"]);
-                                }
-
-                                //ShapeTypes 
-
-                                Console.WriteLine($"Processing {_userInput}");
-                                break;
-                            case "stop":
-                                Console.WriteLine("Exiting the list...");
-                                return;
-                            default:
-                                Console.WriteLine($"Unknown command - {_userInput}");
-                                break;
-                        }
                         break;
+
                     case "exit":
                         Console.WriteLine("Exiting the Shapes program...");
+
                         return;
+
                     default:
                         Console.WriteLine($"Unknown command - {userInput}");
+
                         break;
                 }
             }
         }
+
+        private static List<string> ToFullShapeName(List<string> shapes)
+        {
+            List<string> newShape = new List<string>();
+            foreach (var i in shapes)
+            {
+                newShape.Add(shapeCommandsMapping[i]);
+            }
+
+            return newShape;
+        }
     }
 }
-
-
-//        // todo: add functionality to the method bellow
-//        private string ToFullShapeName(/*string[] args*/)
-//        {
-//            return "";
-//        }
 

@@ -31,7 +31,7 @@ namespace Mentoring.DataAccess.ShapesRepository
 
             foreach (string resourceName in resourceNames)
             {
-                if (resourceName.EndsWith(shapeName.ToLower() + ".json"))
+                if (resourceName.EndsWith(shapeName.ToLower()))
                 {
                     using (Stream stream = assembly.GetManifestResourceStream(resourceName))
                     {

@@ -8,11 +8,15 @@
 
   <ItemGroup>
     <None Remove="Assets\circle.json" />
+    <None Remove="Assets\ellipse.json" />
+    <None Remove="Assets\equilateraltriangle.json" />
     <None Remove="Assets\rectangle.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\circle.json" />
+    <EmbeddedResource Include="Assets\ellipse.json" />
+    <EmbeddedResource Include="Assets\equilateraltriangle.json" />
     <EmbeddedResource Include="Assets\rectangle.json" />
   </ItemGroup>
 
