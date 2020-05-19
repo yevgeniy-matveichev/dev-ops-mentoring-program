@@ -21,6 +21,11 @@ namespace Mentoring.DataAccess.ShapesRepository
 
         public string ReadShape(string shapeName)
         {
+            if (!shapeName.EndsWith(".json"))
+            {
+                throw new NotSupportedException($"The file format is not supported: '{shapeName}'");
+            }
+
             var assembly = Assembly.GetExecutingAssembly();
             var resourceNames = assembly.GetManifestResourceNames();
 

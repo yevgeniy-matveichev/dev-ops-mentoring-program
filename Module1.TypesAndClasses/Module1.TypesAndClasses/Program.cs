@@ -59,7 +59,6 @@ namespace Module1.TypesAndClasses
                         shapeService.ReadShape(ShapeTypes.Ellipse);
 
                         break;
-
                     case "r":
                         if (!supportedShapes.Contains(userInput))
                         {
