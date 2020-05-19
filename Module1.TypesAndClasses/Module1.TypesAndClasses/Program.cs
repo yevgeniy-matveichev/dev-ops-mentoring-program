@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
-using MentoringDataAccess.Interfaces;
-using MentoringDataAccess.ShapesRepository;
+using Mentoring.DataAccess.Interfaces;
+using Mentoring.DataAccess.ShapesRepository;
 using Module1.TypesAndClasses.Services;
 
 namespace Module1.TypesAndClasses
@@ -35,7 +35,8 @@ namespace Module1.TypesAndClasses
             Console.WriteLine($"Please enter one of the options. Put 'list' to see the full list of supported commands (shapes) or put 'exit' to quit: {Environment.NewLine}");
 
             var userInput = Console.ReadLine();
-
+            ShapesRepository shape = new ShapesRepository();
+            
             while (!userInput.Equals("exit"))
             {
                 switch (userInput.ToLower())
@@ -62,6 +63,10 @@ namespace Module1.TypesAndClasses
                                 {
                                     Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
                                 }
+                                else
+                                {
+                                    shape.ReadShape(shapeCommandsMapping["c"]);
+                                }
 
                                 //ShapeTypes 
 
@@ -71,6 +76,10 @@ namespace Module1.TypesAndClasses
                                 if (!supportedShapes.Contains(_userInput))
                                 {
                                     Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
+                                }
+                                else
+                                {
+                                    shape.ReadShape(shapeCommandsMapping["e"]);
                                 }
 
                                 //ShapeTypes 
@@ -82,6 +91,10 @@ namespace Module1.TypesAndClasses
                                 {
                                     Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
                                 }
+                                else
+                                {
+                                    shape.ReadShape(shapeCommandsMapping["r"]);
+                                }
 
                                 //ShapeTypes 
 
@@ -91,6 +104,10 @@ namespace Module1.TypesAndClasses
                                 if (!supportedShapes.Contains(_userInput))
                                 {
                                     Console.WriteLine($"{_userInput} is not in the list of supported shapes.");
+                                }
+                                else
+                                {
+                                    shape.ReadShape(shapeCommandsMapping["t"]);
                                 }
 
                                 //ShapeTypes 

@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mentoring.DataAccess\Mentoring.DataAccess.csproj" />
     <ProjectReference Include="..\Mentoring.DataModel\Mentoring.DataModel.csproj" />
     <ProjectReference Include="..\Mentoring.Shapes\Mentoring.Shapes.csproj" />
-    <ProjectReference Include="..\MentoringDataAccess\MentoringDataAccess.csproj" />
   </ItemGroup>
 
 </Project>
