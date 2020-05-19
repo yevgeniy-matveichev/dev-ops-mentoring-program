@@ -62,7 +62,7 @@ namespace Module1.TypesAndClasses.Services
                     }
                 default:
                     {
-                        throw new Exception($"This method {shapeType} is invalid or not implemented yet"); ;
+                        throw new ArgumentException($"This method {shapeType} is invalid or not implemented yet"); ;
                     }
             }
         }
