@@ -15,8 +15,8 @@ namespace Module1.TypesAndClasses
             {
                 { "c", "Circle" },
                 { "e", "Ellipse" },
-                { "r", "EquilateralRectangle" },
-                { "t", "Triangle" }
+                { "r", "Rectangle" },
+                { "t", "EquilateralTriangle" }
             };
 
         static void Main(string[] args)
@@ -59,6 +59,7 @@ namespace Module1.TypesAndClasses
                         shapeService.ReadShape(ShapeTypes.Ellipse);
 
                         break;
+
                     case "r":
                         if (!supportedShapes.Contains(userInput))
                         {
@@ -89,12 +90,9 @@ namespace Module1.TypesAndClasses
 
                     case "exit":
                         Console.WriteLine("Exiting the Shapes program...");
-
                         return;
-
                     default:
                         Console.WriteLine($"Unknown command - {userInput}");
-
                         break;
                 }
             }
