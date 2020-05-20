@@ -9,6 +9,7 @@ namespace Mentoring.DataAccess.ShapesRepository
 {
     public class ShapesRepository : IShapeRepository
     {
+        // cr: please remove
         //private List<string> ResourceNames = new List<string>()
         //{
         //    "Mentoring.DataAccess.circle.json",
@@ -17,6 +18,7 @@ namespace Mentoring.DataAccess.ShapesRepository
         //    "Mentoring.DataAccess.rectangle.json"
         //};
 
+        // cr: is not needed, please remove
         public ShapesRepository() {}
 
         public string ReadShape(string shapeName)
@@ -29,6 +31,7 @@ namespace Mentoring.DataAccess.ShapesRepository
             var assembly = Assembly.GetExecutingAssembly();
             var resourceNames = assembly.GetManifestResourceNames();
 
+            // cr: please remove the cycle as we discussed on the meeting
             foreach (string resourceName in resourceNames)
             {
                 if (resourceName.EndsWith(shapeName.ToLower()))
@@ -42,11 +45,13 @@ namespace Mentoring.DataAccess.ShapesRepository
                         }
                     }
                 }
+                // cr: and this as well:
                 //else
                 //{
                 //    throw new NotSupportedException();
                 //}
             }
+            // cr: let's rearrange it
             throw new FileNotFoundException("Cannot find '{shapeName}' of type json in assets!"); 
         }
     }
