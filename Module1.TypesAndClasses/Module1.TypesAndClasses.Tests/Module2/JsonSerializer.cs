@@ -3,14 +3,17 @@ using Mentoring.DataModel.Shapes;
 using Newtonsoft.Json;
 using Xunit;
 
+// cr: let's give this folder a more convenient name, for example, 'Serialization'
 namespace Module1.TypesAndClasses.Tests.Module2
 {
     public class JsonSerializer
     {
+        // cr: let's make it a local variable inside the test
         private static string shapeCircle = @"{"
                       + "\"Unit\": \"Centimeter\","
                       + "\"Radius\": 10"
                       + "}";
+        // cr: and this one as well
         private CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shapeCircle);
 
         [Fact]
@@ -18,6 +21,8 @@ namespace Module1.TypesAndClasses.Tests.Module2
         {
             Assert.True(circleModel.Unit == Units.Centimeter);
             Assert.True(circleModel.Radius == 10);
+
+            // cr: these 2 lines do not matter, let's remove them here and below:
             Assert.False(circleModel.Unit == Units.Meter);
             Assert.False(circleModel.Radius == 11);
         }
