@@ -38,10 +38,10 @@ namespace Mentoring.Shapes.Shapes
             var sb = new StringBuilder();
 
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
-            sb.Append($"Square = {this.GetSquare()} {Unit}, ");
-            sb.Append($"perimeter = {this.GetPerimeter()} {Unit}. ");
+            sb.Append($"Square = {this.GetSquare()} {Unit}s, ");
+            sb.Append($"perimeter = {this.GetPerimeter()} {Unit}s. ");
             sb.Append($"Side = {_sideInMeters} ");
-            sb.Append($"{Unit}.");
+            sb.Append($"{Unit}s.");
 
             return sb.ToString();
         }
