@@ -34,6 +34,7 @@ namespace Module1.TypesAndClasses
             Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", ToFullShapeName(supportedShapes))}{Environment.NewLine}");
             Console.WriteLine($"Please enter the command. Put 'list' to see the full list of supported commands or put 'exit' to quit.{Environment.NewLine}");
 
+            // cr: please user string.Empty instead
             string userInput = "";
             
             while (!userInput.Equals("exit"))
@@ -85,6 +86,7 @@ namespace Module1.TypesAndClasses
                         break;
 
                     case "list":
+                        // cr: is it made intentionally - to have 2 empty lines in the console? 
                         Console.WriteLine(Environment.NewLine);
 
                         foreach (var supportedShape in supportedShapes)
@@ -109,6 +111,10 @@ namespace Module1.TypesAndClasses
 
         private static List<string> ToFullShapeName(List<string> shapes)
         {
+            /* cr: please take a look at this approach:
+             * return shapeCommandsMapping.Where((pair) => shapes.Contains(pair.Key))
+                .Select((pair) => pair.Value).ToList();
+            */
             List<string> newShape = new List<string>();
             foreach (var i in shapes)
             {
