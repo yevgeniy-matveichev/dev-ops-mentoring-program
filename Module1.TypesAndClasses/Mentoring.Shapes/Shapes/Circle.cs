@@ -28,6 +28,7 @@ namespace Mentoring.Shapes.Shapes
 
         override public double GetPerimeter()
         {
+            // cr: please do in 1 line in all such cases: return checked(2 * Math.PI * _radius);
             var result = checked(2 * Math.PI * _radius);
             return result;
         }

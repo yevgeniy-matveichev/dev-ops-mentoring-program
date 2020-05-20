@@ -28,9 +28,9 @@ namespace Module1.TypesAndClasses.Tests.Shapes
         }
 
         [Theory]
-        [InlineData(2.0, 2.0, Units.Meter, 4.0)]
-        [InlineData(2.0, 2.0, Units.Centimeter, 4.0)]
-        [InlineData(2.0, 2.0, Units.Millimeter, 4.0)]
+        [InlineData(2.0, 2.0, Units.Meter, 8.0)]
+        [InlineData(2.0, 2.0, Units.Centimeter, 8.0)]
+        [InlineData(2.0, 2.0, Units.Millimeter, 8.0)]
         public void TestPerimeterWithUnits(double a, double b, Units unit, double expectedPerimeter)
         {
             var rect = new Rectangle(a, b, unit);
