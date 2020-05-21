@@ -39,7 +39,7 @@ namespace Module1.TypesAndClasses.Services
                 case ShapeTypes.EquilateralTriangle:
                     {
                         EquilateralTriangleModel triangleModel = JsonConvert.DeserializeObject<EquilateralTriangleModel>(shape);
-                        IShape Model = new EquilateralTriangle(triangleModel.SideInMeters, triangleModel.Unit);
+                        IShape Model = new EquilateralTriangle(triangleModel.Side, triangleModel.Unit);
                         return Model;
                     }                
                 case ShapeTypes.Circle: 

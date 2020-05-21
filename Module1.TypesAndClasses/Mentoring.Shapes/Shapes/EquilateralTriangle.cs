@@ -7,7 +7,7 @@ namespace Mentoring.Shapes.Shapes
 {
     public class EquilateralTriangle : BaseShape
     {
-        private readonly double _sideInMeters;
+        private readonly double _side;
 
         public override ShapeTypes shapeType => ShapeTypes.EquilateralTriangle;
 
@@ -18,19 +18,19 @@ namespace Mentoring.Shapes.Shapes
                 throw new ArgumentException("The side cannot be less or equal to 0.");
             }
 
-            _sideInMeters = ShapeHelper.ToMeters(units, side);
+            _side = ShapeHelper.ToMeters(units, side);
         }
 
         #region public methods
 
         public override double GetPerimeter()
         {
-            return 3 * _sideInMeters;
+            return 3 * _side;
         }
 
         public override double GetSquare()
         {
-            return (Math.Sqrt(3) / 4) * Math.Pow(_sideInMeters, 2);
+            return (Math.Sqrt(3) / 4) * Math.Pow(_side, 2);
         }
 
         public override string ToString()
@@ -40,7 +40,7 @@ namespace Mentoring.Shapes.Shapes
             sb.Append($"Shape: '{nameof(EquilateralTriangle)}'. ");
             sb.Append($"Square = {this.GetSquare()} {Unit}s, ");
             sb.Append($"perimeter = {this.GetPerimeter()} {Unit}s. ");
-            sb.Append($"Side = {_sideInMeters} ");
+            sb.Append($"Side = {_side} ");
             sb.Append($"{Unit}s.");
 
             return sb.ToString();
