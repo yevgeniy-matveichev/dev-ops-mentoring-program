@@ -41,7 +41,9 @@ namespace Module1.TypesAndClasses.Services
                         EquilateralTriangleModel triangleModel = JsonConvert.DeserializeObject<EquilateralTriangleModel>(shape);
                         IShape Model = new EquilateralTriangle(triangleModel.Side, triangleModel.Unit);
                         return Model;
-                    }                
+                        // cr: please use lowerCamelCase for local variables
+                        // cr: this would be better to do in 1 line: new EquilateralTriangle(triangleModel.SideInMeters, triangleModel.Unit);
+                    }
                 case ShapeTypes.Circle: 
                     {
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);

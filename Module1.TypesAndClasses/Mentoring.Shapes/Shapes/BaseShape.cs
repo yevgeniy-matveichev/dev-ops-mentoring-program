@@ -14,6 +14,7 @@ namespace Mentoring.Shapes.Shapes
 
         public Units Unit { get; }
 
+        // cr: in UpperCamelCase, please
         public abstract ShapeTypes shapeType { get; }
 
         protected BaseShape(Units unit)
