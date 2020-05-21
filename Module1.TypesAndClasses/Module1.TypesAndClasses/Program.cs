@@ -31,23 +31,24 @@ namespace Module1.TypesAndClasses
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", ToFullShapeName(supportedShapes))}{Environment.NewLine}");
-            Console.WriteLine($"Please enter the command. Put 'list' to see the full list of supported commands or put 'exit' to quit.{Environment.NewLine}");
+            Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", ToFullShapeName(supportedShapes))}. {Environment.NewLine}");
+            Console.WriteLine($"Please enter the command. Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
+            Console.ForegroundColor = ConsoleColor.White;
 
-            // cr: please user string.Empty instead
-            string userInput = "";
+            string userInput;
             
-            while (!userInput.Equals("exit"))
+            while (!(userInput = Console.ReadLine()).Equals("exit"))
             {
                 switch (userInput.ToLower().Trim())
                 {
                     case "c": 
                         if (!supportedShapes.Contains(userInput))
                         {
-                            Console.WriteLine($"{Environment.NewLine}Provide a supported command: {Environment.NewLine}");
+                            Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
+                            Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
                         } else
                         {
-                            Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Circle).ToString()}{Environment.NewLine}");
+                            Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Circle).ToString()} {Environment.NewLine}");
                         }
 
                         break;
@@ -55,7 +56,8 @@ namespace Module1.TypesAndClasses
                     case "e":
                         if (!supportedShapes.Contains(userInput))
                         {
-                            Console.WriteLine($"{Environment.NewLine}Provide a supported command: {Environment.NewLine}");
+                            Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
+                            Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
                         } else
                         {
                             Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Ellipse).ToString()} {Environment.NewLine}");
@@ -66,7 +68,8 @@ namespace Module1.TypesAndClasses
                     case "r":
                         if (!supportedShapes.Contains(userInput))
                         {
-                            Console.WriteLine($"{Environment.NewLine}Provide a supported command: {Environment.NewLine}");
+                            Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
+                            Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
                         } else
                         {
                             Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Rectangle).ToString()} {Environment.NewLine}");
@@ -86,12 +89,9 @@ namespace Module1.TypesAndClasses
                         break;
 
                     case "list":
-                        // cr: is it made intentionally - to have 2 empty lines in the console? 
-                        Console.WriteLine(Environment.NewLine);
-
                         foreach (var supportedShape in supportedShapes)
                         {
-                            Console.WriteLine($"Put '{supportedShape}' for {shapeCommandsMapping[supportedShape]}");
+                            Console.WriteLine($"{Environment.NewLine}Put '{supportedShape}' for {shapeCommandsMapping[supportedShape]}");
                         }
 
                         Console.WriteLine(Environment.NewLine);
@@ -99,30 +99,18 @@ namespace Module1.TypesAndClasses
                         break;
 
                     default:
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine($"{Environment.NewLine}Provide a supported command: {Environment.NewLine}");
+                        Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
+                        Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
 
                         break;
                 }
-
-                userInput = Console.ReadLine();
             }
         }
 
         private static List<string> ToFullShapeName(List<string> shapes)
         {
-            /* cr: please take a look at this approach:
-             * return shapeCommandsMapping.Where((pair) => shapes.Contains(pair.Key))
-                .Select((pair) => pair.Value).ToList();
-            */
-            List<string> newShape = new List<string>();
-            foreach (var i in shapes)
-            {
-                newShape.Add(shapeCommandsMapping[i]);
-            }
-
-            return newShape;
+            return shapeCommandsMapping.Where(pair => shapes.Contains(pair.Key))
+                                       .Select(pair => pair.Value).ToList();
         }
     }
 }
-
