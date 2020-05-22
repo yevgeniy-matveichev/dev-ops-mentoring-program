@@ -11,12 +11,12 @@ namespace Module1.TypesAndClasses
     class Program
     {
         static readonly Dictionary<string, string> shapeCommandsMapping = new Dictionary<string, string>
-            {
-                { "c", "Circle" },
-                { "e", "Ellipse" },
-                { "r", "Rectangle" },
-                { "t", "EquilateralTriangle" }
-            };
+        {
+            { "c", "Circle" },
+            { "e", "Ellipse" },
+            { "r", "Rectangle" },
+            { "t", "EquilateralTriangle" }
+        };
 
         static void Main(string[] args)
         {
