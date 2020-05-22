@@ -39,28 +39,22 @@ namespace Module1.TypesAndClasses.Services
                 case ShapeTypes.EquilateralTriangle:
                     {
                         EquilateralTriangleModel triangleModel = JsonConvert.DeserializeObject<EquilateralTriangleModel>(shape);
-                        IShape Model = new EquilateralTriangle(triangleModel.Side, triangleModel.Unit);
-                        return Model;
-                        // cr: please use lowerCamelCase for local variables
-                        // cr: this would be better to do in 1 line: new EquilateralTriangle(triangleModel.SideInMeters, triangleModel.Unit);
+                        return new EquilateralTriangle(triangleModel.Side, triangleModel.Unit);
                     }
                 case ShapeTypes.Circle: 
                     {
                         CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shape);
-                        IShape Model = new Circle(circleModel.Radius, circleModel.Unit);
-                        return Model;
+                        return new Circle(circleModel.Radius, circleModel.Unit);
                     }
                 case ShapeTypes.Rectangle:
                     {
                         RectangleModel rectangleModel = JsonConvert.DeserializeObject<RectangleModel>(shape);
-                        IShape Model = new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
-                        return Model;
+                        return new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
                     }
                 case ShapeTypes.Ellipse:
                     {
                         EllipseModel ellipseModel = JsonConvert.DeserializeObject<EllipseModel>(shape);
-                        IShape Model = new Ellipse(ellipseModel.Radius1, ellipseModel.Radius2, ellipseModel.Unit);
-                        return Model;
+                        return new Ellipse(ellipseModel.Radius1, ellipseModel.Radius2, ellipseModel.Unit);
                     }
                 default:
                     {

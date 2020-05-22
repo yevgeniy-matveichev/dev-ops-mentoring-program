@@ -13,7 +13,6 @@ namespace Module1.TypesAndClasses.Tests.Module2
                       + "\"Unit\": \"Centimeter\","
                       + "\"Radius\": 10"
                       + "}";
-        // cr: and this one as well
         private CircleModel circleModel = JsonConvert.DeserializeObject<CircleModel>(shapeCircle);
 
         [Fact]
@@ -21,10 +20,6 @@ namespace Module1.TypesAndClasses.Tests.Module2
         {
             Assert.True(circleModel.Unit == Units.Centimeter);
             Assert.True(circleModel.Radius == 10);
-
-            // cr: these 2 lines do not matter, let's remove them here and below:
-            Assert.False(circleModel.Unit == Units.Meter);
-            Assert.False(circleModel.Radius == 11);
         }
 
         private static string shapeRectangle = @"{"
@@ -39,8 +34,6 @@ namespace Module1.TypesAndClasses.Tests.Module2
         {
             Assert.True(rectangleModel.Unit == Units.Centimeter);
             Assert.True(rectangleModel.SideA == 10);
-            Assert.False(rectangleModel.Unit == Units.Meter);
-            Assert.False(rectangleModel.SideB == 10);
         }
 
         private static string shapeEllipse = @"{"
@@ -55,8 +48,6 @@ namespace Module1.TypesAndClasses.Tests.Module2
         {
             Assert.True(ellipseModel.Unit == Units.Centimeter);
             Assert.True(ellipseModel.Radius1 == 10);
-            Assert.False(ellipseModel.Unit == Units.Meter);
-            Assert.False(ellipseModel.Radius2 == 10);
         }
     }
 }
