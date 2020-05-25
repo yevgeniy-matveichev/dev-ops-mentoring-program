@@ -18,11 +18,13 @@ namespace Module1.TypesAndClasses
             { "t", "EquilateralTriangle" }
         };
 
+        static readonly List<string> parametersList = new List<string>
+        {
+            "help", "list", "import", "export", "exit"
+        };
+
         static void Main(string[] args)
         {
-            IShapeRepository shapeRepository = new ShapesRepository();
-            ShapesService shapeService = new ShapesService(shapeRepository);
-
             List<string> supportedShapes = args.ToList();
 
             if (!supportedShapes.Any())
@@ -31,70 +33,61 @@ namespace Module1.TypesAndClasses
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Hello! This is Shapes program. Supported shapes: {string.Join(", ", ToFullShapeName(supportedShapes))}. {Environment.NewLine}");
-            Console.WriteLine($"Please enter the command. Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
+            Console.WriteLine($"Hello! This is Shapes program. Supported commands: {string.Join(", ", parametersList)}. {Environment.NewLine}");
             Console.ForegroundColor = ConsoleColor.White;
 
             string userInput;
             
             while (!(userInput = Console.ReadLine()).Equals("exit"))
             {
-                switch (userInput.ToLower().Trim())
+                string[] parameters = userInput.Split(' ');
+
+                if(!parametersList.Contains(parameters[0]))
                 {
-                    case "c": 
-                        if (!supportedShapes.Contains(userInput))
-                        {
-                            Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
-                            Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
-                        } else
-                        {
-                            Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Circle).ToString()} {Environment.NewLine}");
-                        }
+                    Console.WriteLine($"The Shapes program does not support command '{userInput}'.");
+                }
 
-                        break;
-
-                    case "e":
-                        if (!supportedShapes.Contains(userInput))
-                        {
-                            Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
-                            Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
-                        } else
-                        {
-                            Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Ellipse).ToString()} {Environment.NewLine}");
-                        }
-
-                        break;
-
-                    case "r":
-                        if (!supportedShapes.Contains(userInput))
-                        {
-                            Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
-                            Console.WriteLine($"Put 'list' to see the full list of supported commands or put 'exit' to quit: {Environment.NewLine}");
-                        } else
-                        {
-                            Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Rectangle).ToString()} {Environment.NewLine}");
-                        }
-
-                        break;
-
-                    case "t":
-                        if (!supportedShapes.Contains(userInput))
-                        {
-                            Console.WriteLine($"{Environment.NewLine}Provide a supported command: {Environment.NewLine}");
-                        } else
-                        {
-                            Console.WriteLine($"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.EquilateralTriangle).ToString()} {Environment.NewLine}");
-                        }
-
-                        break;
-
+                switch (parameters[0].ToLower().Trim())
+                {
                     case "list":
-                        foreach (var supportedShape in supportedShapes)
+                        if(!(parameters.Length == 3))
                         {
-                            Console.WriteLine($"{Environment.NewLine}Put '{supportedShape}' for {shapeCommandsMapping[supportedShape]}");
+                            Console.WriteLine($"Incorrect usage of 'list' command. {Environment.NewLine}" +
+                                "Example: list -json-example c.");
                         }
 
-                        Console.WriteLine(Environment.NewLine);
+                        if (!(parameters[1] == "-json-example"))
+                        {
+                            Console.WriteLine($"Incorrect usage of 'list' command: '{parameters[1]}' is not recognized as an option. {Environment.NewLine}" +
+                                "Example: list -json-example c.");
+                        }
+
+                        if (!supportedShapes.Contains(parameters[2]))
+                        {
+                            Console.WriteLine($"Not supported argument - {parameters[2]}");
+                        }
+                        else
+                        {
+                            Console.WriteLine(ListCommand(parameters[2]));
+                        }
+
+                        break;
+
+                    case "import":
+
+                        break;
+
+                    case "export":
+
+                        break;
+
+                    case "help":
+                        parametersList.Sort();
+
+                        foreach(var parameter in parametersList)
+                        {
+                            Console.WriteLine($"{HelpCommand(parameter)}");
+                        }
 
                         break;
 
@@ -107,10 +100,90 @@ namespace Module1.TypesAndClasses
             }
         }
 
+        #region private
+
         private static List<string> ToFullShapeName(List<string> shapes)
         {
             return shapeCommandsMapping.Where(pair => shapes.Contains(pair.Key))
                                        .Select(pair => pair.Value).ToList();
         }
+
+        private static string ListCommand(string option)
+        {
+            IShapeRepository shapeRepository = new ShapesRepository();
+            ShapesService shapeService = new ShapesService(shapeRepository);
+
+            string result = "";
+
+            if (option == null)
+            {
+                Console.WriteLine("Argument was null.");
+            }
+            else
+            {
+                switch(option)
+                {
+                    case "c":
+                        result = $"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Circle).ToString()} {Environment.NewLine}";
+
+                        break;
+
+                    case "e":
+                        result = $"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Ellipse).ToString()} {Environment.NewLine}";
+
+                        break;
+
+                    case "r":
+                        result = $"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.Rectangle).ToString()} {Environment.NewLine}";
+
+                        break;
+
+                    case "t":
+                        result = $"{Environment.NewLine}{shapeService.ReadShape(ShapeTypes.EquilateralTriangle).ToString()} {Environment.NewLine}";
+
+                        break;
+
+                    default:
+                        Console.WriteLine($"Not supported argument - {option}");
+                        break;
+                }
+            }
+            
+            return result;
+        }
+
+        private static string HelpCommand(string option)
+        {
+            string result = "";
+
+            if(option == null)
+            {
+                Console.WriteLine("Command was null");
+            }
+            else
+            {
+                switch(option)
+                {
+                    case "help":
+                        Console.WriteLine();
+                        break;
+                    case "list":
+                        break;
+                    case "import":
+                        break;
+                    case "export":
+                        break;
+                    case "exit":
+                        break;
+                    default:
+                        Console.WriteLine("Incorrect input.");
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
