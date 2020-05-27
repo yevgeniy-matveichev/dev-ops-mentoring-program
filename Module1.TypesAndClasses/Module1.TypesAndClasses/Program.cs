@@ -21,7 +21,7 @@ namespace Module1.TypesAndClasses
         static readonly List<string> parametersList = new List<string>
         {
             "help", "list", "import", "export", "exit"
-        };
+        }.OrderBy(x => x).ToList();
 
         static void Main(string[] args)
         {
@@ -82,8 +82,6 @@ namespace Module1.TypesAndClasses
                         break;
 
                     case "help":
-                        parametersList.Sort();
-
                         foreach(var parameter in parametersList)
                         {
                             Console.WriteLine($"{HelpCommand(parameter)}");
