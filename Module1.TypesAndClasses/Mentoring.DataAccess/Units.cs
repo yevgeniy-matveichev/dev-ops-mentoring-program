@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mentoring.DataModel
+namespace Mentoring.DataAccess
 {
     public enum Units
     {

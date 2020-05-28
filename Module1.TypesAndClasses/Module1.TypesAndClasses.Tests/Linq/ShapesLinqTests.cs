@@ -3,7 +3,7 @@ using Xunit;
 using System.Linq;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
-using Mentoring.DataModel;
+using Mentoring.DataAccess;
 
 namespace Module1.TypesAndClasses.Tests.Linq
 {

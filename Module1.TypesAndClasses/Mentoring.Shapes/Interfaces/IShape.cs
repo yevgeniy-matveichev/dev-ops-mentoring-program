@@ -1,4 +1,4 @@
-﻿using Mentoring.DataModel;
+﻿using Mentoring.DataAccess;
 
 namespace Mentoring.Shapes.Interfaces
 {

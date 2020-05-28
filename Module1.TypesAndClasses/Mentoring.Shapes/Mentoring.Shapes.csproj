@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mentoring.DataModel\Mentoring.DataModel.csproj" />
+    <ProjectReference Include="..\Mentoring.DataAccess\Mentoring.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

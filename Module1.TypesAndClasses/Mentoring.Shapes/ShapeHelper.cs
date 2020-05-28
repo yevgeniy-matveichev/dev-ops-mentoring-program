@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Mentoring.DataModel;
-using Mentoring.Shapes.Interfaces;
+﻿using Mentoring.DataAccess;
+using System;
+
 
 namespace Mentoring.Shapes
 {

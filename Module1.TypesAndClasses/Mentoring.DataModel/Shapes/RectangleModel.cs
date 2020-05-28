@@ -1,4 +1,6 @@
 ﻿
+using Mentoring.DataAccess;
+
 namespace Mentoring.DataModel.Shapes
 {
     public class RectangleModel

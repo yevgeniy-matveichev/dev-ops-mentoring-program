@@ -4,7 +4,7 @@ using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Shapes;
 using Newtonsoft.Json;
-
+using Mentoring.DataAccess.ShapesRepository;
 
 namespace Module1.TypesAndClasses.Services
 {
@@ -28,16 +28,13 @@ namespace Module1.TypesAndClasses.Services
         public IShape ReadShape(ShapeTypes shapeType)
         {
             string shapeName = $"{shapeType}.json";
-            string shape = _shapeRepository.ReadShape(shapeName)
-            ??  @"{"
-                    + "\"Unit\": \"Centimeter\","
-                    + "\"Radius\": 10"
-                    + "}";
-          
+            string shape = _shapeRepository.ReadShape(shapeName);
+                      
             switch (shapeType)
             {
                 case ShapeTypes.EquilateralTriangle:
                     {
+                     //   var shapesTriangleRepo = new ShapesRepository<EquilateralTriangle>();
                         EquilateralTriangleModel triangleModel = JsonConvert.DeserializeObject<EquilateralTriangleModel>(shape);
                         return new EquilateralTriangle(triangleModel.Side, triangleModel.Unit);
                     }
