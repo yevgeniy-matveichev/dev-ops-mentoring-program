@@ -14,7 +14,7 @@ namespace Module1.TypesAndClasses.Commands
             { "list", "Shows the example of the shape." },
             { "import", "Imports the shape from the path." },
             { "export", "Exports the shape to JSON file, saves the file to specified path." },
-            { "exit", "Exists the Shapes program." }
+            { "exit", "Exits the Shapes program." }
         };
 
         public HelpCommand(string[] inputParameters)
