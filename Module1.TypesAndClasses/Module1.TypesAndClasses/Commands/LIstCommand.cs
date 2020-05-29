@@ -2,12 +2,18 @@
 using Mentoring.Shapes.Interfaces;
 using Module1.TypesAndClasses.Services;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Module1.TypesAndClasses.Commands
 {
     class ListCommand : IInputCommand
     {
+        readonly List<string> SupportedShapes = new List<string>
+        {
+            "c", "e", "r", "t"
+        };
+
         private readonly ShapesService _shapeService;
         private readonly string[] _inputParameters;
 
@@ -17,40 +23,21 @@ namespace Module1.TypesAndClasses.Commands
             _shapeService  = new ShapesService(new ShapesRepository());
         }
 
-        public string Execute()
+        public string Execute(string instruction)
         {
-            string result = "";
-
-            /* todo: fix this
-            switch (instruction)
+            if(instruction == null)
             {
-                case "c":
-                    result = $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Circle)} {Environment.NewLine}";
-
-                    break;
-
-                case "e":
-                    result = $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}";
-
-                    break;
-
-                case "r":
-                    result = $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}";
-
-                    break;
-
-                case "t":
-                    result = $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}";
-
-                    break;
-
-                default:
-                    Console.WriteLine($"Not supported argument - {option}"); // cr: throw NotSupportedException
-                    break;
+                throw new ArgumentNullException(nameof(instruction));
             }
 
-            */
-
+            var result = instruction switch
+            {
+                "c" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Circle)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
+                _ => throw new NotSupportedException(nameof(instruction)),
+            };
             return result;
         }
 
@@ -58,25 +45,20 @@ namespace Module1.TypesAndClasses.Commands
         {
             if (!(_inputParameters.Length == 3))
             {
-                Console.WriteLine($"Incorrect usage of 'list' command. {Environment.NewLine}" +
-                    "Example: list -json-example c.");
-                // cr: return message instead of Console.Writeline
+                return $"Incorrect usage of 'list' command. {Environment.NewLine}" +
+                    "Example: list -json-example c.";
             }
 
             if (!(_inputParameters[1] == "-json-example"))
             {
-                Console.WriteLine($"Incorrect usage of 'list' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
-                    "Example: list -json-example c.");
-
-                // cr: return message instead of Console.Writeline
+                return $"Incorrect usage of 'list' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
+                    "Example: list -json-example c.";
             }
 
-            /* todo: fix thisand uncomment
-            if (!supportedShapes.Contains(_inputParameters[2]))
+            if (!SupportedShapes.Contains(_inputParameters[2]))
             {
-                Console.WriteLine($"Not supported argument - {_inputParameters[2]}");
+                return $"Not supported argument - {_inputParameters[2]}";
             }
-            */
 
             return string.Empty;
         }
