@@ -22,8 +22,9 @@ namespace Module1.TypesAndClasses.Commands
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
         }
 
-        public string Execute(string instruction)
+        public string Execute()
         {
+            string instruction = "";
             if (instruction == null)
             {
                 throw new ArgumentNullException(nameof(instruction));

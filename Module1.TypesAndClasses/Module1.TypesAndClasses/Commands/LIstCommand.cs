@@ -16,27 +16,31 @@ namespace Module1.TypesAndClasses.Commands
 
         private readonly ShapesService _shapeService;
         private readonly string[] _inputParameters;
+        private readonly string _instruction;
 
         public ListCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
             _shapeService  = new ShapesService(new ShapesRepository());
+            
+            // todo: add validation
+            _instruction = _inputParameters[2];
         }
 
-        public string Execute(string instruction)
+        public string Execute()
         {
-            if(instruction == null)
+            if (_instruction == null)
             {
-                throw new ArgumentNullException(nameof(instruction));
+                throw new ArgumentNullException(nameof(_instruction));
             }
 
-            var result = instruction switch
+            var result = _instruction switch
             {
                 "c" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Circle)} {Environment.NewLine}",
                 "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
-                _ => throw new NotSupportedException(nameof(instruction)),
+                _ => throw new NotSupportedException(nameof(_instruction)),
             };
             return result;
         }

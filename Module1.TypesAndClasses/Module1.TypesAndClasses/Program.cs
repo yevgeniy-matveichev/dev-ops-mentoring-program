@@ -1,4 +1,5 @@
 using Module1.TypesAndClasses.Commands;
+using Module1.TypesAndClasses.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,9 +45,42 @@ namespace Module1.TypesAndClasses
                     Console.WriteLine($"The Shapes program does not support command '{userInput}'.");
                 }
 
-                string commandName = parameters[0].ToLower().Trim();
+                try
+                {
+                    string commandName = parameters[0].ToLower().Trim();
+                    var commandsFactory = new CommandsFactory(parameters);
+                    IInputCommand command = commandsFactory.Create(commandName);
 
-                switch (commandName)
+                    /*
+                 * if (command == null)
+                {
+                    Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
+                    Console.WriteLine($"Supported commands: {string.Join(", ", ParametersList)}. {Environment.NewLine}");
+                }*/
+
+                    string listValidationMessage = command.Validate();
+                    if (!string.IsNullOrEmpty(listValidationMessage))
+                    {
+                        Console.WriteLine(listValidationMessage);
+                        continue;
+                    }
+
+                    Console.WriteLine(command.Execute() ?? $"Command '{commandName}' executed.");
+                }
+                catch (NotSupportedException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
+                catch (Exception ex)
+                {
+                    // logger.LogError(ex);
+                    Console.WriteLine("Something went wrong");
+                    continue;
+                }
+                
+
+                /*switch (commandName)
                 {
                     case "list":
                         var listCommand = new ListCommand(parameters);
@@ -114,6 +148,7 @@ namespace Module1.TypesAndClasses
 
                         break;
                 }
+                */
             }
         }
 

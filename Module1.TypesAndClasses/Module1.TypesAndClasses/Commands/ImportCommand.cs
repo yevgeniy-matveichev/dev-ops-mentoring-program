@@ -13,7 +13,7 @@ namespace Module1.TypesAndClasses.Commands
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
         }
 
-        public string Execute(string instruction)
+        public string Execute()
         {
             return "Method is not implemented.";
         }
