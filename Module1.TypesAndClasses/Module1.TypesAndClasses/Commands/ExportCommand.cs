@@ -6,9 +6,16 @@ namespace Module1.TypesAndClasses.Commands
 {
     class ExportCommand : IInputCommand
     {
+        private readonly string[] _inputParameters;
+
+        public ExportCommand(string[] inputParameters)
+        {
+            _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
+        }
+
         public string Execute(string instruction)
         {
-            throw new NotImplementedException();
+            return "Method is not implemented.";
         }
 
         public string Validate()

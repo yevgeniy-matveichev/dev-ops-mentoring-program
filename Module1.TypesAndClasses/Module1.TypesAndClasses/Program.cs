@@ -1,7 +1,7 @@
+using Module1.TypesAndClasses.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Module1.TypesAndClasses.Commands;
 
 namespace Module1.TypesAndClasses
 {
@@ -64,10 +64,32 @@ namespace Module1.TypesAndClasses
                         break;
 
                     case "import":
+                        var importCommand = new ImportCommand(parameters);
+                        string importValidationMessage = importCommand.Validate();
+
+                        if (!string.IsNullOrEmpty(importValidationMessage))
+                        {
+                            Console.WriteLine(importValidationMessage);
+
+                            break;
+                        }
+
+                        Console.WriteLine(importCommand.Execute(parameters[1]) ?? $"Command '{commandName}' executed.");
 
                         break;
 
                     case "export":
+                        var exportCommand = new ExportCommand(parameters);
+                        string exportValidationMessage = exportCommand.Validate();
+
+                        if (!string.IsNullOrEmpty(exportValidationMessage))
+                        {
+                            Console.WriteLine(exportValidationMessage);
+
+                            break;
+                        }
+
+                        Console.WriteLine(exportCommand.Execute(parameters[1]) ?? $"Command '{commandName}' executed.");
 
                         break;
 

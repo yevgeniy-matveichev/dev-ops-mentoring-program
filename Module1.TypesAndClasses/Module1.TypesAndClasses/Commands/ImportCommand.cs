@@ -6,13 +6,22 @@ namespace Module1.TypesAndClasses.Commands
 {
     class ImportCommand : IInputCommand
     {
+        private readonly string[] _inputParameters;
+
+        public ImportCommand(string[] inputParameters)
+        {
+            _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
+        }
+
         public string Execute(string instruction)
         {
-            throw new NotImplementedException();
+            return "Method is not implemented.";
         }
 
         public string Validate()
         {
+            // validates the path (that file is json and exists)
+            // File.Exists("<path>");
             throw new NotImplementedException();
         }
     }
