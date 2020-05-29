@@ -6,7 +6,7 @@ namespace Module1.TypesAndClasses.Commands
 {
     interface IInputCommand
     {
-        string Execute();
+        string Execute(string instruction);
 
         string Validate();
     }
