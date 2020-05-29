@@ -50,11 +50,11 @@ namespace Module1.TypesAndClasses
                 {
                     case "list":
                         var listCommand = new ListCommand(parameters);
-                        string validationMessage = listCommand.Validate();
+                        string listValidationMessage = listCommand.Validate();
 
-                        if (!string.IsNullOrEmpty(validationMessage))
+                        if (!string.IsNullOrEmpty(listValidationMessage))
                         {
-                            Console.WriteLine(validationMessage);
+                            Console.WriteLine(listValidationMessage);
 
                             break;
                         }
@@ -72,14 +72,19 @@ namespace Module1.TypesAndClasses
                         break;
 
                     case "help":
+                        var helpCommand = new HelpCommand(parameters);
+                        string helpValidationMessage = helpCommand.Validate();
+
+                        if(!string.IsNullOrEmpty(helpValidationMessage))
                         {
-                            foreach (var parameter in ParametersList)
-                            {
-                                Console.WriteLine($"{HelpCommand(parameter)}");
-                            }
+                            Console.WriteLine(helpValidationMessage);
 
                             break;
                         }
+
+                        Console.WriteLine(helpCommand.Execute(string.Join(" ", parameters)) ?? $"Command '{commandName}' executed.");
+
+                        break;
 
                     default:
                         Console.WriteLine($"{Environment.NewLine}Unknown parameter - {userInput}.");
