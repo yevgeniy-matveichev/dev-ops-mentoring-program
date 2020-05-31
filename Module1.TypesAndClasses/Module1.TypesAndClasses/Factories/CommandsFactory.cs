@@ -17,7 +17,7 @@ namespace Module1.TypesAndClasses.Factories
             switch (commandName)
             {
                 case "list":
-                    return new ListCommand(_commandParams);
+                    return new LIstCommand(_commandParams);
 
                 case "import":
                     return new ImportCommand(_commandParams);

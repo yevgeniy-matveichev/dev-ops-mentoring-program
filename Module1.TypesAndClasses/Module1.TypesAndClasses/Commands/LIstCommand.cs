@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Commands
 {
-    class ListCommand : IInputCommand
+    class LIstCommand : IInputCommand
     {
         readonly List<string> SupportedShapes = new List<string>
         {
@@ -16,31 +16,27 @@ namespace Module1.TypesAndClasses.Commands
 
         private readonly ShapesService _shapeService;
         private readonly string[] _inputParameters;
-        private readonly string _instruction;
 
-        public ListCommand(string[] inputParameters)
+        public LIstCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
             _shapeService  = new ShapesService(new ShapesRepository());
-            
-            // todo: add validation
-            _instruction = _inputParameters[2];
         }
 
-        public string Execute()
+        public string Execute(string instruction)
         {
-            if (_instruction == null)
+            if(instruction == null)
             {
-                throw new ArgumentNullException(nameof(_instruction));
+                throw new ArgumentNullException(nameof(instruction));
             }
 
-            var result = _instruction switch
+            var result = instruction switch
             {
                 "c" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Circle)} {Environment.NewLine}",
                 "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
-                _ => throw new NotSupportedException(nameof(_instruction)),
+                _ => throw new NotSupportedException(nameof(instruction)),
             };
             return result;
         }
