@@ -7,6 +7,7 @@ namespace Module1.TypesAndClasses.Commands
     class HelpCommand : IInputCommand
     {
         private readonly string[] _inputParameters;
+        //private readonly string _instruction;
 
         public readonly Dictionary<string, string> CommandsDescription = new Dictionary<string, string>()
         {
@@ -20,35 +21,39 @@ namespace Module1.TypesAndClasses.Commands
         public HelpCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
+            //if (_inputParameters.Length == 2) _instruction = _inputParameters[1];
         }
 
         public string Execute()
         {
-            string instruction = "";
-            if (instruction == null)
-            {
-                throw new ArgumentNullException(nameof(instruction));
-            }
+            //if (_instruction == null)
+            //{
+            //    throw new ArgumentNullException(nameof(_instruction));
+            //}
 
             string result = string.Empty;
 
-            if (instruction.Split().Length == 1) 
+            //var sb = new StringBuilder();
+
+            if (_inputParameters.Length == 1) 
             {
                 foreach(var command in CommandsDescription.Keys)
                 {
                     Console.WriteLine($"{command}\t\t{CommandsDescription[command]}");
+                    //sb.Append($"{command}\t\t{CommandsDescription[command]}");
                 }
+                //result = sb.ToString();
             }
             else
             {
-                result = (instruction.Split()[1]) switch
+                result = (_inputParameters[1]) switch
                 {
                     "help" => $"help\t\t{CommandsDescription["help"]}",
                     "list" => $"list\t\t{CommandsDescription["list"]}",
                     "import" => $"import\t\t{CommandsDescription["import"]}",
                     "export" => $"export\t\t{CommandsDescription["export"]}",
                     "exit" => $"exit\t\t{CommandsDescription["exit"]}",
-                    _ => throw new NotSupportedException(nameof(instruction)),
+                    _ => throw new NotSupportedException(nameof(_inputParameters)),
                 };
             }
 
@@ -61,6 +66,15 @@ namespace Module1.TypesAndClasses.Commands
             {
                 return $"Incorrect usage of 'help' command: '{_inputParameters}'. {Environment.NewLine}" +
                     "Example: help list.";
+            }
+
+            if(_inputParameters.Length == 2)
+            {
+                if (!CommandsDescription.ContainsKey(_inputParameters[1]))
+                {
+                    return $"Incorrect usage of 'help' command: '{_inputParameters}' is not recognized as an option. {Environment.NewLine}" +
+                        "Example: help list.";
+                }
             }
 
             return string.Empty;
