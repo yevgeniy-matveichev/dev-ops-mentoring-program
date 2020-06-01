@@ -9,24 +9,23 @@ namespace Mentoring.DataAccess.ShapesRepository
 {
     public class ShapesRepository : IShapeRepository
     {
-        // cr: please remove
-        //private List<string> ResourceNames = new List<string>()
-        //{
-        //    "Mentoring.DataAccess.circle.json",
-        //    "Mentoring.DataAccess.ellipse.json",
-        //    "Mentoring.DataAccess.equilateraltriangle.json",
-        //    "Mentoring.DataAccess.rectangle.json"
-        //};
-
-        // cr: is not needed, please remove
         public ShapesRepository() {}
+
+        public void WriteShape(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                //Implement saving shapes to disk. 
+            }
+
+            //The method should have the path to the file as input parameter and the shape model. 
+        }
 
         public string ReadShape(string shapeName)
         {
-            if (!shapeName.EndsWith(".json"))
-            {
-                throw new NotSupportedException($"The file format is not supported: '{shapeName}'");
-            }
+
+         //Update the Read method so that it would accept concrete ShapeModel instead of the string (Generic). 
+
 
             var assembly = Assembly.GetExecutingAssembly();
             var resourceNames = assembly.GetManifestResourceNames();
@@ -45,14 +44,9 @@ namespace Mentoring.DataAccess.ShapesRepository
                         }
                     }
                 }
-                // cr: and this as well:
-                //else
-                //{
-                //    throw new NotSupportedException();
-                //}
             }
             // cr: let's rearrange it
-            throw new FileNotFoundException("Cannot find '{shapeName}' of type json in assets!"); 
+            throw new FileNotFoundException($"Cannot find '{shapeName}' of type json in assets!"); 
         }
     }
 }
