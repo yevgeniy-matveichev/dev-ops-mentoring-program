@@ -20,7 +20,7 @@ namespace Module1.TypesAndClasses.Commands
         public ListCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            _shapeService  = new ShapesService(new ShapesRepository());
+            _shapeService  = new ShapesService();
 
             //if(_inputParameters.Length < 3) throw new ArgumentNullException(nameof(inputParameters));
             if (_inputParameters.Length < 3) throw new ArgumentNullException("-json-example");
