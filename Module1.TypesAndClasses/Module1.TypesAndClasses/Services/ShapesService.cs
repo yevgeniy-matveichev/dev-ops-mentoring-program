@@ -16,7 +16,7 @@ namespace Module1.TypesAndClasses.Services
 
         #region constructor
         
-        public ShapesService(IShapeRepository<T> shapeRepository)
+        public ShapesService()
         {
            // _shapeRepository = shapeRepository ?? throw new ArgumentNullException(nameof(shapeRepository));
         } 
