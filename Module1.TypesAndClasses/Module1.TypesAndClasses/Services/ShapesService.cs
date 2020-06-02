@@ -12,15 +12,13 @@ namespace Module1.TypesAndClasses.Services
     {
         #region  private fields
 
-        private readonly IShapeRepository _shapeRepository; 
-
         #endregion
 
         #region constructor
         
-        public ShapesService(IShapeRepository shapeRepository)
+        public ShapesService(IShapeRepository<T> shapeRepository)
         {
-            _shapeRepository = shapeRepository ?? throw new ArgumentNullException(nameof(shapeRepository));
+           // _shapeRepository = shapeRepository ?? throw new ArgumentNullException(nameof(shapeRepository));
         } 
 
         #endregion
@@ -28,7 +26,6 @@ namespace Module1.TypesAndClasses.Services
         public IShape ReadShape(ShapeTypes shapeType)
         {
             string shapeName = $"{shapeType}.json";
-            string shape = _shapeRepository.ReadShape(shapeName);
                       
             switch (shapeType)
             {
