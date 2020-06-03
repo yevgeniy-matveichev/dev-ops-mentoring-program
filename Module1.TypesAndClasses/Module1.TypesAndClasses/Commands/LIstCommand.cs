@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Commands
 {
     class ListCommand : IInputCommand
     {
-        readonly List<string> SupportedShapes = new List<string>
+        readonly List<string> ShapesTypes = new List<string>
         {
             "c", "e", "r", "t"
         };
@@ -39,7 +39,7 @@ namespace Module1.TypesAndClasses.Commands
                 "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
-                _ => throw new Exception($"Supported shapes - {string.Join(", ", SupportedShapes)}"),
+                _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
 
@@ -57,9 +57,9 @@ namespace Module1.TypesAndClasses.Commands
                     "Example: list -json-example c.";
             }
 
-            if (!SupportedShapes.Contains(_inputParameters[2]))
+            if (!ShapesTypes.Contains(_inputParameters[2]))
             {
-                return $"Not supported argument '{_inputParameters[2]}'. Supported shapes - {string.Join(", ", SupportedShapes)}.";
+                return $"Not supported argument '{_inputParameters[2]}'. Supported shapes - {string.Join(", ", ShapesTypes)}.";
             }
 
             if (_inputParameters[1] == null)
