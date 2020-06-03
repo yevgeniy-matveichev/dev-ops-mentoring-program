@@ -1,4 +1,5 @@
 ﻿using Mentoring.DataAccess.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,52 +8,48 @@ using System.Text;
 
 namespace Mentoring.DataAccess.ShapesRepository
 {
-    public class ShapesRepository : IShapeRepository
+    public class ShapesRepository<T> : IShapeRepository<T> where T : class
     {
-        // cr: please remove
-        //private List<string> ResourceNames = new List<string>()
-        //{
-        //    "Mentoring.DataAccess.circle.json",
-        //    "Mentoring.DataAccess.ellipse.json",
-        //    "Mentoring.DataAccess.equilateraltriangle.json",
-        //    "Mentoring.DataAccess.rectangle.json"
-        //};
+        public ShapesRepository() { }
 
-        // cr: is not needed, please remove
-        public ShapesRepository() {}
-
-        public string ReadShape(string shapeName)
+        public void WriteShape(string filePath, T model)
         {
-            if (!shapeName.EndsWith(".json"))
+            if (File.Exists(filePath))
             {
-                throw new NotSupportedException($"The file format is not supported: '{shapeName}'");
+                throw new Exception($"File '{filePath}' already exists!");                
             }
 
+            //Implement saving shapes to disk. 
+            string objectContent = JsonConvert.SerializeObject(model);
+            using (FileStream fs = File.Create(filePath))
+            {
+                File.WriteAllText(filePath, objectContent);
+            }
+        }
+
+        public T ReadShape(string shapeName)
+        {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceNames = assembly.GetManifestResourceNames();
-
-            // cr: please remove the cycle as we discussed on the meeting
-            foreach (string resourceName in resourceNames)
+            
+            if (!shapeName.ToLower().EndsWith(".json"))
             {
-                if (resourceName.EndsWith(shapeName.ToLower()))
-                {
-                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                    {
-                        using (StreamReader reader = new StreamReader(stream))
-                        {
-                            string result = reader.ReadToEnd();
-                            return result;
-                        }
-                    }
-                }
-                // cr: and this as well:
-                //else
-                //{
-                //    throw new NotSupportedException();
-                //}
+                throw new NotSupportedException($"Cannot process file '{shapeName}' which is not a type of json!");
             }
-            // cr: let's rearrange it
-            throw new FileNotFoundException("Cannot find '{shapeName}' of type json in assets!"); 
+
+            using (Stream stream = assembly.GetManifestResourceStream($"Mentoring.DataAccess.Assets.{shapeName.ToLower()}"))
+            {
+                if (stream == null)
+                {
+                    throw new FileNotFoundException($"Cannot find '{shapeName}' of type json in assets!");
+                }
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string result = reader.ReadToEnd();
+                    T model = JsonConvert.DeserializeObject<T>(result);
+
+                    return model;
+                }
+            }
         }
     }
 }

@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Mentoring.DataAccess.Interfaces
 {
-    public interface IShapeRepository
+    public interface IShapeRepository<T> where T: class
     {
-        public string ReadShape(string shapeName);
+        T ReadShape(string shapeName);
+
+        void WriteShape(string filePath, T modelType);
     }
 }
