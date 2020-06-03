@@ -6,8 +6,8 @@ namespace Mentoring.DataAccess.Interfaces
 {
     public interface IShapeRepository<T> where T: class
     {
-        public  T ReadShape(string shapeName);
+        T ReadShape(string shapeName);
 
-        public void WriteShape(string filePath, T modelType);
+        void WriteShape(string filePath, T modelType);
     }
 }
