@@ -12,14 +12,18 @@ namespace Mentoring.DataAccess.ShapesRepository
     {
         public ShapesRepository() {}
 
-        public void WriteShape(string filePath, T modelType)
+        public void WriteShape(string filePath, T model)
         {
             if (File.Exists(filePath))
             {
                 //Implement saving shapes to disk. 
+                string objectContent = JsonConvert.SerializeObject(model);
+                using (FileStream fs = File.Create(filePath))
+                {
+                    File.WriteAllText(filePath, objectContent);
+                }
             }
-
-            //The method should have the path to the file as input parameter and the shape model. 
+            else { throw new Exception($"File '{filePath}' already exists!"); }
         }
 
         public T ReadShape(string shapeName)
@@ -27,26 +31,24 @@ namespace Mentoring.DataAccess.ShapesRepository
             var assembly = Assembly.GetExecutingAssembly();
             var resourceNames = assembly.GetManifestResourceNames();
 
-
-            // cr: please remove the cycle as we discussed on the meeting
-            foreach (string resourceName in resourceNames)
+            if (!shapeName.ToLower().EndsWith(".json")) 
             {
-                if (resourceName.EndsWith(shapeName.ToLower()))
-                {
-                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                    {
-                        using (StreamReader reader = new StreamReader(stream))
-                        {
-                            string result = reader.ReadToEnd();
-                            T model = JsonConvert.DeserializeObject<T>(result);
+                throw new NotSupportedException($"Cannot process file '{shapeName}' which is not a type of json!");
+            }
 
-                            return model;
-                        }
-                    }
+            using (Stream stream = assembly.GetManifestResourceStream("Mentoring.DataAccess.Assets" + shapeName.ToLower()))
+            {
+                if (stream == null)
+                {
+                    throw new FileNotFoundException($"Cannot find '{shapeName}' of type json in assets!");
+                }
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string result = reader.ReadToEnd();
+                    T model = JsonConvert.DeserializeObject<T>(result);
+
+                    return model;
                 }
             }
-            // cr: let's rearrange it
-            throw new FileNotFoundException($"Cannot find '{shapeName}' of type json in assets!");
-        }
     }
 }
