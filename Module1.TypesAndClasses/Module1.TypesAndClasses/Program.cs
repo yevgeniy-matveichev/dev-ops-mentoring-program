@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Module1.TypesAndClasses
 {
-    public class Program
+    class Program
     {
         public static readonly Dictionary<string, string> ShapeCommandsMapping = new Dictionary<string, string>
         {
