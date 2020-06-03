@@ -9,23 +9,24 @@ namespace Module1.TypesAndClasses.Commands
     {
         readonly List<string> Commands = new List<string>
         {
-            "-path", "-shapeName"
+            "-path", "-shapeType"
         };
 
-        readonly List<string> ShapesNames = new List<string>
+        readonly List<string> ShapesTypes = new List<string>
         {
-            "circle", "ellipse", "rectangle", "equilateraltriangle"
+            "c", "e", "r", "t"
         };
 
         private readonly string[] _inputParameters;
         private readonly string _path;
-        private readonly string _shapeName;
+        private readonly string _shapeType;
 
         public ExportCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            if(_inputParameters.Contains(Commands[0])) _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
-            if (_inputParameters.Contains(Commands[1])) _shapeName = _inputParameters[Array.IndexOf(_inputParameters, "-shapeName") + 1];
+            if (_inputParameters.Length < 4) throw new Exception("Incorrect usage of 'export' command. Put 'help export' to see example.");
+            if (_inputParameters.Contains(Commands[0])) _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
+            if (_inputParameters.Contains(Commands[1])) _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
         }
 
         public string Execute()

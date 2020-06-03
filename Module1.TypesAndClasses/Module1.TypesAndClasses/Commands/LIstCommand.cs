@@ -22,8 +22,7 @@ namespace Module1.TypesAndClasses.Commands
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
             _shapeService  = new ShapesService();
 
-            //if(_inputParameters.Length < 3) throw new ArgumentNullException(nameof(inputParameters));
-            if (_inputParameters.Length < 3) throw new ArgumentNullException("-json-example");
+            if (_inputParameters.Length < 3) throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
             _instruction = _inputParameters[2];
         }
 
@@ -40,7 +39,7 @@ namespace Module1.TypesAndClasses.Commands
                 "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
-                _ => throw new NotSupportedException(nameof(_instruction)),
+                _ => throw new Exception($"Supported shapes - {string.Join(", ", SupportedShapes)}"),
             };
         }
 
@@ -60,7 +59,7 @@ namespace Module1.TypesAndClasses.Commands
 
             if (!SupportedShapes.Contains(_inputParameters[2]))
             {
-                return $"Not supported argument - {_inputParameters[2]}";
+                return $"Not supported argument '{_inputParameters[2]}'. Supported shapes - {string.Join(", ", SupportedShapes)}.";
             }
 
             if (_inputParameters[1] == null)
