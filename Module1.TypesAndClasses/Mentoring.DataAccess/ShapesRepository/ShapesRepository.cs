@@ -27,7 +27,30 @@ namespace Mentoring.DataAccess.ShapesRepository
             }
         }
 
-        public T ReadShape(string shapeName)
+        public T ReadShape(string shapeFilePath)
+        {
+            if (!shapeFilePath.ToLower().EndsWith(".json"))
+            {
+                throw new NotSupportedException($"Cannot process file '{shapeFilePath}' which is not a type of json!");
+            }
+
+            if (File.Exists(shapeFilePath))
+            {
+                using (FileStream fs = File.OpenRead(shapeFilePath))
+                {
+                    string result = File.ReadAllText(shapeFilePath);
+                    T model = JsonConvert.DeserializeObject<T>(result);
+
+                    return model;
+                }
+            }
+            else
+            {
+                throw new Exception($"File '{shapeFilePath}' does not exist!");
+            }
+        }
+
+        public T ReadShapeExample(string shapeName)
         {
             var assembly = Assembly.GetExecutingAssembly();
             
