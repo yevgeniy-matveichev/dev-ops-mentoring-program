@@ -20,9 +20,8 @@ namespace Module1.TypesAndClasses.Commands
         public ListCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            _shapeService  = new ShapesService();
-
             if (_inputParameters.Length < 3) throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
+            _shapeService  = new ShapesService();
             _instruction = _inputParameters[2];
         }
 
