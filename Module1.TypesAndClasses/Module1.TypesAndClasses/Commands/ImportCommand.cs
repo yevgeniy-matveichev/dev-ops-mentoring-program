@@ -1,21 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 
 namespace Module1.TypesAndClasses.Commands
 {
     class ImportCommand : IInputCommand
     {
+        readonly List<string> Commands = new List<string>
+        {
+            "-path", "-shapeType"
+        };
+
+        readonly List<string> ShapesTypes = new List<string>
+        {
+            "c", "e", "r", "t"
+        };
+
         private readonly string[] _inputParameters;
         private readonly string _path;
+        private readonly string _shapeType;
 
         public ImportCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-
-            if (_inputParameters.Length < 3) throw new ArgumentNullException(nameof(inputParameters));
-            _path = _inputParameters[2];
+            if (_inputParameters.Length < 4) throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
+            if (_inputParameters.Contains(Commands[0])) _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
+            if (_inputParameters.Contains(Commands[1])) _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
         }
 
         public string Execute()

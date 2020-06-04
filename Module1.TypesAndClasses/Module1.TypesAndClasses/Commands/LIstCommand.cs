@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Commands
 {
     class ListCommand : IInputCommand
     {
-        readonly List<string> SupportedShapes = new List<string>
+        readonly List<string> ShapesTypes = new List<string>
         {
             "c", "e", "r", "t"
         };
@@ -20,10 +20,8 @@ namespace Module1.TypesAndClasses.Commands
         public ListCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            _shapeService  = new ShapesService(new ShapesRepository());
-
-            //if(_inputParameters.Length < 3) throw new ArgumentNullException(nameof(inputParameters));
-            if (_inputParameters.Length < 3) throw new ArgumentNullException("-json-example");
+            if (_inputParameters.Length < 3) throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
+            _shapeService  = new ShapesService();
             _instruction = _inputParameters[2];
         }
 
@@ -40,7 +38,7 @@ namespace Module1.TypesAndClasses.Commands
                 "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
-                _ => throw new NotSupportedException(nameof(_instruction)),
+                _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
 
@@ -58,9 +56,9 @@ namespace Module1.TypesAndClasses.Commands
                     "Example: list -json-example c.";
             }
 
-            if (!SupportedShapes.Contains(_inputParameters[2]))
+            if (!ShapesTypes.Contains(_inputParameters[2]))
             {
-                return $"Not supported argument - {_inputParameters[2]}";
+                return $"Not supported argument '{_inputParameters[2]}'. Supported shapes - {string.Join(", ", ShapesTypes)}.";
             }
 
             if (_inputParameters[1] == null)

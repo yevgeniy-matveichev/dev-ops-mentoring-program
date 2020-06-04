@@ -1,48 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Commands
 {
     class HelpCommand : IInputCommand
     {
         private readonly string[] _inputParameters;
-        //private readonly string _instruction;
 
         public readonly Dictionary<string, string> CommandsDescription = new Dictionary<string, string>()
         {
-            { "help", "Describes Shapes program commands." },
-            { "list", "Shows the example of the shape." },
-            { "import", "Imports the shape from the path." },
-            { "export", "Exports the shape to JSON file, saves the file to specified path." },
+            { "help", $"Describes Shapes program commands.{Environment.NewLine}\t\tExample: help list" },
+            { "list", $"Shows the example of the shape.{Environment.NewLine}\t\tExample: list -json-example c" },
+            { "import", $"Imports the shape from the path.{Environment.NewLine}\t\tExample: import -path D:\\temp\\file.json -shapeType c" },
+            { "export", $"Exports the shape to JSON file, saves the file to specified path.{Environment.NewLine}\t\tExample: export -path D:\\temp\\circle.json -shapeType c" },
             { "exit", "Exits the Shapes program." }
         };
 
         public HelpCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            //if (_inputParameters.Length == 2) _instruction = _inputParameters[1];
         }
 
         public string Execute()
         {
-            //if (_instruction == null)
-            //{
-            //    throw new ArgumentNullException(nameof(_instruction));
-            //}
-
             string result = string.Empty;
-
-            //var sb = new StringBuilder();
 
             if (_inputParameters.Length == 1) 
             {
                 foreach(var command in CommandsDescription.Keys)
                 {
                     Console.WriteLine($"{command}\t\t{CommandsDescription[command]}");
-                    //sb.Append($"{command}\t\t{CommandsDescription[command]}");
                 }
-                //result = sb.ToString();
             }
             else
             {
