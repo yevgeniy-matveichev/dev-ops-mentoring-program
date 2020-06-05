@@ -53,22 +53,22 @@ namespace Module1.TypesAndClasses.Commands
 
         public string Validate()
         {
-            if (!(_inputParameters.Length == 4))
+            if (!(_inputParameters.Length == 5))
             {
                 return $"Incorrect usage of 'export' command. {Environment.NewLine}" +
-                    "Example: export -shapeName circle -path D:\\temp\\circle.json.";
+                    "Example: export -path D:\\temp\\circle.json -shapeType c.";
             }
 
             if (!_inputParameters.Contains(Commands[0]))
             {
                 return $"Incorrect usage of 'export' command: the path was not provided. {Environment.NewLine}" +
-                    "Example: export -shapeName circle -path D:\\temp\\circle.json";
+                    "Example: export -path D:\\temp\\circle.json -shapeType c";
             }
 
             if (!_inputParameters.Contains(Commands[1]))
             {
                 return $"Incorrect usage of 'export' command: the shape name was not provided. {Environment.NewLine}" +
-                    "Example: export -shapeName circle -path D:\\temp\\circle.json";
+                    "Example: export -path D:\\temp\\circle.json -shapeType c";
             }
 
             if (!File.Exists(_path.Substring(0, _path.LastIndexOf("\\") + 1)))

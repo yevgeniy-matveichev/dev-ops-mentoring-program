@@ -52,16 +52,16 @@ namespace Module1.TypesAndClasses.Commands
 
         public string Validate()
         {
-            if (!(_inputParameters.Length == 3))
+            if (!(_inputParameters.Length == 5))
             {
                 return $"Incorrect usage of 'import' command. {Environment.NewLine}" +
-                    "Example: import -path D:\\temp\\file.json.";
+                    "Example: import -path D:\\temp\\file.json -shapeType c.";
             }
 
             if (!(_inputParameters[1] == "-path"))
             {
                 return $"Incorrect usage of 'import' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
-                    "Example: import -path D:\\temp\\file.json.";
+                    "Example: import -path D:\\temp\\file.json -shapeType c.";
             }
 
             if (!File.Exists(_inputParameters[2]))
