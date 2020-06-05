@@ -24,10 +24,17 @@ namespace Module1.TypesAndClasses.Services
         }
 
         #endregion
-        public void WriteShape(string filePath, ShapeTypes shapeType)
+        public IShape WriteShape(string shapeFilePath, IShape shape)
         {
-            throw new NotImplementedException($"Method Not implemeted");
+            switch (shape.shapeType)
+            {
+                default:
+                    {
+                        throw new ArgumentException($"This method {shape.shapeType} is invalid or not implemented yet"); ;
+                    }
+            }
         }
+        
 
         public IShape ReadShape(string shapeFilePath, ShapeTypes shapeType)
         {
@@ -57,9 +64,7 @@ namespace Module1.TypesAndClasses.Services
                         {
                             throw new ArgumentException($"This method {shapeType} is invalid or not implemented yet"); ;
                         }
-                
             }
-            throw new NotImplementedException("Not implemeted");
         }
 
         #region ExampleMethod
