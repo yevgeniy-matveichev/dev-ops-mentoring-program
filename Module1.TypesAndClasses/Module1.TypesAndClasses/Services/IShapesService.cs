@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Services
 
         IShape ReadShape(string shapeFilePath, ShapeTypes shapetype);
 
-        void WriteShape(string shapeFilePath, ShapeTypes shapetype);
+        IShape WriteShape(string shapeFilePath, IShape shape);
     }
 
 }
