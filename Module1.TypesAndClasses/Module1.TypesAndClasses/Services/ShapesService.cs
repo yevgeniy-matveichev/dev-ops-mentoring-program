@@ -11,19 +11,59 @@ namespace Module1.TypesAndClasses.Services
     public class ShapesService : IShapesService
     {
         #region  private fields
+        
+        private string _shapeFilePath;
 
         #endregion
 
         #region constructor
-        
+
         public ShapesService()
         {
            // _shapeRepository = shapeRepository ?? throw new ArgumentNullException(nameof(shapeRepository));
-        } 
+        }
 
         #endregion
+        public void WriteShape(string filePath, ShapeTypes shapeType)
+        {
+            throw new NotImplementedException($"Method Not implemeted");
+        }
 
-        public IShape ReadShape(ShapeTypes shapeType)
+        public IShape ReadShape(string shapeFilePath, ShapeTypes shapeType)
+        {
+            switch (shapeType)
+                {
+                    case ShapeTypes.EquilateralTriangle:
+                        {
+                            EquilateralTriangleModel triangleModel = new ShapesRepository<EquilateralTriangleModel>().ReadShape(shapeFilePath);
+                            return new EquilateralTriangle(triangleModel.Side, triangleModel.Unit);
+                        }
+                    case ShapeTypes.Circle:
+                        {
+                            CircleModel circleModel = new ShapesRepository<CircleModel>().ReadShape(shapeFilePath);
+                            return new Circle(circleModel.Radius, circleModel.Unit);
+                        }
+                    case ShapeTypes.Rectangle:
+                        {
+                            RectangleModel rectangleModel = new ShapesRepository<RectangleModel>().ReadShape(shapeFilePath);
+                            return new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
+                        }
+                    case ShapeTypes.Ellipse:
+                        {
+                            EllipseModel ellipseModel = new ShapesRepository<EllipseModel>().ReadShape(shapeFilePath);
+                            return new Ellipse(ellipseModel.Radius1, ellipseModel.Radius2, ellipseModel.Unit);
+                        }
+                    default:
+                        {
+                            throw new ArgumentException($"This method {shapeType} is invalid or not implemented yet"); ;
+                        }
+                
+            }
+            throw new NotImplementedException("Not implemeted");
+        }
+
+        #region ExampleMethod
+        public IShape ReadShapeExample(ShapeTypes shapeType)
         {
             string shapeName = $"{shapeType}.json";
                       
@@ -55,5 +95,6 @@ namespace Module1.TypesAndClasses.Services
                     }
             }
         }
+#endregion
     }
 }

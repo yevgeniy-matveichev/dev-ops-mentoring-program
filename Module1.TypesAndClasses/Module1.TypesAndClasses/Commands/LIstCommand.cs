@@ -34,10 +34,10 @@ namespace Module1.TypesAndClasses.Commands
 
             return _instruction switch
             {
-                "c" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Circle)} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Ellipse)} {Environment.NewLine}",
-                "r" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.Rectangle)} {Environment.NewLine}",
-                "t" => $"{Environment.NewLine}{_shapeService.ReadShape(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
+                "c" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.Circle)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.Ellipse)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.Rectangle)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
                 _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
