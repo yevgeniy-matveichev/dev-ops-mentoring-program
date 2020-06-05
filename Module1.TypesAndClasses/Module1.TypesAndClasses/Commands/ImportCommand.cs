@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,6 +22,7 @@ namespace Module1.TypesAndClasses.Commands
         private readonly string[] _inputParameters;
         private readonly string _path;
         private readonly string _shapeType;
+        private readonly ShapesService _shapeService;
 
         public ImportCommand(string[] inputParameters)
         {
@@ -27,11 +30,24 @@ namespace Module1.TypesAndClasses.Commands
             if (_inputParameters.Length < 4) throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
             if (_inputParameters.Contains(Commands[0])) _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
             if (_inputParameters.Contains(Commands[1])) _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
+            _shapeService = new ShapesService();
         }
 
         public string Execute()
         {
-            return "Method is not implemented.";
+            if (_shapeType == null)
+            {
+                throw new ArgumentNullException(nameof(_shapeType));
+            }
+
+            return _shapeType switch
+            {
+                "c" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.Circle)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.Ellipse)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.Rectangle)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
+                _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+            };
         }
 
         public string Validate()
