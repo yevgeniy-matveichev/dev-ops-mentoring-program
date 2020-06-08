@@ -1,7 +1,6 @@
 ﻿using Mentoring.DataAccess;
 using System;
 
-
 namespace Mentoring.Shapes
 {
     static class ShapeHelper
