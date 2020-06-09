@@ -1,5 +1,4 @@
-﻿using Mentoring.DataAccess.ShapesRepository;
-using Mentoring.Shapes.Interfaces;
+﻿using Mentoring.Shapes.Interfaces;
 using System;
 
 

@@ -3,7 +3,7 @@ using System;
 
 namespace Mentoring.Shapes
 {
-    static class ShapeHelper
+    public static class ShapeHelper
     {
         public static double ToMeters(Units unit, double value)
         {
