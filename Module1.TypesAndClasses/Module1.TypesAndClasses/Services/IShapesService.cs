@@ -4,11 +4,11 @@ namespace Module1.TypesAndClasses.Services
 {
     public interface IShapesService
     {
-        IShape ReadShapeExample(ShapeTypes shapetype);
+        IShape ReadShapeExample();
 
-        IShape ReadShape(string shapeFilePath, ShapeTypes shapetype);
+        IShape ReadShape(string shapeFilePath);
 
-        IShape WriteShape(string shapeFilePath, IShape shape);
+        void WriteShape(string shapeFilePath, IShape shape);
     }
 
 }
