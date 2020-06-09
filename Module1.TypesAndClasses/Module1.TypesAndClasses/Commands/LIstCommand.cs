@@ -17,12 +17,19 @@ namespace Module1.TypesAndClasses.Commands
         private readonly string[] _inputParameters;
         private readonly string _instruction;
 
+        private readonly ShapeServiceFactory _shapeServiceFactory;
+
         public ListCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            if (_inputParameters.Length < 3) throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
+            if (_inputParameters.Length < 3)
+            {
+                throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
+            }
             _shapeService  = new ShapesService();
             _instruction = _inputParameters[2];
+
+            _shapeServiceFactory = new ShapeServiceFactory();
         }
 
         public string Execute()
@@ -34,8 +41,8 @@ namespace Module1.TypesAndClasses.Commands
 
             return _instruction switch
             {
-                "c" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.Circle)} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.Ellipse)} {Environment.NewLine}",
+                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShapeExample()} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.Rectangle)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeService.ReadShapeExample(ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
                 _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),

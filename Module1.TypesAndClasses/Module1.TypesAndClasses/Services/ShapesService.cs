@@ -24,6 +24,7 @@ namespace Module1.TypesAndClasses.Services
         }
 
         #endregion
+
         public IShape WriteShape(string shapeFilePath, IShape shape)
         {
             switch (shape.shapeType)
@@ -33,8 +34,7 @@ namespace Module1.TypesAndClasses.Services
                         throw new ArgumentException($"This method {shape.shapeType} is invalid or not implemented yet"); ;
                     }
             }
-        }
-        
+        }        
 
         public IShape ReadShape(string shapeFilePath, ShapeTypes shapeType)
         {
@@ -49,11 +49,6 @@ namespace Module1.TypesAndClasses.Services
                         {
                             CircleModel circleModel = new ShapesRepository<CircleModel>().ReadShape(shapeFilePath);
                             return new Circle(circleModel.Radius, circleModel.Unit);
-                        }
-                    case ShapeTypes.Rectangle:
-                        {
-                            RectangleModel rectangleModel = new ShapesRepository<RectangleModel>().ReadShape(shapeFilePath);
-                            return new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
                         }
                     case ShapeTypes.Ellipse:
                         {
@@ -83,11 +78,6 @@ namespace Module1.TypesAndClasses.Services
                     {
                         CircleModel circleModel = new ShapesRepository<CircleModel>().ReadShapeExample(shapeName);
                         return new Circle(circleModel.Radius, circleModel.Unit);
-                    }
-                case ShapeTypes.Rectangle:
-                    {
-                        RectangleModel rectangleModel = new ShapesRepository<RectangleModel>().ReadShapeExample(shapeName);
-                        return new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
                     }
                 case ShapeTypes.Ellipse:
                     {
