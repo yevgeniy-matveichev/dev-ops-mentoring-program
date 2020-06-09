@@ -27,9 +27,18 @@ namespace Module1.TypesAndClasses.Commands
         public ImportCommand(string[] inputParameters)
         {
             _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            if (_inputParameters.Length < 4) throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
-            if (_inputParameters.Contains(Commands[0])) _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
-            if (_inputParameters.Contains(Commands[1])) _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
+            if (_inputParameters.Length < 4)
+            {
+                throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
+            }
+            if (_inputParameters.Contains(Commands[0]))
+            {
+                _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
+            }
+            if (_inputParameters.Contains(Commands[1]))
+            {
+                _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
+            }
             _shapeService = new ShapesService();
         }
 
