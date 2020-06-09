@@ -1,5 +1,4 @@
-﻿using Mentoring.Shapes.Interfaces;
-using Module1.TypesAndClasses.Services;
+﻿using Module1.TypesAndClasses.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
