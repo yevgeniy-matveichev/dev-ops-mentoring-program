@@ -19,10 +19,14 @@ namespace Module1.TypesAndClasses.Commands
             "c", "e", "r", "t"
         };
 
+        #region private fields
+
         private readonly string[] _inputParameters;
         private readonly string _path;
         private readonly string _shapeType;
-        private readonly ShapesService _shapeService;
+        private readonly ShapeServiceFactory _shapeServiceFactory;
+
+        #endregion
 
         public ImportCommand(string[] inputParameters)
         {
@@ -39,7 +43,8 @@ namespace Module1.TypesAndClasses.Commands
             {
                 _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
             }
-            _shapeService = new ShapesService();
+
+            _shapeServiceFactory = new ShapeServiceFactory();
         }
 
         public string Execute()
@@ -51,10 +56,10 @@ namespace Module1.TypesAndClasses.Commands
 
             return _shapeType switch
             {
-                "c" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.Circle)} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.Ellipse)} {Environment.NewLine}",
-                "r" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.Rectangle)} {Environment.NewLine}",
-                "t" => $"{Environment.NewLine}{_shapeService.ReadShape(_path, ShapeTypes.EquilateralTriangle)} {Environment.NewLine}",
+                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShape(_path)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShape(_path)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShape(_path)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShape(_path)} {Environment.NewLine}",
                 _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
