@@ -1,13 +1,11 @@
 ﻿using Mentoring.Shapes.Interfaces;
 using Module1.TypesAndClasses.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Factories
 
 {
-    class ShapeServiceFactory
+    public class ShapeServiceFactory
     {
         public IShapesService Create(ShapeTypes shapeType)
         {
@@ -37,6 +35,3 @@ namespace Module1.TypesAndClasses.Factories
         }
     }
 }
-
-
-
