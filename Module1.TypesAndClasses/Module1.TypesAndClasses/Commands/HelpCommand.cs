@@ -52,7 +52,7 @@ namespace Module1.TypesAndClasses.Commands
         {
             if(_inputParameters.Length > 2)
             {
-                return $"Incorrect usage of 'help' command: '{_inputParameters}'. {Environment.NewLine}" +
+                return $"Incorrect usage of 'help' command: '{string.Join(" ", _inputParameters)}'. {Environment.NewLine}" +
                     "Example: help list.";
             }
 
@@ -60,7 +60,7 @@ namespace Module1.TypesAndClasses.Commands
             {
                 if (!CommandsDescription.ContainsKey(_inputParameters[1]))
                 {
-                    return $"Incorrect usage of 'help' command: '{_inputParameters}' is not recognized as an option. {Environment.NewLine}" +
+                    return $"Incorrect usage of 'help' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
                         "Example: help list.";
                 }
             }
