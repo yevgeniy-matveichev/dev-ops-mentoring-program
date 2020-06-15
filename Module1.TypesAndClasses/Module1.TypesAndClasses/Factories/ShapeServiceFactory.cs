@@ -7,7 +7,7 @@ using System.Text;
 namespace Module1.TypesAndClasses.Factories
 
 {
-    class ShapeServiceFactory
+    public class ShapeServiceFactory
     {
         public IShapesService Create(ShapeTypes shapeType)
         {
