@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Tests.Shapes
     public class CircleTest
     {
         [Theory]
-        [InlineData(10.0, 314.15)]
+        [InlineData(10.0, 314.16)]
         [InlineData(5.0, 78.54)]
         public void TestSquare(double radius, double expectedSquare)
         {           

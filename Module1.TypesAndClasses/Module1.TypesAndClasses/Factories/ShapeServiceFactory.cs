@@ -1,9 +1,10 @@
 ﻿using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Module1.TypesAndClasses.Services
+namespace Module1.TypesAndClasses.Factories
 
 {
     class ShapeServiceFactory
