@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Module1.TypesAndClasses.Commands
 {
-    class ListCommand : IInputCommand
+    public class ListCommand : IInputCommand
     {
         readonly List<string> ShapesTypes = new List<string>
         {

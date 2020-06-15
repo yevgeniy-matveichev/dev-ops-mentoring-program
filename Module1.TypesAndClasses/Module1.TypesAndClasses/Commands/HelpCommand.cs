@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Module1.TypesAndClasses.Commands
 {
-    class HelpCommand : IInputCommand
+    public class HelpCommand : IInputCommand
     {
         private readonly string[] _inputParameters;
 

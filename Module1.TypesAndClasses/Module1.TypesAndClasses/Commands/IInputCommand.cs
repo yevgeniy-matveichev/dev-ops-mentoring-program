@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Commands
 {
-    interface IInputCommand
+    public interface IInputCommand
     {
         string Execute();
 
