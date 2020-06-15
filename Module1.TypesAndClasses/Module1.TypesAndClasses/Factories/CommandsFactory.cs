@@ -3,7 +3,7 @@ using System;
 
 namespace Module1.TypesAndClasses.Factories
 {
-    class CommandsFactory
+    public class CommandsFactory
     {
         private readonly string[] _commandParams;
 

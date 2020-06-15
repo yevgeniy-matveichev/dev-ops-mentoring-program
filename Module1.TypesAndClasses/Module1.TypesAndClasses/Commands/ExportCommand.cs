@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Module1.TypesAndClasses.Commands
 {
-    class ExportCommand : IInputCommand
+    public class ExportCommand : IInputCommand
     {
         readonly List<string> Commands = new List<string>
         {

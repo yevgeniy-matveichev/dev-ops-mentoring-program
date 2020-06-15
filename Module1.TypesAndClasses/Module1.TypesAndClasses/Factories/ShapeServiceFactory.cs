@@ -1,8 +1,6 @@
 ﻿using Mentoring.Shapes.Interfaces;
 using Module1.TypesAndClasses.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Factories
 
@@ -37,6 +35,3 @@ namespace Module1.TypesAndClasses.Factories
         }
     }
 }
-
-
-
