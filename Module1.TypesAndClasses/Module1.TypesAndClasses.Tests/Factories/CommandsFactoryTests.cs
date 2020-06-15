@@ -25,7 +25,7 @@ namespace Module1.TypesAndClasses.Tests.Factories
         [InlineData("")]
         [InlineData(null)]
         [InlineData("wrongCommand")]
-        public void TestCommandsFactory_Fail(string param)
+        public void TestCommandsFactory_Throws(string param)
         {
             Assert.Throws<NotSupportedException>(() => _factory.Create(param)); 
         }
