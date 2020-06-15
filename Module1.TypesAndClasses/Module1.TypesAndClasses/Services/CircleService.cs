@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
-    class CircleService : IShapesService
+    public class CircleService : IShapesService
     {
         private ShapesRepository<CircleModel> _repository;
 

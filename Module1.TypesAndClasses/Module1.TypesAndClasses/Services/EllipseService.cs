@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
-    class EllipseService : IShapesService
+    public class EllipseService : IShapesService
     {
         #region Private Fields
 

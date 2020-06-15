@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
-    class TriangleService : IShapesService
+    public class TriangleService : IShapesService
     {
         #region Private Fields
 

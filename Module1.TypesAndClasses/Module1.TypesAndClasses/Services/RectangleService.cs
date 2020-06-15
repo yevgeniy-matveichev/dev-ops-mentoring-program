@@ -6,7 +6,7 @@ using System;
 
 namespace Module1.TypesAndClasses.Services
 {
-    class RectangleService : IShapesService
+    public class RectangleService : IShapesService
     {
         #region Private Fields
 
