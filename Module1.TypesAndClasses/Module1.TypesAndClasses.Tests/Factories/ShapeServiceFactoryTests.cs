@@ -1,10 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Factories;
+using Module1.TypesAndClasses.Services;
+using System;
+using Xunit;
 
 namespace Module1.TypesAndClasses.Tests.Factories
 {
-    class ShapeServiceFactoryTests
+    public class ShapeServiceFactoryTests
     {
+        private readonly ShapeServiceFactory _shapeServiceFactory = new ShapeServiceFactory();
+
+        [Theory]
+        [InlineData(ShapeTypes.Circle, typeof(CircleService))]
+        [InlineData(ShapeTypes.Ellipse, typeof(EllipseService))]
+        [InlineData(ShapeTypes.EquilateralTriangle, typeof(TriangleService))]
+        [InlineData(ShapeTypes.Rectangle, typeof(RectangleService))]
+        public void ShapeServiceFactory_Create(ShapeTypes type, Type t)
+        {
+            IShapesService service = _shapeServiceFactory.Create(type);
+            Assert.IsType(t, service);
+        }
+
+        /*[Theory]
+        [InlineData("WrongShape")]
+        public void ShapeServiceFactory_Throws(string shapeType)
+        {
+            Assert.Throws<ArgumentException>(() => _shapeServiceFactory.Create(shapeType));
+        }*/
     }
 }
