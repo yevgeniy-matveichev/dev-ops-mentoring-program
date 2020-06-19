@@ -1,5 +1,6 @@
 ﻿using Module1.TypesAndClasses.Commands;
 using System;
+using System.Text;
 using Xunit;
 
 namespace Module1.TypesAndClasses.Tests.Commands
@@ -26,12 +27,18 @@ namespace Module1.TypesAndClasses.Tests.Commands
             Assert.Equal(expected, command.Validate());
         }
 
-        // todo
         [Fact]
         public void HelpCommand_Execute_OneParam()
         {
             HelpCommand command = new HelpCommand(new string[] { "help" });
-            //Assert.Equal();
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var cmd in command.CommandsDescription.Keys)
+            {
+                sb.Append($"{cmd}\t\t{command.CommandsDescription[cmd]}\r\n");
+            }
+
+            Assert.Equal(sb.ToString(), command.Execute());
         }
 
         [Theory]
