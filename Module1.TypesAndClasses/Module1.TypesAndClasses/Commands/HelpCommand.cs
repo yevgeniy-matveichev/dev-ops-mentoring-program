@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Module1.TypesAndClasses.Commands
 {
@@ -23,14 +24,18 @@ namespace Module1.TypesAndClasses.Commands
 
         public string Execute()
         {
-            string result = string.Empty;
+            string result;
+
+            StringBuilder sb = new StringBuilder();
 
             if (_inputParameters.Length == 1) 
             {
                 foreach(var command in CommandsDescription.Keys)
                 {
-                    Console.WriteLine($"{command}\t\t{CommandsDescription[command]}");
+                    sb.Append($"{command}\t\t{CommandsDescription[command]}{Environment.NewLine}");
                 }
+
+                result = sb.ToString();
             }
             else
             {
