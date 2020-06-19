@@ -21,11 +21,10 @@ namespace Module1.TypesAndClasses.Tests.Factories
             Assert.IsType(t, service);
         }
 
-        /*[Theory]
-        [InlineData("WrongShape")]
-        public void ShapeServiceFactory_Throws(string shapeType)
+        [Fact]
+        public void ShapeServiceFactory_Throws()
         {
-            Assert.Throws<ArgumentException>(() => _shapeServiceFactory.Create(shapeType));
-        }*/
+            Assert.Throws<ArgumentException>(() => _shapeServiceFactory.Create(ShapeTypes.None));
+        }
     }
 }

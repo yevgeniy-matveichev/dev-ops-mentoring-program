@@ -2,11 +2,9 @@
 
 namespace Mentoring.Shapes.Interfaces
 {
-  
-
-    // cr: ShapeType => ShapeTypes, please. Enum names are usually plurual, enum members - singular
     public enum ShapeTypes
     {
+        None,
         Circle,
         Ellipse,
         EquilateralTriangle,
@@ -15,13 +13,12 @@ namespace Mentoring.Shapes.Interfaces
 
     public interface IShape
     {
-        // cr: let's rename the methods to GetSquare(), GetPerimeter, because currently they sound like props.
         double GetSquare();
 
         double GetPerimeter();
 
         Units Unit { get; }
         
-        ShapeTypes shapeType { get; } // cr: ShapeType shapeType => ShapeTypes ShapeType, please
+        ShapeTypes shapeType { get; }
     }
 }
