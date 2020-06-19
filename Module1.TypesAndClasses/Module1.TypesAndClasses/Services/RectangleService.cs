@@ -37,7 +37,7 @@ namespace Module1.TypesAndClasses.Services
         #endregion
 
         #region Private methods
-        private static IShape Convert(RectangleModel rectangleModel) => new Ellipse(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
+        private static IShape Convert(RectangleModel rectangleModel) => new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
 
         #endregion
     }

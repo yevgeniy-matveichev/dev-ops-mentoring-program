@@ -29,7 +29,7 @@ namespace Module1.TypesAndClasses.Services
 
         public IShape ReadShape(string shapeFilePath) => Convert(_repository.ReadShape(shapeFilePath));
 
-        public IShape ReadShapeExample() => Convert(_repository.ReadShapeExample("equilateraltrianglemodel.json"));
+        public IShape ReadShapeExample() => Convert(_repository.ReadShapeExample("equilateraltriangle.json"));
 
         public void WriteShape(string shapeFilePath, IShape shape)
         {

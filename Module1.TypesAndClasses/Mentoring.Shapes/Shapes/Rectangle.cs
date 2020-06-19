@@ -41,7 +41,7 @@ namespace Mentoring.Shapes.Shapes
 
         public override string ToString()
         {
-            return $"Shape: '{nameof(Rectangle)}'. Square = {GetSquare()} {Units.Meter}2,"
+            return $"Shape: '{nameof(Rectangle)}'. Square = {GetSquare()} {Units.Meter},"
                 + $"perimeter = {GetPerimeter()} {Units.Meter}, SideA = {ShapeHelper.ToMeters(this.Unit,this._sideA)}, "
                 + $"SideB = {ShapeHelper.ToMeters(this.Unit, this._sideB)}";
         }
