@@ -74,11 +74,5 @@ namespace Module1.TypesAndClasses
                 }
             }
         }
-
-        //private static List<string> ToFullShapeName(List<string> shapes)
-        //{
-        //    return ShapeCommandsMapping.Where(pair => shapes.Contains(pair.Key))
-        //                               .Select(pair => pair.Value).ToList();
-        //}
     }
 }
