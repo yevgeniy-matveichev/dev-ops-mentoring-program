@@ -38,7 +38,7 @@ namespace Module1.TypesAndClasses
             
             while (!(userInput = Console.ReadLine()).Equals("exit"))
             {
-                string[] parameters = userInput.Split(' ');
+                string[] parameters = userInput.Trim().Split(' ');
 
                 if(!ParametersList.Contains(parameters[0]))
                 {

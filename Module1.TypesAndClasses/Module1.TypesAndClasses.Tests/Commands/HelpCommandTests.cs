@@ -13,7 +13,7 @@ namespace Module1.TypesAndClasses.Tests.Commands
         {
             HelpCommand command = new HelpCommand(param);
             string expected = $"Incorrect usage of 'help' command: '{string.Join(" ", param)}'. {Environment.NewLine}" +
-                    "Example: help list.";
+                    "Example: 'help list' or 'help'.";
             Assert.Equal(expected, command.Validate());
         }
 
@@ -23,7 +23,7 @@ namespace Module1.TypesAndClasses.Tests.Commands
         {
             HelpCommand command = new HelpCommand(param);
             string expected = $"Incorrect usage of 'help' command: '{param[1]}' is not recognized as an option. {Environment.NewLine}" +
-                        "Example: help list.";
+                        "Example: 'help list' or 'help'.";
             Assert.Equal(expected, command.Validate());
         }
 
@@ -42,7 +42,7 @@ namespace Module1.TypesAndClasses.Tests.Commands
         }
 
         [Theory]
-        [InlineData("help", "help\t\tDescribes Shapes program commands.\r\n\t\tExample: help list")]
+        [InlineData("help", "help\t\tDescribes Shapes program commands.\r\n\t\tExample: help list\r\n\t\tExample: help list")]
         [InlineData("list", "list\t\tShows the example of the shape.\r\n\t\tExample: list -json-example c")]
         [InlineData("import", "import\t\tImports the shape from the path.\r\n\t\tExample: import -path D:\\temp\\file.json -shapeType c")]
         [InlineData("export", "export\t\tExports the shape to JSON file, saves the file to specified path.\r\n\t\tExample: export -path D:\\temp\\circle.json -shapeType c")]

@@ -10,7 +10,7 @@ namespace Module1.TypesAndClasses.Commands
 
         public readonly Dictionary<string, string> CommandsDescription = new Dictionary<string, string>()
         {
-            { "help", $"Describes Shapes program commands.{Environment.NewLine}\t\tExample: help list" },
+            { "help", $"Describes Shapes program commands.{Environment.NewLine}\t\tExample: help list{Environment.NewLine}\t\tExample: help" },
             { "list", $"Shows the example of the shape.{Environment.NewLine}\t\tExample: list -json-example c" },
             { "import", $"Imports the shape from the path.{Environment.NewLine}\t\tExample: import -path D:\\temp\\file.json -shapeType c" },
             { "export", $"Exports the shape to JSON file, saves the file to specified path.{Environment.NewLine}\t\tExample: export -path D:\\temp\\circle.json -shapeType c" },
@@ -58,7 +58,7 @@ namespace Module1.TypesAndClasses.Commands
             if(_inputParameters.Length > 2)
             {
                 return $"Incorrect usage of 'help' command: '{string.Join(" ", _inputParameters)}'. {Environment.NewLine}" +
-                    "Example: help list.";
+                    "Example: 'help list' or 'help'.";
             }
 
             if(_inputParameters.Length == 2)
@@ -66,7 +66,7 @@ namespace Module1.TypesAndClasses.Commands
                 if (!CommandsDescription.ContainsKey(_inputParameters[1]))
                 {
                     return $"Incorrect usage of 'help' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
-                        "Example: help list.";
+                        "Example: 'help list' or 'help'.";
                 }
             }
 
