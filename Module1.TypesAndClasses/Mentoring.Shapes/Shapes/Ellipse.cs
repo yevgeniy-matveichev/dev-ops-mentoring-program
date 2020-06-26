@@ -8,11 +8,13 @@ namespace Mentoring.Shapes.Shapes
     {
         private readonly double _radius1;
         private readonly double _radius2;
-         
-        public Ellipse(double radius1, double radius2, Units unit = Units.Meter) : base(unit)
+        public readonly Units _unit;
+
+        public Ellipse(double radius1, double radius2, Units unit) : base(unit)
         {
-            _radius1 = radius1;
-            _radius2 = radius2;
+            _radius1 = ShapeHelper.ToMeters(unit, radius1);
+            _radius2 = ShapeHelper.ToMeters(unit, radius2);
+            _unit = unit;
         }
 
         public override ShapeTypes shapeType => ShapeTypes.Ellipse;
