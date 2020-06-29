@@ -19,6 +19,6 @@ namespace Mentoring.Shapes.Interfaces
 
         Units Unit { get; }
         
-        ShapeTypes shapeType { get; }
+        ShapeTypes ShapeType { get; }
     }
 }

@@ -12,33 +12,25 @@ namespace Module1.TypesAndClasses.Commands
             "c", "e", "r", "t"
         };
 
-        #region private fields
-
-        private readonly string[] _inputParameters;
-        private readonly string _instruction;
         private readonly ShapeServiceFactory _shapeServiceFactory;
 
-        #endregion
-
-        public ListCommand(string[] inputParameters)
+        public ListCommand()
         {
-            _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            if (_inputParameters.Length < 3)
-            {
-                throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
-            }
-            _instruction = _inputParameters[2];
             _shapeServiceFactory = new ShapeServiceFactory();
         }
 
-        public string Execute()
+        public string Name => nameof(ListCommand);
+
+        public string Execute(string[] inputParameters)
         {
-            if(_instruction == null)
+            var instruction = inputParameters[2];
+
+            if (instruction == null)
             {
-                throw new ArgumentNullException(nameof(_instruction));
+                throw new ArgumentNullException(nameof(instruction));
             }
 
-            return _instruction switch
+            return instruction switch
             {
                 "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShapeExample()} {Environment.NewLine}",
                 "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShapeExample()} {Environment.NewLine}",
@@ -48,26 +40,37 @@ namespace Module1.TypesAndClasses.Commands
             };
         }
 
-        public string Validate()
+        public string Validate(string[] inputParameters)
         {
-            if (!(_inputParameters.Length == 3))
+            if (inputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(inputParameters));
+            }
+
+            if (inputParameters.Length < 3)
+            {
+                throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
+            }
+            
+
+            if (!(inputParameters.Length == 3))
             {
                 return $"Incorrect usage of 'list' command. {Environment.NewLine}" +
                     "Example: list -json-example c.";
             }
 
-            if (!(_inputParameters[1] == "-json-example"))
+            if (!(inputParameters[1] == "-json-example"))
             {
-                return $"Incorrect usage of 'list' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
+                return $"Incorrect usage of 'list' command: '{inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
                     "Example: list -json-example c.";
             }
 
-            if (!ShapesTypes.Contains(_inputParameters[2]))
+            if (!ShapesTypes.Contains(inputParameters[2]))
             {
-                return $"Not supported argument '{_inputParameters[2]}'. Supported shapes - {string.Join(", ", ShapesTypes)}.";
+                return $"Not supported argument '{inputParameters[2]}'. Supported shapes - {string.Join(", ", ShapesTypes)}.";
             }
 
-            if (_inputParameters[1] == null)
+            if (inputParameters[1] == null)
             {
                 return $"Incorrect usage of 'list' command: the option '-json-example' was not provided. {Environment.NewLine}" +
                     "Example: list -json-example c.";

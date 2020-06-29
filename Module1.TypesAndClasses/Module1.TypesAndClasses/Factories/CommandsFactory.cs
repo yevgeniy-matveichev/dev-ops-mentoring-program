@@ -1,25 +1,27 @@
 ﻿using Module1.TypesAndClasses.Commands;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Module1.TypesAndClasses.Factories
 {
-    public class CommandsFactory
+    public class InputCommandsPool
     {
-        private readonly string[] _commandParams;
+        private readonly IEnumerable<IInputCommand> _commands;
 
-        public CommandsFactory(string[] commandParams)
+        public InputCommandsPool(IEnumerable<IInputCommand> commands)
         {
-            _commandParams = commandParams ?? throw new ArgumentNullException(nameof(commandParams));
+            _commands = commands ?? throw new ArgumentNullException();
         }
 
-        public IInputCommand Create(string commandName)
+        public IInputCommand Take(string commandName)
         {
             return commandName switch
             {
-                "list" => new ListCommand(_commandParams),
-                "import" => new ImportCommand(_commandParams),
-                "export" => new ExportCommand(_commandParams),
-                "help" => new HelpCommand(_commandParams),
+                "list" => _commands.Single(c => c.Name == nameof(ListCommand)),
+                "import" => _commands.Single(c => c.Name == nameof(ImportCommand)),
+                "export" => _commands.Single(c => c.Name == nameof(ExportCommand)),
+                "help" => _commands.Single(c => c.Name == nameof(HelpCommand)),
                 _ => throw new NotSupportedException($"Unknown command name: '{commandName}'"),
             };
         }

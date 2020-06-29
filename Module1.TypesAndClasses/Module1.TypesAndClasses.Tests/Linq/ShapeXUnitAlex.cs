@@ -42,7 +42,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestCircleSquare()
         {
             //    Выбрать Circle с наибольшей площадью, при этом площадь должна быть не менее 1 квадратного метра(Exception, если такой Circle в списке отсутствует). 
-            Circle circle = (Circle)_shapes.Where(shape => shape.GetSquare() >= 1 && shape.Unit.Equals(Units.Meter) && shape.shapeType.Equals(ShapeTypes.Circle))
+            Circle circle = (Circle)_shapes.Where(shape => shape.GetSquare() >= 1 && shape.Unit.Equals(Units.Meter) && shape.ShapeType.Equals(ShapeTypes.Circle))
                             .Max();
             
             Assert.True(circle.GetSquare() >= 1 && circle.Unit.Equals(Units.Meter));
@@ -52,7 +52,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestRectanglePerimeter()
         {
             //    Выбрать Rectangle с наименьшим периметром(no exceptions).  
-            Rectangle rect = (Rectangle)_shapes.Where(shape => shape.shapeType.Equals(ShapeTypes.Rectangle))
+            Rectangle rect = (Rectangle)_shapes.Where(shape => shape.ShapeType.Equals(ShapeTypes.Rectangle))
                                 .OrderBy(shape => shape.GetPerimeter())
                                 .FirstOrDefault();
 
@@ -63,7 +63,7 @@ namespace Module1.TypesAndClasses.Tests.Linq
         public void TestType()
         {
             //    Отфильтровать список  по типу: выбрать только фигуры типа Rectangle и Circle(оба типа в одном). 
-            var figures = _shapes.Where(shape => shape.shapeType.Equals(ShapeTypes.Rectangle) || shape.shapeType.Equals(ShapeTypes.Circle));
+            var figures = _shapes.Where(shape => shape.ShapeType.Equals(ShapeTypes.Rectangle) || shape.ShapeType.Equals(ShapeTypes.Circle));
             foreach (var figure in figures)
             {
                 Assert.True(figure.GetType() == typeof(Circle) || figure.GetType() == typeof(Rectangle));

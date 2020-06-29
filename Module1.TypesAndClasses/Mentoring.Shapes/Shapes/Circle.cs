@@ -9,7 +9,7 @@ namespace Mentoring.Shapes.Shapes
         public readonly double _radius;
         public readonly Units _unit;
 
-        public override ShapeTypes shapeType => ShapeTypes.Circle;
+        public override ShapeTypes ShapeType => ShapeTypes.Circle;
 
         #region constructor
 

@@ -7,7 +7,7 @@ namespace Module1.TypesAndClasses.Tests.Factories
 {
     public class CommandsFactoryTests
     {
-        private readonly CommandsFactory _factory = new CommandsFactory(new string[] { "param1", "param2", "param3", "param4" });
+        private readonly InputCommandsPool _factory = new InputCommandsPool(new string[] { "param1", "param2", "param3", "param4" });
 
         [Theory]
         [InlineData("list", typeof(ListCommand))]
@@ -16,7 +16,7 @@ namespace Module1.TypesAndClasses.Tests.Factories
         [InlineData("import", typeof(ImportCommand))]
         public void TestCommandsFactory_Create(string param, Type t)
         {
-            IInputCommand command = _factory.Create(param);
+            IInputCommand command = _factory.Take(param);
             Assert.NotNull(command);
             Assert.IsType(t, command);
         }
@@ -27,7 +27,7 @@ namespace Module1.TypesAndClasses.Tests.Factories
         [InlineData("wrongCommand")]
         public void TestCommandsFactory_Throws(string param)
         {
-            Assert.Throws<NotSupportedException>(() => _factory.Create(param)); 
+            Assert.Throws<NotSupportedException>(() => _factory.Take(param)); 
         }
     }
 }

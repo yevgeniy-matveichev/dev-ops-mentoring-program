@@ -19,73 +19,71 @@ namespace Module1.TypesAndClasses.Commands
             "c", "e", "r", "t"
         };
 
-        #region private fields
-
-        private readonly string[] _inputParameters;
-        private readonly string _path;
-        private readonly string _shapeType;
         private readonly ShapeServiceFactory _shapeServiceFactory;
 
-        #endregion
-
-        public ImportCommand(string[] inputParameters)
+        public ImportCommand()
         {
-            _inputParameters = inputParameters ?? throw new ArgumentNullException(nameof(inputParameters));
-            if (_inputParameters.Length < 4)
-            {
-                throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
-            }
-            if (_inputParameters.Contains(Commands[0]))
-            {
-                _path = _inputParameters[Array.IndexOf(_inputParameters, "-path") + 1];
-            }
-            if (_inputParameters.Contains(Commands[1]))
-            {
-                _shapeType = _inputParameters[Array.IndexOf(_inputParameters, "-shapeType") + 1];
-            }
-
             _shapeServiceFactory = new ShapeServiceFactory();
         }
 
-        public string Execute()
+        public string Name => nameof(ImportCommand);
+
+        public string Execute(string[] inputParameters)
         {
-            if (_shapeType == null)
+            var path = String.Empty;
+            if (inputParameters.Contains(Commands[0]))
             {
-                throw new ArgumentNullException(nameof(_shapeType));
+                path = inputParameters[Array.IndexOf(inputParameters, "-path") + 1];
             }
 
-            return _shapeType switch
+            var shapeType = String.Empty;
+            if (inputParameters.Contains(Commands[1]))
             {
-                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShape(_path)} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShape(_path)} {Environment.NewLine}",
-                "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShape(_path)} {Environment.NewLine}",
-                "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShape(_path)} {Environment.NewLine}",
+                shapeType = inputParameters[Array.IndexOf(inputParameters, "-shapeType") + 1];
+            }
+
+            return shapeType switch
+            {
+                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShape(path)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShape(path)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShape(path)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShape(path)} {Environment.NewLine}",
                 _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
 
-        public string Validate()
+        public string Validate(string[] inputParameters)
         {
-            if (!(_inputParameters.Length == 5))
+            if (inputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(inputParameters));
+            }
+
+            if (inputParameters.Length < 4)
+            {
+                throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
+            }
+
+            if (!(inputParameters.Length == 5))
             {
                 return $"Incorrect usage of 'import' command. {Environment.NewLine}" +
                     "Example: import -path D:\\temp\\file.json -shapeType c.";
             }
 
-            if (!(_inputParameters[1] == "-path"))
+            if (!(inputParameters[1] == "-path"))
             {
-                return $"Incorrect usage of 'import' command: '{_inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
+                return $"Incorrect usage of 'import' command: '{inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
                     "Example: import -path D:\\temp\\file.json -shapeType c.";
             }
 
-            if (!File.Exists(_inputParameters[2]))
+            if (!File.Exists(inputParameters[2]))
             {
-                return $"File {_inputParameters[2]} does not exist.";
+                return $"File {inputParameters[2]} does not exist.";
             }
 
-            if (!_inputParameters[2].EndsWith(".json"))
+            if (!inputParameters[2].EndsWith(".json"))
             {
-                return $"Incorrect file extension provided - {_inputParameters[2]}. Must be .json.";
+                return $"Incorrect file extension provided - {inputParameters[2]}. Must be .json.";
             }
 
             return string.Empty;

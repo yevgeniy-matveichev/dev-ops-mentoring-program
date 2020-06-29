@@ -6,8 +6,10 @@ namespace Module1.TypesAndClasses.Commands
 {
     public interface IInputCommand
     {
-        string Execute();
+        string Name { get; }
 
-        string Validate();
+        string Execute(string[] inputParameters);
+
+        string Validate(string[] inputParameters);
     }
 }

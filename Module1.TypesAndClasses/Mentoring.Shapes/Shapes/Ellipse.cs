@@ -17,7 +17,7 @@ namespace Mentoring.Shapes.Shapes
             _unit = unit;
         }
 
-        public override ShapeTypes shapeType => ShapeTypes.Ellipse;
+        public override ShapeTypes ShapeType => ShapeTypes.Ellipse;
 
         #region public methods
 
