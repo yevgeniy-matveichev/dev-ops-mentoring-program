@@ -3,7 +3,6 @@ using Module1.TypesAndClasses.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
@@ -22,24 +21,15 @@ namespace Module1.TypesAndClasses.Services
             "help", "list", "import", "export", "exit"
         }.OrderBy(x => x).ToList();
 
-        // ??? 
         private readonly InputCommandsPool _inputCommandsPool;
 
-        // ???
         public UserInputProcessingService(InputCommandsPool inputCommandsPool)
         {
-            _inputCommandsPool = inputCommandsPool;
+            _inputCommandsPool = inputCommandsPool ?? throw new ArgumentNullException(nameof(inputCommandsPool));
         }
 
         public void Run()
         {
-            //List<string> supportedShapes = args.ToList();
-
-            //if (!supportedShapes.Any())
-            //{
-            //    supportedShapes.AddRange(ShapeCommandsMapping.Keys);
-            //}
-
             List<string> supportedShapes = new List<string>();
             supportedShapes.AddRange(ShapeCommandsMapping.Keys);
 
@@ -62,11 +52,7 @@ namespace Module1.TypesAndClasses.Services
                 {
                     string commandName = parameters[0].ToLower().Trim();
 
-                    // todo: make it work :)
-                    /*
-                    var commandsFactory = serviceProvider.GetService<InputCommandsPool>();
-                    IInputCommand command = commandsFactory.Take(commandName);
-                    */
+                    IInputCommand command = _inputCommandsPool.Take(commandName);
 
                     string validationMessage = command.Validate(parameters);
 
