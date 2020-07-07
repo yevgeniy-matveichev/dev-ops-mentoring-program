@@ -23,12 +23,12 @@ namespace Mentoring.Shapes.Shapes
 
         public override double GetPerimeter()
         {
-            return 2 * Math.PI * Math.Sqrt((Math.Pow(_radius1, 2) + Math.Pow(_radius2, 2)) / 8);
+            return 2 * Math.PI * Math.Sqrt((Math.Pow(_radius1, 2) + Math.Pow(_radius2, 2)) / 2);
         }
 
         public override double GetSquare()
         {
-            return Math.Round(_radius1 * _radius2 * Math.PI);
+            return _radius1 * _radius2 * Math.PI;
         }
 
         public override string ToString() => $"Shape: '{GetType().Name}'. Square = {GetSquare()}, perimeter = {GetPerimeter()}";
