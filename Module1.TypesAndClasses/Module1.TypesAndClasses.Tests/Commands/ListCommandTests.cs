@@ -4,7 +4,7 @@ using System.Text;
 using Xunit;
 using Module1.TypesAndClasses.Commands;
 using Mentoring.Shapes.Interfaces;
-using Module1.TypesAndClasses.Factories;
+using Module1.TypesAndClasses.Pools;
 
 namespace Module1.TypesAndClasses.Tests.Commands
 {

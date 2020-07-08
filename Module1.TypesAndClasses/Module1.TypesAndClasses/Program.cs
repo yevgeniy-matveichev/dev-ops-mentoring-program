@@ -2,7 +2,7 @@ using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataAccess.ShapesRepository;
 using Microsoft.Extensions.DependencyInjection;
 using Module1.TypesAndClasses.Commands;
-using Module1.TypesAndClasses.Factories;
+using Module1.TypesAndClasses.Pools;
 using Module1.TypesAndClasses.Services;
 
 namespace Module1.TypesAndClasses

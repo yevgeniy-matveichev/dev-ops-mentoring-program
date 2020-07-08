@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Module1.TypesAndClasses.Factories
+namespace Module1.TypesAndClasses.Pools
 {
     public class InputCommandsPool
     {
