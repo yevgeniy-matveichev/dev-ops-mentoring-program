@@ -1,10 +1,9 @@
+using Mentoring.DataAccess.Interfaces;
+using Mentoring.DataAccess.ShapesRepository;
 using Microsoft.Extensions.DependencyInjection;
 using Module1.TypesAndClasses.Commands;
 using Module1.TypesAndClasses.Factories;
 using Module1.TypesAndClasses.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Module1.TypesAndClasses
 {
@@ -19,6 +18,15 @@ namespace Module1.TypesAndClasses
                 .AddSingleton<IInputCommand, ImportCommand>()
                 .AddSingleton<IInputCommand, ExportCommand>()
                 .AddSingleton<UserInputProcessingService>()
+
+                .AddSingleton<ShapeServicePool>()
+                .AddSingleton<IShapesService, CircleService>()
+                .AddSingleton<IShapesService, EllipseService>()
+                .AddSingleton<IShapesService, RectangleService>()
+                .AddSingleton<IShapesService, TriangleService>()
+
+                .AddSingleton(typeof(IShapeRepository<>), typeof(ShapesRepository<>))
+
                 .BuildServiceProvider();
 
             var userInputProvider = serviceProvider.GetService<UserInputProcessingService>();

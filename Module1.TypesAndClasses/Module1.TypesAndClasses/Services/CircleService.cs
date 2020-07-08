@@ -3,8 +3,6 @@ using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
@@ -12,16 +10,15 @@ namespace Module1.TypesAndClasses.Services
     {
         private ShapesRepository<CircleModel> _repository;
 
-        #region Constructor
+        public string Name => nameof(CircleService);
 
-        public CircleService()
+        public CircleService(ShapesRepository<CircleModel> repository)
         {
-            _repository = new ShapesRepository<CircleModel>();
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        #endregion
-
         #region Public methods
+
         public IShape ReadShape(string shapeFilePath) => Convert(_repository.ReadShape(shapeFilePath));
 
         public IShape ReadShapeExample() => Convert(_repository.ReadShapeExample("circle.json"));
@@ -30,12 +27,9 @@ namespace Module1.TypesAndClasses.Services
         {
             throw new NotImplementedException();
         }
-        #endregion
 
-        #region Private methods
+        #endregion
 
         private static IShape Convert(CircleModel circleModel) => new Circle(circleModel.Radius, circleModel.Unit);
-
-        #endregion
     }
 }

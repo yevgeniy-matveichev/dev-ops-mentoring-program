@@ -8,7 +8,7 @@ namespace Module1.TypesAndClasses.Tests.Factories
 {
     public class ShapeServiceFactoryTests
     {
-        private readonly ShapeServiceFactory _shapeServiceFactory = new ShapeServiceFactory();
+        private readonly ShapeServicePool _shapeServiceFactory = new ShapeServicePool();
 
         [Theory]
         [InlineData(ShapeTypes.Circle, typeof(CircleService))]

@@ -8,20 +8,14 @@ namespace Module1.TypesAndClasses.Services
 {
     public class RectangleService : IShapesService
     {
-        #region Private Fields
-
         private ShapesRepository<RectangleModel> _repository;
 
-        #endregion
+        public string Name => nameof(RectangleService);
 
-        #region Constructor
-
-        public RectangleService()
+        public RectangleService(ShapesRepository<RectangleModel> repository)
         {
-            _repository = new ShapesRepository<RectangleModel>();
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
-
-        #endregion
 
         #region Public methods
 
@@ -36,9 +30,6 @@ namespace Module1.TypesAndClasses.Services
 
         #endregion
 
-        #region Private methods
         private static IShape Convert(RectangleModel rectangleModel) => new Rectangle(rectangleModel.SideA, rectangleModel.SideB, rectangleModel.Unit);
-
-        #endregion
     }
 }

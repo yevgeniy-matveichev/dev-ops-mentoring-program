@@ -3,27 +3,19 @@ using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
     public class EllipseService : IShapesService
     {
-        #region Private Fields
-
         private ShapesRepository<EllipseModel> _repository;
 
-        #endregion
+        public string Name => nameof(EllipseService);
 
-        #region Constructor
-
-        public EllipseService()
+        public EllipseService(ShapesRepository<EllipseModel> repository)
         {
-            _repository = new ShapesRepository<EllipseModel>();
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
-
-        #endregion
 
         #region Public methods
         public IShape ReadShape(string shapeFilePath) => Convert(_repository.ReadShape(shapeFilePath));
@@ -37,9 +29,6 @@ namespace Module1.TypesAndClasses.Services
 
         #endregion
 
-        #region Private methods
         private static IShape Convert(EllipseModel ellipseModel) => new Ellipse(ellipseModel.Radius1, ellipseModel.Radius2, ellipseModel.Unit);
-
-        #endregion
     }
 }

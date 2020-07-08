@@ -3,27 +3,19 @@ using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Module1.TypesAndClasses.Services
 {
     public class TriangleService : IShapesService
     {
-        #region Private Fields
-
         private ShapesRepository<EquilateralTriangleModel> _repository;
 
-        #endregion
+        public string Name => nameof(TriangleService);
 
-        #region Constructor
-
-        public TriangleService()
+        public TriangleService(ShapesRepository<EquilateralTriangleModel> repository)
         {
-            _repository = new ShapesRepository<EquilateralTriangleModel>();
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
-
-        #endregion
 
         #region Public methods
 
@@ -38,9 +30,6 @@ namespace Module1.TypesAndClasses.Services
 
         #endregion
 
-        #region Private methods
         private static IShape Convert(EquilateralTriangleModel EquilateralTriangleModel) => new EquilateralTriangle(EquilateralTriangleModel.Side, EquilateralTriangleModel.Unit);
-
-        #endregion
     }
 }

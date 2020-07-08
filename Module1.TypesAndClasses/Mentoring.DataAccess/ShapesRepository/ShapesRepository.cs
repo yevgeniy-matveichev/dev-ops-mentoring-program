@@ -1,10 +1,8 @@
 ﻿using Mentoring.DataAccess.Interfaces;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
 namespace Mentoring.DataAccess.ShapesRepository
 {

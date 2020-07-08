@@ -12,11 +12,11 @@ namespace Module1.TypesAndClasses.Commands
             "c", "e", "r", "t"
         };
 
-        private readonly ShapeServiceFactory _shapeServiceFactory;
+        private readonly ShapeServicePool _shapeServiceFactory;
 
-        public ListCommand()
+        public ListCommand(ShapeServicePool shapeServiceFactory)
         {
-            _shapeServiceFactory = new ShapeServiceFactory();
+            _shapeServiceFactory = shapeServiceFactory ?? throw new ArgumentNullException(nameof(shapeServiceFactory));
         }
 
         public string Name => nameof(ListCommand);

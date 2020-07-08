@@ -19,24 +19,24 @@ namespace Module1.TypesAndClasses.Commands
             "c", "e", "r", "t"
         };
 
-        private readonly ShapeServiceFactory _shapeServiceFactory;
+        private readonly ShapeServicePool _shapeServiceFactory;
 
-        public ImportCommand()
+        public ImportCommand(ShapeServicePool shapeServiceFactory)
         {
-            _shapeServiceFactory = new ShapeServiceFactory();
+            _shapeServiceFactory = shapeServiceFactory ?? throw new ArgumentNullException(nameof(shapeServiceFactory));
         }
 
         public string Name => nameof(ImportCommand);
 
         public string Execute(string[] inputParameters)
         {
-            var path = String.Empty;
+            var path = string.Empty;
             if (inputParameters.Contains(Commands[0]))
             {
                 path = inputParameters[Array.IndexOf(inputParameters, "-path") + 1];
             }
 
-            var shapeType = String.Empty;
+            var shapeType = string.Empty;
             if (inputParameters.Contains(Commands[1]))
             {
                 shapeType = inputParameters[Array.IndexOf(inputParameters, "-shapeType") + 1];
