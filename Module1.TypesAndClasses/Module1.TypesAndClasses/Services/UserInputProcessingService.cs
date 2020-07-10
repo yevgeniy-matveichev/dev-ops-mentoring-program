@@ -1,4 +1,5 @@
-﻿using Module1.TypesAndClasses.Commands;
+﻿using log4net;
+using Module1.TypesAndClasses.Commands;
 using Module1.TypesAndClasses.Factories;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,12 @@ namespace Module1.TypesAndClasses.Services
         }.OrderBy(x => x).ToList();
 
         private readonly InputCommandsPool _inputCommandsPool;
+        private readonly ILog _log;
 
-        public UserInputProcessingService(InputCommandsPool inputCommandsPool)
+        public UserInputProcessingService(InputCommandsPool inputCommandsPool, ILog log)
         {
             _inputCommandsPool = inputCommandsPool ?? throw new ArgumentNullException(nameof(inputCommandsPool));
+            _log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         public void Run()
@@ -36,6 +39,7 @@ namespace Module1.TypesAndClasses.Services
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Hello! This is Shapes program. Supported commands: {string.Join(", ", ParametersList)}. {Environment.NewLine}");
             Console.ForegroundColor = ConsoleColor.White;
+            _log.Info("The application has run...");
 
             string userInput;
 
@@ -75,6 +79,8 @@ namespace Module1.TypesAndClasses.Services
                     continue;
                 }
             }
+
+            _log.Info("The application run has finished...");
         }
     }
 }
