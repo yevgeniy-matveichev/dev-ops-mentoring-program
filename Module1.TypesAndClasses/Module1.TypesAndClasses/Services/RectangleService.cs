@@ -1,4 +1,4 @@
-﻿using Mentoring.DataAccess.ShapesRepository;
+﻿using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
@@ -8,11 +8,11 @@ namespace Module1.TypesAndClasses.Services
 {
     public class RectangleService : IShapesService
     {
-        private ShapesRepository<RectangleModel> _repository;
+        private IShapeRepository<RectangleModel> _repository;
 
         public string Name => nameof(RectangleService);
 
-        public RectangleService(ShapesRepository<RectangleModel> repository)
+        public RectangleService(IShapeRepository<RectangleModel> repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

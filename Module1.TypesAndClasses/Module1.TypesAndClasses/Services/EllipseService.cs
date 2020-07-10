@@ -1,4 +1,4 @@
-﻿using Mentoring.DataAccess.ShapesRepository;
+﻿using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
@@ -8,11 +8,11 @@ namespace Module1.TypesAndClasses.Services
 {
     public class EllipseService : IShapesService
     {
-        private ShapesRepository<EllipseModel> _repository;
+        private IShapeRepository<EllipseModel> _repository;
 
         public string Name => nameof(EllipseService);
 
-        public EllipseService(ShapesRepository<EllipseModel> repository)
+        public EllipseService(IShapeRepository<EllipseModel> repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

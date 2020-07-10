@@ -1,5 +1,4 @@
-﻿
-using Mentoring.DataAccess;
+﻿using Mentoring.DataAccess;
 
 namespace Mentoring.DataModel.Shapes
 {

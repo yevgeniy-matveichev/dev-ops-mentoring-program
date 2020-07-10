@@ -1,5 +1,6 @@
 using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataAccess.ShapesRepository;
+using Mentoring.DataModel.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using Module1.TypesAndClasses.Commands;
 using Module1.TypesAndClasses.Pools;

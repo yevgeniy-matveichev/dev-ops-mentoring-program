@@ -8,6 +8,8 @@ namespace Mentoring.DataAccess.Interfaces
     {
         T ReadShapeExample(string shapeName);
 
+        T ReadShape(string shapeFilePath);
+
         void WriteShape(string filePath, T modelType);
     }
 }

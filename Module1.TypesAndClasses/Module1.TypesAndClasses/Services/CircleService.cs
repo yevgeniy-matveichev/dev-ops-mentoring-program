@@ -1,4 +1,4 @@
-﻿using Mentoring.DataAccess.ShapesRepository;
+﻿using Mentoring.DataAccess.Interfaces;
 using Mentoring.DataModel.Shapes;
 using Mentoring.Shapes.Interfaces;
 using Mentoring.Shapes.Shapes;
@@ -8,11 +8,11 @@ namespace Module1.TypesAndClasses.Services
 {
     public class CircleService : IShapesService
     {
-        private ShapesRepository<CircleModel> _repository;
+        private readonly IShapeRepository<CircleModel> _repository;
 
         public string Name => nameof(CircleService);
 
-        public CircleService(ShapesRepository<CircleModel> repository)
+        public CircleService(IShapeRepository<CircleModel> repository)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
