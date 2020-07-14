@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Exceptions;
 using Module1.TypesAndClasses.Services;
 using System;
 using System.Collections.Generic;
@@ -25,28 +26,24 @@ namespace Module1.TypesAndClasses.Pools
             {
                 case ShapeTypes.EquilateralTriangle:
                     {
-                        //return new TriangleService();
                         return _shapesServices.Single(c => c.Name == nameof(TriangleService));
                     }
                 case ShapeTypes.Circle:
                     {
-                        //return new CircleService();
                         return _shapesServices.Single(c => c.Name == nameof(CircleService));
                     }
                 case ShapeTypes.Rectangle:
                     {
-                        //return new RectangleService();
                         return _shapesServices.Single(c => c.Name == nameof(RectangleService));
                     }
                 case ShapeTypes.Ellipse:
                     {
-                        //return new EllipseService();
                         return _shapesServices.Single(c => c.Name == nameof(EllipseService));
                     }
                 default:
                     {
                         _log.Error($"This method {shapeType} is invalid or not implemented yet");
-                        throw new ArgumentException($"This method {shapeType} is invalid or not implemented yet"); ;
+                        throw new MethodNotImplementedException($"This method {shapeType} is invalid or not implemented yet"); ;
                     }
             }
         }

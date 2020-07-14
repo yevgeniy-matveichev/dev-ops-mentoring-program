@@ -1,4 +1,5 @@
 ﻿using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Exceptions;
 using Module1.TypesAndClasses.Pools;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace Module1.TypesAndClasses.Commands
                 "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShape(path)} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShape(path)} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShape(path)} {Environment.NewLine}",
-                _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+                _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
 
@@ -61,19 +62,19 @@ namespace Module1.TypesAndClasses.Commands
 
             if (inputParameters.Length < 4)
             {
-                throw new Exception("Incorrect usage of 'import' command. Put 'help import' to see example.");
+                throw new InvalidCommandUsageException("Incorrect usage of 'import' command. Put 'help import' to see example.");
             }
 
             if (!(inputParameters.Length == 5))
             {
-                return $"Incorrect usage of 'import' command. {Environment.NewLine}" +
-                    "Example: import -path D:\\temp\\file.json -shapeType c.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'import' command. {Environment.NewLine}" +
+                    "Example: import -path D:\\temp\\file.json -shapeType c.");
             }
 
             if (!(inputParameters[1] == "-path"))
             {
-                return $"Incorrect usage of 'import' command: '{inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
-                    "Example: import -path D:\\temp\\file.json -shapeType c.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'import' command: '{inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
+                    "Example: import -path D:\\temp\\file.json -shapeType c.");
             }
 
             if (!File.Exists(inputParameters[2]))

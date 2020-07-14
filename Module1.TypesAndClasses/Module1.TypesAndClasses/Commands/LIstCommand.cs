@@ -1,4 +1,5 @@
 ﻿using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Exceptions;
 using Module1.TypesAndClasses.Pools;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Module1.TypesAndClasses.Commands
                 "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShapeExample()} {Environment.NewLine}",
                 "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShapeExample()} {Environment.NewLine}",
                 "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShapeExample()} {Environment.NewLine}",
-                _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+                _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }
 
@@ -49,31 +50,31 @@ namespace Module1.TypesAndClasses.Commands
 
             if (inputParameters.Length < 3)
             {
-                throw new Exception("Incorrect usage of 'list' command. Put 'help list' to see example.");
+                throw new InvalidCommandUsageException("Incorrect usage of 'list' command. Put 'help list' to see example.");
             }
             
 
             if (!(inputParameters.Length == 3))
             {
-                return $"Incorrect usage of 'list' command. {Environment.NewLine}" +
-                    "Example: list -json-example c.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'list' command. {Environment.NewLine}" +
+                    "Example: list -json-example c.");
             }
 
             if (!(inputParameters[1] == "-json-example"))
             {
-                return $"Incorrect usage of 'list' command: '{inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
-                    "Example: list -json-example c.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'list' command: '{inputParameters[1]}' " +
+                    $"is not recognized as an option. {Environment.NewLine}Example: list -json-example c.");
             }
 
             if (!ShapesTypes.Contains(inputParameters[2]))
             {
-                return $"Not supported argument '{inputParameters[2]}'. Supported shapes - {string.Join(", ", ShapesTypes)}.";
+                throw new InvalidCommandUsageException($"Not supported argument '{inputParameters[2]}'. Supported shapes - {string.Join(", ", ShapesTypes)}.");
             }
 
             if (inputParameters[1] == null)
             {
-                return $"Incorrect usage of 'list' command: the option '-json-example' was not provided. {Environment.NewLine}" +
-                    "Example: list -json-example c.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'list' command: the option '-json-example' was not provided. " +
+                    $"{Environment.NewLine}Example: list -json-example c.");
             }
 
             return string.Empty;

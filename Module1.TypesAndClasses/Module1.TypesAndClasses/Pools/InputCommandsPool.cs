@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Module1.TypesAndClasses.Commands;
+using Module1.TypesAndClasses.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +21,21 @@ namespace Module1.TypesAndClasses.Pools
         public IInputCommand Take(string commandName)
         {
             _log.Info($"running command {commandName}...");
-            switch(commandName)
+            switch (commandName)
             {
                 case "list":
                     return _commands.Single(c => c.Name == nameof(ListCommand));
-                case "import": 
+                case "import":
                     return _commands.Single(c => c.Name == nameof(ImportCommand));
-                case "export": 
+                case "export":
                     return _commands.Single(c => c.Name == nameof(ExportCommand));
-                case "help": 
+                case "help":
                     return _commands.Single(c => c.Name == nameof(HelpCommand));
                 default:
                     _log.Error($"Unknown command name: '{commandName}'");
-                    throw new NotSupportedException($"Unknown command name: '{commandName}'");
-                    
+                    throw new CommandNotFoundException($"Unknown command name: '{commandName}'");
+
+            }
         }
     }
 }

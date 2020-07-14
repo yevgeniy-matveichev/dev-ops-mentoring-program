@@ -1,4 +1,5 @@
 ﻿using Mentoring.Shapes.Interfaces;
+using Module1.TypesAndClasses.Exceptions;
 using Module1.TypesAndClasses.Pools;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace Module1.TypesAndClasses.Commands
             //    "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).WriteShape(path, shapeType)} {Environment.NewLine}",
             //    "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).WriteShape(path, shapeType)} {Environment.NewLine}",
             //    "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).WriteShape(path, shapeType)} {Environment.NewLine}",
-            //    _ => throw new Exception($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+            //    _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             //};
         }
 
@@ -63,25 +64,25 @@ namespace Module1.TypesAndClasses.Commands
 
             if (inputParameters.Length < 4)
             {
-                throw new Exception("Incorrect usage of 'export' command. Put 'help export' to see example.");
+                throw new InvalidCommandUsageException("Incorrect usage of 'export' command. Put 'help export' to see example.");
             }
             
             if (!(inputParameters.Length == 5))
             {
-                return $"Incorrect usage of 'export' command. {Environment.NewLine}" +
-                    "Example: export -path D:\\temp\\circle.json -shapeType c.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'export' command. {Environment.NewLine}" +
+                    "Example: export -path D:\\temp\\circle.json -shapeType c.");
             }
 
             if (!inputParameters.Contains(Commands[0]))
             {
-                return $"Incorrect usage of 'export' command: the path was not provided. {Environment.NewLine}" +
-                    "Example: export -path D:\\temp\\circle.json -shapeType c";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'export' command: the path was not provided. {Environment.NewLine}" +
+                    "Example: export -path D:\\temp\\circle.json -shapeType c");
             }
 
             if (!inputParameters.Contains(Commands[1]))
             {
-                return $"Incorrect usage of 'export' command: the shape name was not provided. {Environment.NewLine}" +
-                    "Example: export -path D:\\temp\\circle.json -shapeType c";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'export' command: the shape name was not provided. {Environment.NewLine}" +
+                    "Example: export -path D:\\temp\\circle.json -shapeType c");
             }
 
             //if (!File.Exists(_path.Substring(0, _path.LastIndexOf("\\") + 1)))

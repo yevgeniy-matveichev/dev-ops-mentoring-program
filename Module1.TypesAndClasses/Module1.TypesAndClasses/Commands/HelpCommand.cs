@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Module1.TypesAndClasses.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -46,7 +47,7 @@ namespace Module1.TypesAndClasses.Commands
                     "import" => $"import\t\t{CommandsDescription["import"]}",
                     "export" => $"export\t\t{CommandsDescription["export"]}",
                     "exit" => $"exit\t\t{CommandsDescription["exit"]}",
-                    _ => throw new NotSupportedException(nameof(inputParameters)),
+                    _ => throw new CommandNotFoundException(nameof(inputParameters)),
                 };
             }
 
@@ -62,16 +63,16 @@ namespace Module1.TypesAndClasses.Commands
 
             if (inputParameters.Length > 2)
             {
-                return $"Incorrect usage of 'help' command: '{string.Join(" ", inputParameters)}'. {Environment.NewLine}" +
-                    "Example: 'help list' or 'help'.";
+                throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{string.Join(" ", inputParameters)}'." +
+                    $"{Environment.NewLine}Example: 'help list' or 'help'.");
             }
 
-            if(inputParameters.Length == 2)
+            if (inputParameters.Length == 2)
             {
                 if (!CommandsDescription.ContainsKey(inputParameters[1]))
                 {
-                    return $"Incorrect usage of 'help' command: '{inputParameters[1]}' is not recognized as an option. {Environment.NewLine}" +
-                        "Example: 'help list' or 'help'.";
+                    throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{inputParameters[1]}' " +
+                        $"is not recognized as an option. {Environment.NewLine}Example: 'help list' or 'help'.");
                 }
             }
 
