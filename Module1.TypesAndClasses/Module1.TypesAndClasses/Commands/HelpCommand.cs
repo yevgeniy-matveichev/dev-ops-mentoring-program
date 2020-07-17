@@ -1,12 +1,16 @@
-﻿using Module1.TypesAndClasses.Exceptions;
+﻿using log4net;
+using Module1.TypesAndClasses.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Module1.TypesAndClasses.Commands
 {
     public class HelpCommand : IInputCommand
     {
+        private readonly ILog _log;
+
         public readonly Dictionary<string, string> CommandsDescription = new Dictionary<string, string>()
         {
             { "help", $"Describes Shapes program commands.{Environment.NewLine}\t\tExample: help list{Environment.NewLine}\t\tExample: help" },
@@ -16,9 +20,9 @@ namespace Module1.TypesAndClasses.Commands
             { "exit", "Exits the Shapes program." }
         };
 
-        public HelpCommand()
+        public HelpCommand(ILog log)
         {
-            
+            _log = log; 
         }
 
         public string Name => nameof(HelpCommand);
@@ -29,29 +33,46 @@ namespace Module1.TypesAndClasses.Commands
 
             StringBuilder sb = new StringBuilder();
 
-            if (inputParameters.Length == 1) 
+            if (inputParameters.Length == 1)
             {
-                foreach(var command in CommandsDescription.Keys)
+                foreach (var command in CommandsDescription.Keys)
                 {
                     sb.Append($"{command}\t\t{CommandsDescription[command]}{Environment.NewLine}");
                 }
 
                 result = sb.ToString();
+                return result;
             }
             else
             {
-                result = (inputParameters[1]) switch
+                switch (inputParameters[1])
                 {
-                    "help" => $"help\t\t{CommandsDescription["help"]}",
-                    "list" => $"list\t\t{CommandsDescription["list"]}",
-                    "import" => $"import\t\t{CommandsDescription["import"]}",
-                    "export" => $"export\t\t{CommandsDescription["export"]}",
-                    "exit" => $"exit\t\t{CommandsDescription["exit"]}",
-                    _ => throw new CommandNotFoundException(nameof(inputParameters)),
-                };
-            }
-
-            return result;
+                    case "help":
+                        {
+                            return $"help\t\t{CommandsDescription["help"]}";
+                        }
+                    case "list":
+                        {
+                            return $"list\t\t{CommandsDescription["list"]}";
+                        }
+                    case "import":
+                        {
+                            return $"import\t\t{CommandsDescription["import"]}";
+                        }
+                    case "export":
+                        {
+                            return $"export\t\t{CommandsDescription["export"]}";
+                        }
+                    case "exit":
+                        {
+                            return $"exit\t\t{CommandsDescription["exit"]}";
+                        }
+                    default:
+                        {
+                            throw new CommandNotFoundException(nameof(inputParameters));
+                        }
+                }
+            };
         }
 
         public string Validate(string[] inputParameters)
@@ -63,6 +84,7 @@ namespace Module1.TypesAndClasses.Commands
 
             if (inputParameters.Length > 2)
             {
+                _log.Error($"InvalidCommandUsageException({string.Join(" ", inputParameters)})");
                 throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{string.Join(" ", inputParameters)}'." +
                     $"{Environment.NewLine}Example: 'help list' or 'help'.");
             }
@@ -71,6 +93,7 @@ namespace Module1.TypesAndClasses.Commands
             {
                 if (!CommandsDescription.ContainsKey(inputParameters[1]))
                 {
+                    _log.Error($"InvalidCommandUsageException({string.Join(' ', inputParameters)})");
                     throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{inputParameters[1]}' " +
                         $"is not recognized as an option. {Environment.NewLine}Example: 'help list' or 'help'.");
                 }
