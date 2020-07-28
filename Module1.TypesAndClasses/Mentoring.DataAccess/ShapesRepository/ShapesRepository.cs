@@ -25,6 +25,44 @@ namespace Mentoring.DataAccess.ShapesRepository
             }
         }
 
+        public async void WriteShapeAsync(string filePath, T model)
+        {
+            if (File.Exists(filePath))
+            {
+                throw new Exception($"File '{filePath}' already exists!");
+            }
+
+            //Implement saving shapes to disk. 
+            string objectContent = JsonConvert.SerializeObject(model);
+            using (FileStream fs = File.Create(filePath))
+            {
+                File.WriteAllTextAsync(filePath, objectContent);
+            }
+        }
+
+        public T ReadShape(string shapeFilePath)
+        {
+            if (!shapeFilePath.ToLower().EndsWith(".json"))
+            {
+                throw new NotSupportedException($"Cannot process file '{shapeFilePath}' which is not a type of json!");
+            }
+
+            if (File.Exists(shapeFilePath))
+            {
+                using (FileStream fs = File.OpenRead(shapeFilePath))
+                {
+                    string result = File.ReadAllText(shapeFilePath);
+                    T model = JsonConvert.DeserializeObject<T>(result);
+
+                    return model;
+                }
+            }
+            else
+            {
+                throw new Exception($"File '{shapeFilePath}' does not exist!");
+            }
+        }
+
         public T ReadShape(string shapeFilePath)
         {
             if (!shapeFilePath.ToLower().EndsWith(".json"))
