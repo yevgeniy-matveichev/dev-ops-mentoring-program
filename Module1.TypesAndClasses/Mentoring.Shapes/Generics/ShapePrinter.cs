@@ -9,5 +9,10 @@ namespace Mentoring.Shapes.Generics
         {
             Console.WriteLine(shape.ToString());
         }
+
+        public async void PrintAsync(T shape)
+        {
+            Console.WriteLine(shape.ToString());
+        }
     }
 }
