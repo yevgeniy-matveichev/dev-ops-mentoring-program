@@ -34,7 +34,6 @@ namespace Module1.TypesAndClasses.Pools
                 default:
                     _log.Error($"Unknown command name: '{commandName}'");
                     throw new CommandNotFoundException($"Unknown command name: '{commandName}'");
-
             }
         }
     }

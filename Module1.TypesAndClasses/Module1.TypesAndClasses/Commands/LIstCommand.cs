@@ -3,6 +3,7 @@ using Module1.TypesAndClasses.Exceptions;
 using Module1.TypesAndClasses.Pools;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Module1.TypesAndClasses.Commands
 {
@@ -13,11 +14,11 @@ namespace Module1.TypesAndClasses.Commands
             "c", "e", "r", "t"
         };
 
-        private readonly ShapeServicePool _shapeServiceFactory;
+        private readonly ShapeServicePool _shapeServicePool;
 
         public ListCommand(ShapeServicePool shapeServiceFactory)
         {
-            _shapeServiceFactory = shapeServiceFactory ?? throw new ArgumentNullException(nameof(shapeServiceFactory));
+            _shapeServicePool = shapeServiceFactory ?? throw new ArgumentNullException(nameof(shapeServiceFactory));
         }
 
         public string Name => nameof(ListCommand);
@@ -33,10 +34,29 @@ namespace Module1.TypesAndClasses.Commands
 
             return instruction switch
             {
-                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShapeExample()} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShapeExample()} {Environment.NewLine}",
-                "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShapeExample()} {Environment.NewLine}",
-                "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShapeExample()} {Environment.NewLine}",
+                "c" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Circle).ReadShapeExample()} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Ellipse).ReadShapeExample()} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Rectangle).ReadShapeExample()} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.EquilateralTriangle).ReadShapeExample()} {Environment.NewLine}",
+                _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+            };
+        }
+
+        public async Task<string> ExecuteAsync(string[] inputParameters)
+        {
+            var instruction = inputParameters[2];
+
+            if (instruction == null)
+            {
+                throw new ArgumentNullException(nameof(instruction));
+            }
+
+            return instruction switch
+            {
+                "c" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Circle).ReadShapeExample()} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Ellipse).ReadShapeExample()} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Rectangle).ReadShapeExample()} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.EquilateralTriangle).ReadShapeExample()} {Environment.NewLine}",
                 _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }

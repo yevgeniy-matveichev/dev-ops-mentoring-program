@@ -1,10 +1,12 @@
 ﻿using Mentoring.Shapes.Interfaces;
+using Mentoring.Shapes.Shapes;
 using Module1.TypesAndClasses.Exceptions;
 using Module1.TypesAndClasses.Pools;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Module1.TypesAndClasses.Commands
 {
@@ -54,6 +56,32 @@ namespace Module1.TypesAndClasses.Commands
             //    _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             //};
         }
+
+        //public async Task ExecuteAsync(string[] inputParameters)
+        //{
+        //    //return "Method is not implemented.";
+
+        //    var path = string.Empty;
+        //    if (inputParameters.Contains(Commands[0]))
+        //    {
+        //        path = inputParameters[Array.IndexOf(inputParameters, "-path") + 1];
+        //    }
+
+        //    var shapeType = string.Empty;
+        //    if (inputParameters.Contains(Commands[1]))
+        //    {
+        //        shapeType = inputParameters[Array.IndexOf(inputParameters, "-shapeType") + 1];
+        //    }
+
+        //    return shapeType switch
+        //    {
+        //        "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).WriteShape(path, ShapeTypes.Circle))} {Environment.NewLine}",
+        //        "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).WriteShape(path, shapeType)} {Environment.NewLine}",
+        //        "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).WriteShape(path, shapeType)} {Environment.NewLine}",
+        //        "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).WriteShape(path, shapeType)} {Environment.NewLine}",
+        //        _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+        //    };
+        //}
 
         public string Validate(string[] inputParameters)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Module1.TypesAndClasses.Commands
 {
@@ -9,6 +10,8 @@ namespace Module1.TypesAndClasses.Commands
         string Name { get; }
 
         string Execute(string[] inputParameters);
+
+        Task<string> ExecuteAsync(string[] inputParameters);
 
         string Validate(string[] inputParameters);
     }

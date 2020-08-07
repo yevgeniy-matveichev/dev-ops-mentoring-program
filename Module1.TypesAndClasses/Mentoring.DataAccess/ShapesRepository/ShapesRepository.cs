@@ -36,7 +36,7 @@ namespace Mentoring.DataAccess.ShapesRepository
             string objectContent = JsonConvert.SerializeObject(model);
             using (FileStream fs = File.Create(filePath))
             {
-                File.WriteAllTextAsync(filePath, objectContent);
+                await File.WriteAllTextAsync(filePath, objectContent);
             }
         }
 

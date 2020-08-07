@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Module1.TypesAndClasses.Commands
 {
@@ -28,6 +29,30 @@ namespace Module1.TypesAndClasses.Commands
         }
 
         public string Name => nameof(ImportCommand);
+
+        public async Task<string> ExecuteAsync(string[] inputParameters)
+        {
+            var path = string.Empty;
+            if (inputParameters.Contains(Commands[0]))
+            {
+                path = inputParameters[Array.IndexOf(inputParameters, "-path") + 1];
+            }
+
+            var shapeType = string.Empty;
+            if (inputParameters.Contains(Commands[1]))
+            {
+                shapeType = inputParameters[Array.IndexOf(inputParameters, "-shapeType") + 1];
+            }
+
+            return shapeType switch
+            {
+                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShape(path)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShape(path)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShape(path)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShape(path)} {Environment.NewLine}",
+                _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
+            };
+        }
 
         public string Execute(string[] inputParameters)
         {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Module1.TypesAndClasses.Commands
 {
@@ -45,33 +46,45 @@ namespace Module1.TypesAndClasses.Commands
             }
             else
             {
-                switch (inputParameters[1])
+                return (inputParameters[1]) switch
                 {
-                    case "help":
-                        {
-                            return $"help\t\t{CommandsDescription["help"]}";
-                        }
-                    case "list":
-                        {
-                            return $"list\t\t{CommandsDescription["list"]}";
-                        }
-                    case "import":
-                        {
-                            return $"import\t\t{CommandsDescription["import"]}";
-                        }
-                    case "export":
-                        {
-                            return $"export\t\t{CommandsDescription["export"]}";
-                        }
-                    case "exit":
-                        {
-                            return $"exit\t\t{CommandsDescription["exit"]}";
-                        }
-                    default:
-                        {
-                            throw new CommandNotFoundException(nameof(inputParameters));
-                        }
+                    "help" => $"help\t\t{CommandsDescription["help"]}",
+                    "list" => $"list\t\t{CommandsDescription["list"]}",
+                    "import" => $"import\t\t{CommandsDescription["import"]}",
+                    "export" => $"export\t\t{CommandsDescription["export"]}",
+                    "exit" => $"exit\t\t{CommandsDescription["exit"]}",
+                    _ => throw new CommandNotFoundException(nameof(inputParameters)),
+                };
+            };
+        }
+
+        public async Task<string> ExecuteAsync(string[] inputParameters)
+        {
+            string result;
+
+            StringBuilder sb = new StringBuilder();
+
+            if (inputParameters.Length == 1)
+            {
+                foreach (var command in CommandsDescription.Keys)
+                {
+                    sb.Append($"{command}\t\t{CommandsDescription[command]}{Environment.NewLine}");
                 }
+
+                result = sb.ToString();
+                return result;
+            }
+            else
+            {
+                return (inputParameters[1]) switch
+                {
+                    "help" => $"help\t\t{CommandsDescription["help"]}",
+                    "list" => $"list\t\t{CommandsDescription["list"]}",
+                    "import" => $"import\t\t{CommandsDescription["import"]}",
+                    "export" => $"export\t\t{CommandsDescription["export"]}",
+                    "exit" => $"exit\t\t{CommandsDescription["exit"]}",
+                    _ => throw new CommandNotFoundException(nameof(inputParameters)),
+                };
             };
         }
 

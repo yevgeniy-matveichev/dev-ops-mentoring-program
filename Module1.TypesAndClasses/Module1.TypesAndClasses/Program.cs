@@ -15,6 +15,7 @@ namespace Module1.TypesAndClasses
     {
         //logs
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
             // Load configuration
@@ -31,7 +32,6 @@ namespace Module1.TypesAndClasses
                 .AddSingleton<IInputCommand, ImportCommand>()
                 .AddSingleton<IInputCommand, ExportCommand>()
                 .AddSingleton<UserInputProcessingService>()
-
                 .AddSingleton<ShapeServicePool>()
                 .AddSingleton<IShapesService, CircleService>()
                 .AddSingleton<IShapesService, EllipseService>()
@@ -41,8 +41,9 @@ namespace Module1.TypesAndClasses
                 .AddSingleton(log)
                 .BuildServiceProvider();
    
-        var userInputProvider = serviceProvider.GetService<UserInputProcessingService>();
-            userInputProvider.Run();
+            var userInputProvider = serviceProvider.GetService<UserInputProcessingService>();
+            //userInputProvider.Run();
+            userInputProvider.RunAsync().Wait();
         }
     }
 }
