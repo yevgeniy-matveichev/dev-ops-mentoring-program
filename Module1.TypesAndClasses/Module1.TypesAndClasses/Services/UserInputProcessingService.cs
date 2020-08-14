@@ -63,7 +63,7 @@ namespace Module1.TypesAndClasses.Services
                         continue;
                     }
                     
-                    Console.WriteLine(command.Execute(parameters) ?? $"Command '{commandName}' executed.");
+                    Console.WriteLine(await command.ExecuteAsync(parameters) ?? $"Command '{commandName}' executed.");
                 }
                 catch (NotSupportedException ex)
                 {

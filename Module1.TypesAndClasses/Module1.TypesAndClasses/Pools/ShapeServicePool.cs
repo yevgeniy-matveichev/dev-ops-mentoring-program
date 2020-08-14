@@ -22,6 +22,7 @@ namespace Module1.TypesAndClasses.Pools
         public IShapesService Create(ShapeTypes shapeType)
         {
             _log.Info($"running shapetype {shapeType}...");
+
             switch (shapeType)
             {
                 case ShapeTypes.EquilateralTriangle:
