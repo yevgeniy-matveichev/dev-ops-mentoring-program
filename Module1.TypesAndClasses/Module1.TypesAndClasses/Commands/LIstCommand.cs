@@ -53,10 +53,10 @@ namespace Module1.TypesAndClasses.Commands
 
             return instruction switch
             {
-                "c" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Circle).ReadShapeExample()} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Ellipse).ReadShapeExample()} {Environment.NewLine}",
-                "r" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.Rectangle).ReadShapeExample()} {Environment.NewLine}",
-                "t" => $"{Environment.NewLine}{_shapeServicePool.Create(ShapeTypes.EquilateralTriangle).ReadShapeExample()} {Environment.NewLine}",
+                "c" => $"{Environment.NewLine}{await _shapeServicePool.Create(ShapeTypes.Circle).ReadShapeExampleAsync()} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{await _shapeServicePool.Create(ShapeTypes.Ellipse).ReadShapeExampleAsync()} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{await _shapeServicePool.Create(ShapeTypes.Rectangle).ReadShapeExampleAsync()} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{await _shapeServicePool.Create(ShapeTypes.EquilateralTriangle).ReadShapeExampleAsync()} {Environment.NewLine}",
                 _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }

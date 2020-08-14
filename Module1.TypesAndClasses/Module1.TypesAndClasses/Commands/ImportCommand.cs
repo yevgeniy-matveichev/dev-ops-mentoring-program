@@ -46,10 +46,10 @@ namespace Module1.TypesAndClasses.Commands
 
             return shapeType switch
             {
-                "c" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Circle).ReadShape(path)} {Environment.NewLine}",
-                "e" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShape(path)} {Environment.NewLine}",
-                "r" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShape(path)} {Environment.NewLine}",
-                "t" => $"{Environment.NewLine}{_shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShape(path)} {Environment.NewLine}",
+                "c" => $"{Environment.NewLine}{await _shapeServiceFactory.Create(ShapeTypes.Circle).ReadShapeAsync(path)} {Environment.NewLine}",
+                "e" => $"{Environment.NewLine}{await _shapeServiceFactory.Create(ShapeTypes.Ellipse).ReadShapeAsync(path)} {Environment.NewLine}",
+                "r" => $"{Environment.NewLine}{await _shapeServiceFactory.Create(ShapeTypes.Rectangle).ReadShapeAsync(path)} {Environment.NewLine}",
+                "t" => $"{Environment.NewLine}{await _shapeServiceFactory.Create(ShapeTypes.EquilateralTriangle).ReadShapeAsync(path)} {Environment.NewLine}",
                 _ => throw new ShapeTypeNotFoundException($"Supported shapes - {string.Join(", ", ShapesTypes)}"),
             };
         }

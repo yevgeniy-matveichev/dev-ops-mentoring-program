@@ -35,7 +35,7 @@ namespace Module1.TypesAndClasses.Services
             supportedShapes.AddRange(ShapeCommandsMapping.Keys);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Hello! This is Shapes program. Supported commands: {string.Join(", ", ParametersList)}. {Environment.NewLine}");
+            Console.WriteLine($"Hello! This is Shapes program. Supported commands: {string.Join(", ", ParametersList)}.{Environment.NewLine}Please enter command:{Environment.NewLine}");
             Console.ForegroundColor = ConsoleColor.White;
 
             string userInput;
@@ -84,7 +84,7 @@ namespace Module1.TypesAndClasses.Services
             supportedShapes.AddRange(ShapeCommandsMapping.Keys);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Hello! This is Shapes program. Supported commands: {string.Join(", ", ParametersList)}. {Environment.NewLine}");
+            Console.WriteLine($"Hello! This is Shapes program. Supported commands: {string.Join(", ", ParametersList)}.{Environment.NewLine}Please enter command:{Environment.NewLine}");
             Console.ForegroundColor = ConsoleColor.White;
 
             string userInput;

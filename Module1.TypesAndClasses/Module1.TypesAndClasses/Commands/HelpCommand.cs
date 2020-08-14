@@ -58,6 +58,33 @@ namespace Module1.TypesAndClasses.Commands
             };
         }
 
+        public string Validate(string[] inputParameters)
+        {
+            if (inputParameters == null)
+            {
+                throw new ArgumentNullException(nameof(inputParameters));
+            }
+
+            if (inputParameters.Length > 2)
+            {
+                _log.Error($"InvalidCommandUsageException({string.Join(" ", inputParameters)})");
+                throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{string.Join(" ", inputParameters)}'." +
+                    $"{Environment.NewLine}Example: 'help list' or 'help'.");
+            }
+
+            if (inputParameters.Length == 2)
+            {
+                if (!CommandsDescription.ContainsKey(inputParameters[1]))
+                {
+                    _log.Error($"InvalidCommandUsageException({string.Join(' ', inputParameters)})");
+                    throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{inputParameters[1]}' " +
+                        $"is not recognized as an option. {Environment.NewLine}Example: 'help list' or 'help'.");
+                }
+            }
+
+            return string.Empty;
+        }
+
         public async Task<string> ExecuteAsync(string[] inputParameters)
         {
             string result;
@@ -86,33 +113,6 @@ namespace Module1.TypesAndClasses.Commands
                     _ => throw new CommandNotFoundException(nameof(inputParameters)),
                 };
             };
-        }
-
-        public string Validate(string[] inputParameters)
-        {
-            if (inputParameters == null)
-            {
-                throw new ArgumentNullException(nameof(inputParameters));
-            }
-
-            if (inputParameters.Length > 2)
-            {
-                _log.Error($"InvalidCommandUsageException({string.Join(" ", inputParameters)})");
-                throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{string.Join(" ", inputParameters)}'." +
-                    $"{Environment.NewLine}Example: 'help list' or 'help'.");
-            }
-
-            if (inputParameters.Length == 2)
-            {
-                if (!CommandsDescription.ContainsKey(inputParameters[1]))
-                {
-                    _log.Error($"InvalidCommandUsageException({string.Join(' ', inputParameters)})");
-                    throw new InvalidCommandUsageException($"Incorrect usage of 'help' command: '{inputParameters[1]}' " +
-                        $"is not recognized as an option. {Environment.NewLine}Example: 'help list' or 'help'.");
-                }
-            }
-
-            return string.Empty;
         }
     }
 }

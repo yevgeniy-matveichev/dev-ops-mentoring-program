@@ -1,4 +1,5 @@
 ﻿using Mentoring.Shapes.Interfaces;
+using System.Threading.Tasks;
 
 namespace Module1.TypesAndClasses.Services
 {
@@ -8,8 +9,14 @@ namespace Module1.TypesAndClasses.Services
 
         IShape ReadShapeExample();
 
+        Task<IShape> ReadShapeExampleAsync();
+
         IShape ReadShape(string shapeFilePath);
 
+        Task<IShape> ReadShapeAsync(string shapeFilePath);
+
         void WriteShape(string shapeFilePath, IShape shape);
+
+        Task WriteShapeAsync(string shapeFilePath, IShape shape);
     }
 }
