@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,8 @@ namespace KinopoiskProject
                         Console.WriteLine("What?");
                         continue;
                     }
-
+                    Finder Film = new Finder();
+                    Film.TestMethod1();
                     Console.WriteLine($"Film '{commandName}' is searching.");
                 }
                 catch (Exception ex)
