@@ -4,16 +4,12 @@ using System.Threading.Tasks;
 
 namespace KinopoiskProject
 {
-
     public class Program
     {
         static void Main()
-            {
-           var Run =  new Running();
-           Run.Run();
-                
+        {
+            var Run =  new Running();
+            Run.Run();
+        }
     }
-       
 }
-}
-
