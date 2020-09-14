@@ -32,7 +32,7 @@ namespace KinopoiskProject
                         continue;
                     }
                     Finder Film = new Finder();
-                    Film.TestMethod1();
+                    Film.TestMethod1(commandName);
                     Console.WriteLine($"Film '{commandName}' is searching.");
                 }
                 catch (Exception ex)
@@ -41,6 +41,7 @@ namespace KinopoiskProject
                     continue;
                 }
             }
+            return;
         }
     }
 }
