@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinopoiskProject", "KinopoiskProject\KinopoiskProject.csproj", "{B05ECDA9-34BA-437C-A8FC-2B696505F738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumWrapper", "SeleniumWrapper\SeleniumWrapper.csproj", "{F81A0725-5206-4BB7-A4DE-DBFB827F6021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selenium", "Selenium\Selenium.csproj", "{6A343484-4998-4071-A6B6-165B553A4D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmsSearcher", "FilmsSearcher\FilmsSearcher.csproj", "{5069717C-1D6B-4896-9608-01B2F8C005E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumWrapper", "SeleniumWrapper\SeleniumWrapper.csproj", "{F81A0725-5206-4BB7-A4DE-DBFB827F6021}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmsSearcher", "FilmsSearcher\FilmsSearcher.csproj", "{5069717C-1D6B-4896-9608-01B2F8C005E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmsDataModel", "FilmsDataModel\FilmsDataModel.csproj", "{DCB5E378-6742-4BCD-B23E-B6D72D598670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B05ECDA9-34BA-437C-A8FC-2B696505F738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B05ECDA9-34BA-437C-A8FC-2B696505F738}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B05ECDA9-34BA-437C-A8FC-2B696505F738}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B05ECDA9-34BA-437C-A8FC-2B696505F738}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A343484-4998-4071-A6B6-165B553A4D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A343484-4998-4071-A6B6-165B553A4D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A343484-4998-4071-A6B6-165B553A4D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A343484-4998-4071-A6B6-165B553A4D5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F81A0725-5206-4BB7-A4DE-DBFB827F6021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F81A0725-5206-4BB7-A4DE-DBFB827F6021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F81A0725-5206-4BB7-A4DE-DBFB827F6021}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +23,10 @@ Global
 		{5069717C-1D6B-4896-9608-01B2F8C005E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5069717C-1D6B-4896-9608-01B2F8C005E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5069717C-1D6B-4896-9608-01B2F8C005E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB5E378-6742-4BCD-B23E-B6D72D598670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB5E378-6742-4BCD-B23E-B6D72D598670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB5E378-6742-4BCD-B23E-B6D72D598670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB5E378-6742-4BCD-B23E-B6D72D598670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

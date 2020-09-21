@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FilmsDataModel\FilmsDataModel.csproj" />
     <ProjectReference Include="..\SeleniumWrapper\SeleniumWrapper.csproj" />
   </ItemGroup>
 
