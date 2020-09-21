@@ -13,7 +13,7 @@ namespace FilmsSearcher
             const string filmName = "Maugli";
             var stringUrl = $"https://www.kinopoisk.ru/index.php?kp_query={filmName}";
 
-            IWebDriver driver = new ChromeDriver(@"D:\temp\Driver");
+            IWebDriver driver = new ChromeDriver(@"C:\temp");
             driver.Navigate().GoToUrl(stringUrl);
 
             //IWebElement element = 
