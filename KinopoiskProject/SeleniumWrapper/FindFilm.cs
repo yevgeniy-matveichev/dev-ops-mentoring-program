@@ -35,6 +35,7 @@ namespace SeleniumWrapper
         public FindFilm(string filmName)
         {
             _driver = new ChromeDriver(@"C:\temp");
+
             _filmName = filmName;
             //_film = film;
         }
@@ -43,8 +44,6 @@ namespace SeleniumWrapper
         {
             _driver.Dispose();
         }
-
-        readonly List<Film> ListOfFilms = new List<Film>();
 
         public List<Film> Find()
         {
@@ -55,7 +54,31 @@ namespace SeleniumWrapper
             _driver.Navigate().GoToUrl(stringUrl);
 
             ShowAllBtn.Click();
-            Task.Delay(2000).Wait();
+            Task.Delay(2000).Wait(); // todo: web driver wait
+
+            var parentDiv = _driver.FindElement(By.XPath("/html/body/main/div[4]/div[1]/table/tbody/tr/td[1]/div/div[2]"));
+            var divElements = parentDiv.FindElements(By.TagName("div"));
+            var listOfFilms = new List<Film>();
+            if (divElements.Count < 3)
+            {
+                return listOfFilms;
+            }
+                        
+            foreach (var element in divElements)
+            {
+                IWebElement fileNameLink = element.FindElement(By.XPath("//div[2]/p/a")); // check if the url is valid
+                IWebElement yearSpan = element.FindElement(By.XPath("//div[2]/p/span"));
+
+                var film = new Film()
+                {
+                    Name = fileNameLink.Text,
+                    Year = new DateTime(int.Parse(yearSpan.Text)) 
+                };
+
+                listOfFilms.Add(film);
+            }
+
+            return listOfFilms;
 
             //Film film1 = new Film();
             //film1.

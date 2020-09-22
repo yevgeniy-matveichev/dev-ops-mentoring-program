@@ -5,14 +5,14 @@ namespace FilmsDataModel
 {
     public class Film
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public string Country { get; }
+        public string Country { get; set; }
 
-        public DateTime Year { get; }
+        public DateTime Year { get; set; }
 
-        public string Rating { get; }
+        public string Rating { get; set; }
 
-        public List<string> Actors { get; }
+        public List<string> Actors { get; set; }
     }
 }

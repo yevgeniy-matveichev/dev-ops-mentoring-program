@@ -14,9 +14,17 @@ namespace FilmsSearcher
             Console.WriteLine("Hello! This is Kinopoisk Search Project.");
             Console.WriteLine($"Please enter a film name to search for:{Environment.NewLine}");
             userInput = Console.ReadLine();
-            var film = new FindFilm(userInput);
             Console.WriteLine($"Searching for '{userInput}'...");
-            film.Find();
+
+            using (var film = new FindFilm(userInput)) {
+                var films = film.Find();
+                foreach (var f in films)
+                {
+                    // ...
+                }
+            }
+
+            Console.ReadLine();
         }
     }
 }
