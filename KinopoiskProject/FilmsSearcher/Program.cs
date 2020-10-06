@@ -30,15 +30,29 @@ namespace FilmsSearcher
 
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"Name:\t{f.Name}");
-                    Console.WriteLine($"Year:\t{f.Year}");
-                    //Console.WriteLine($"Rating:\t{f.Rating}{Environment.NewLine}");
-                    //Console.WriteLine($"Country:\t{f.Country}");
-                    //Console.WriteLine($"Rating:\t{f.Rating}");
-                    //Console.WriteLine($"Actors:\t{string.Join(", ", f.Actors)}");
+                    Console.WriteLine($"Year:\t{f.Year}{Environment.NewLine}");
                 }
             }
 
-            //Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"{Environment.NewLine}If you need more information about any film in a list, enter its' name, otherwise enter 'exit':{Environment.NewLine}");
+            Console.ForegroundColor = ConsoleColor.White;
+
+            var userInput2 = Console.ReadLine();
+
+            while(!userInput2.Equals("exit"))
+            {
+                Console.WriteLine($"Searching for {userInput2}...");
+
+                using var film = new FindFilm(userInput2);
+                var f = film.FilmInfo(userInput2);
+
+                Console.WriteLine($"Name:\t{f.Name}");
+                Console.WriteLine($"Year:\t{f.Year}");
+                Console.WriteLine($"Country:\t{f.Country}");
+                Console.WriteLine($"Rating:\t{f.Rating}{Environment.NewLine}");
+                //Console.WriteLine($"Actors:\t{string.Join(", ", f.Actors)}{Environment.NewLine}");
+            }
         }
     }
 }
