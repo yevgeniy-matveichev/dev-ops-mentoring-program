@@ -42,7 +42,7 @@ namespace FilmsSearcher
 
             while(!userInput2.Equals("exit"))
             {
-                Console.WriteLine($"Searching for {userInput2}...");
+                Console.WriteLine($"Searching for {userInput2}...{Environment.NewLine}");
 
                 using var film = new FindFilm(userInput2);
                 var f = film.FilmInfo(userInput2);
@@ -52,6 +52,8 @@ namespace FilmsSearcher
                 Console.WriteLine($"Country:\t{f.Country}");
                 Console.WriteLine($"Rating:\t{f.Rating}{Environment.NewLine}");
                 //Console.WriteLine($"Actors:\t{string.Join(", ", f.Actors)}{Environment.NewLine}");
+
+                break;
             }
         }
     }
