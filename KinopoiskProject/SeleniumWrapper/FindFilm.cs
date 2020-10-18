@@ -38,6 +38,7 @@ namespace SeleniumWrapper
             Task.Delay(2000).Wait(); // todo: web driver wait
 
             var elements = _driver.FindElements(By.ClassName("element"));
+
             var listOfFilms = new List<Film>();
                         
             foreach (var element in elements)
@@ -74,29 +75,60 @@ namespace SeleniumWrapper
             film.Click();
             Task.Delay(2000).Wait();
 
-            var listOfCountries = new List<string>();
-            var countriesDiv = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[2]/div[2]"));
-            var countries = countriesDiv.FindElements(By.ClassName("styles_linkLight__1Nxon styles_link__1N3S2"));
-            foreach (var country in countries)
+            //var listOfCountries = new List<string>();
+            var ListOfActors = new List<string>();
+            string country = string.Empty;
+            string year = string.Empty;
+            string rating = string.Empty;
+            string duration = string.Empty;
+
+            try
             {
-                var c = country.FindElement(By.ClassName("styles_linkLight__1Nxon styles_link__1N3S2")).Text;
-                listOfCountries.Add(c);
+                //IWebElement countriesDiv = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[2]/div[2]"));
+                ////*[@id="__next"]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[2]/div[2]/a
+
+                //var countries = countriesDiv.FindElements(By.ClassName("styles_linkLight__1Nxon styles_link__1N3S2"));
+                //foreach (var country in countries)
+                //{
+                //    var c = country.FindElement(By.ClassName("styles_linkLight__1Nxon styles_link__1N3S2")).Text;
+                //    listOfCountries.Add(c);
+                //}
+
+                IWebElement countryElement = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[2]/div[2]/a"));
+                country = countryElement.Text;
+
+                IWebElement yearElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[1]/div[2]/a"));
+                year = yearElement.Text;
+
+                IWebElement ratingElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[3]/div/div/div[1]/div/div[2]/div/div[3]/div/div/div[2]/div[1]/div[1]/span[1]/a"));
+                rating = ratingElement.Text;
+
+                IWebElement durationElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[24]/div[2]/div"));
+                duration = durationElement.Text;
+
+                IWebElement actorsUL = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[2]/div[1]/div[1]/ul"));
+                var actors = actorsUL.FindElements(By.ClassName("styles_link__1dkjp"));
+                foreach (var actor in actors)
+                {
+                    var actorName = actor.Text;
+                    ListOfActors.Add(actorName);
+                }
             }
-
-            //var listOfActors = new List<string>();
-            //var castingBtn = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[2]/div[1]/div[1]/h3/a"));
-            //castingBtn.Click();
-            //Task.Delay(2000).Wait();
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally { }
 
             var f = new Film()
             {
                 Name = $"{filmName}",
-                Country = string.Join(", ", listOfCountries),
-                Year = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[1]/div[2]/a")).Text,
-                Rating = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/div/div[1]/div/div[2]/div/div[3]/div/div/div[2]/div[1]/div[1]/span[1]/a")).Text,
-                //Actors = "",
-                Duration = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[25]/div[2]/div")).Text
+                //Country = string.Join(", ", listOfCountries),
+                Country = $"{country}",
+                Year = $"{year}",
+                Rating = $"{rating}",
+                Actors = string.Join(", ", ListOfActors),
+                Duration = $"{duration}"
             };
 
             return f;

@@ -16,7 +16,7 @@ namespace FilmsSearcher
 
             userInput = Console.ReadLine();
 
-            Console.WriteLine($"Searching for '{userInput}'...{Environment.NewLine}");
+            Console.WriteLine($"{Environment.NewLine}Searching for '{userInput}'...{Environment.NewLine}");
 
             using (var film = new FindFilm(userInput)) {
                 var films = film.Find();
@@ -42,16 +42,16 @@ namespace FilmsSearcher
 
             while(!userInput2.Equals("exit"))
             {
-                Console.WriteLine($"Searching for {userInput2}...{Environment.NewLine}");
+                Console.WriteLine($"{Environment.NewLine}Searching for {userInput2}...{Environment.NewLine}");
 
                 using var film = new FindFilm(userInput2);
                 var f = film.FilmInfo(userInput2);
 
-                Console.WriteLine($"Name:\t{f.Name}");
-                Console.WriteLine($"Year:\t{f.Year}");
-                Console.WriteLine($"Country:\t{f.Country}");
-                Console.WriteLine($"Rating:\t{f.Rating}{Environment.NewLine}");
-                //Console.WriteLine($"Actors:\t{string.Join(", ", f.Actors)}{Environment.NewLine}");
+                Console.WriteLine($"Name: {f.Name}");
+                Console.WriteLine($"Year: {f.Year}");
+                Console.WriteLine($"Country: {f.Country}");
+                Console.WriteLine($"Rating: {f.Rating}");
+                Console.WriteLine($"Actors: {f.Actors}{Environment.NewLine}");
 
                 break;
             }
