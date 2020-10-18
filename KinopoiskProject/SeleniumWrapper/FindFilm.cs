@@ -97,15 +97,64 @@ namespace SeleniumWrapper
                 IWebElement countryElement = _driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[2]/div[2]/a"));
                 country = countryElement.Text;
 
+                //IWebElement yearElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[1]/div[2]/a"));
+                //year = yearElement.Text;
+
+                //IWebElement ratingElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[3]/div/div/div[1]/div/div[2]/div/div[3]/div/div/div[2]/div[1]/div[1]/span[1]/a"));
+                //rating = ratingElement.Text;
+
+                //IWebElement durationElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[24]/div[2]/div"));
+                //duration = durationElement.Text;
+
+                //IWebElement actorsUL = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[2]/div[1]/div[1]/ul"));
+                //var actors = actorsUL.FindElements(By.ClassName("styles_link__1dkjp"));
+                //foreach (var actor in actors)
+                //{
+                //    var actorName = actor.Text;
+                //    ListOfActors.Add(actorName);
+                //}
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally { }
+
+            try
+            {
                 IWebElement yearElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[1]/div[2]/a"));
                 year = yearElement.Text;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally { }
 
+            try
+            {
                 IWebElement ratingElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[3]/div/div/div[1]/div/div[2]/div/div[3]/div/div/div[2]/div[1]/div[1]/span[1]/a"));
                 rating = ratingElement.Text;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally { }
 
+            try
+            {
                 IWebElement durationElement = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div[24]/div[2]/div"));
                 duration = durationElement.Text;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally { }
 
+            try
+            {
                 IWebElement actorsUL = _driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/div/div[2]/div[2]/div[1]/div[1]/ul"));
                 var actors = actorsUL.FindElements(By.ClassName("styles_link__1dkjp"));
                 foreach (var actor in actors)
