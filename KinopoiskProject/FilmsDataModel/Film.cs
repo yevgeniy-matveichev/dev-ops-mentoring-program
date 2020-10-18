@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FilmsDataModel
+﻿namespace FilmsDataModel
 {
     public class Film
     {
